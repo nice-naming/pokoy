@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-        uses: jsryudev/deploy-firebase-functions@v0.0.2
+      - uses: jsryudev/deploy-firebase-functions@v0.0.2
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT: pokoy-1bf7f
