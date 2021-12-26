@@ -7,13 +7,15 @@ import { Wrapper } from "./stats-chart.styles"
 
 // TODO: extract to types and constants
 const totalChartConfig: AxisOptions<PokoyChartData> = {
-  min: 0,
+  // TODO: add dynamic max value
   max: 34,
   getValue: (datum) => datum.secondary,
   elementType: "area",
 }
 
 const dayMeditationChartConfig: AxisOptions<PokoyChartData> = {
+  min: 0,
+  max: 34,
   getValue: (datum: PokoyChartData) => datum.secondary,
   id: "2",
 }
@@ -31,13 +33,13 @@ export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
   )
 
   const secondaryAxes = useMemo<AxisOptions<PokoyChartData>[]>(
-    () => [totalChartConfig, dayMeditationChartConfig],
+    () => [dayMeditationChartConfig, totalChartConfig],
     []
   )
 
   const defaultColors = useMemo<string[]>(() => {
-    const { GREEN, EXTRA_GRAY } = CSSColorVariables
-    const extraGrayColor = getColorFromCSSVar(EXTRA_GRAY)
+    const { GREEN, SPIRAL } = CSSColorVariables
+    const extraGrayColor = getColorFromCSSVar(SPIRAL)
     const greenColor = getColorFromCSSVar(GREEN)
     const chartColors = [greenColor, extraGrayColor]
 
@@ -57,6 +59,16 @@ export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
           primaryAxis,
           secondaryAxes,
           dark: isDark,
+          tooltip: {
+            groupingMode: "single",
+            show: true,
+          },
+          primaryCursor: true,
+          secondaryCursor: {
+            show: true,
+            showLine: true,
+            showLabel: true,
+          },
         }}
       />
     </Wrapper>

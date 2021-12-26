@@ -36,7 +36,7 @@ export const UserStats: React.FC<Props> = ({ user }) => {
         </>
       ) : (
         <span>
-          There are no statistics yet. Try meditating more than twice.
+          There are no statistics yet. Try meditating for more than two days.
         </span>
       )}
     </Wrapper>

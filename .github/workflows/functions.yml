@@ -5,20 +5,14 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
-  build:
+  main:
+    name: Build functions
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: 12
-      - run: yarn build-functions
-      - name: Deploy to Firebase
-        uses: BIGG-Kaymo/deploy-firebase-functions@v1.0.1
+        uses: jsryudev/deploy-firebase-functions@v0.0.2
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: pokoy-1bf7f

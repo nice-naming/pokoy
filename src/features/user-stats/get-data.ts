@@ -10,6 +10,8 @@ import {
 } from "./constants"
 import { getFullRange } from "./get-full-range"
 
+const INITIAL_MEDITATION_DURATION = 0
+
 // TODO: refactor this module
 export const fetchAndsetChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
@@ -74,7 +76,7 @@ function transformDayDataToChartData(
 ): UserSerie<PokoyChartData>[] {
   const daysWithMeditationsAsAxis: PokoyChartData[] = dayDataFullRange.map(
     (d) => ({
-      primary: d.timestamp.toDate(),
+      primary: new Date(d.timestamp.toDate().toDateString()),
       secondary: d.totalDuration,
     })
   )
@@ -85,11 +87,14 @@ function transformDayDataToChartData(
   const secondaryAxisData = {
     label: SECONDARY_AXIS_LABEL,
     data: daysWithMeditationsAsAxis,
+    id: "2",
     secondaryAxisId: "2",
   }
   const tertiaryAxisData = {
     label: TERTIARY_AXIS_LABEL,
     data: totalDurationsAxisData,
+    id: "1",
+    // secondaryAxisId: "1"
   }
 
   const chartData = [secondaryAxisData, tertiaryAxisData]
@@ -100,7 +105,7 @@ function getTotalDurationsAsAxisData(
   daysWithMeditationsAsAxis: PokoyChartData[]
 ): PokoyChartData[] {
   return daysWithMeditationsAsAxis.reduce((acc, d, i) => {
-    const prevTotal = acc[i - 1]?.secondary || 0
+    const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
     const total = d.secondary / 60 + prevTotal
     return [
       ...acc,
