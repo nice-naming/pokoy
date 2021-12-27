@@ -1,19 +1,45 @@
 import { getAverage, getTotalInHours } from "features/user-stats/get-data"
+import {
+  StyledStatNumber,
+  StyledStat,
+} from "features/user-stats/user-stats.styles"
+import { useEffect, useState } from "react"
 import { UserStatsData } from "shared/types"
-import { StyledSpan, Wrapper } from "./stats-numbers.styles"
+import { Foresight } from "../foresight/foresight.component"
+import { Wrapper } from "./stats-numbers.styles"
 
 interface Props {
   statsData: UserStatsData | null
 }
 export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
-  const totalDurationExists = !!statsData?.totalDuration
+  const [average, setAverage] = useState<number | null>(null)
+  const [totalInHours, setTotalInHours] = useState<number | null>(null)
 
-  return totalDurationExists ? (
+  useEffect(() => {
+    const totalDurationExists = !!statsData?.totalDuration
+    if (!totalDurationExists) return
+
+    setAverage(getAverage(statsData))
+    setTotalInHours(getTotalInHours(statsData.totalDuration))
+  }, [statsData])
+
+  return (
     <Wrapper>
-      <StyledSpan>
-        Total: {getTotalInHours(statsData.totalDuration)} hours
-      </StyledSpan>
-      <StyledSpan>Average: {getAverage(statsData)} minutes</StyledSpan>
+      {totalInHours && average && (
+        <Foresight totalHours={totalInHours} average={average} />
+      )}
+
+      {totalInHours && (
+        <StyledStat>
+          <StyledStatNumber>{totalInHours}</StyledStatNumber> hours in total
+        </StyledStat>
+      )}
+
+      {average && (
+        <StyledStat>
+          <StyledStatNumber>{average}</StyledStatNumber> minutes in average
+        </StyledStat>
+      )}
     </Wrapper>
-  ) : null
+  )
 }

@@ -1,5 +1,5 @@
 import { StatsData } from "shared/types"
-import { getFibonacciDiscrete } from "shared/utils/getFibonacciDiscrete"
+import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 
 export const writeSessionToStore = (seconds: number) => {
   const date = new Date().toISOString()

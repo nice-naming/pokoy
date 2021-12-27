@@ -15,11 +15,11 @@ export const UserStats: React.FC<Props> = ({ user }) => {
   const [chartData, setChartData] = useState<UserSerie<PokoyChartData>[]>([])
   const [statsData, setStatsData] = useState<UserStatsData | null>(null)
 
-  const memoizedGetDays = useCallback(fetchAndsetChartData, [])
+  const memoizedGetChartData = useCallback(fetchAndsetChartData, [])
   const memoizedGetStats = useCallback(getStats, [])
 
   useEffect(() => {
-    memoizedGetDays(setChartData, user)
+    memoizedGetChartData(setChartData, user)
     memoizedGetStats(setStatsData, user)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

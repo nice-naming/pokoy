@@ -1,6 +1,6 @@
-import { getFibonacciDiscrete } from "shared/utils/getFibonacciDiscrete"
 import React from "react"
-import { fibonacciNums, SECS_IN_MIN } from "shared/constants"
+import { FIBONACCI_NUMS, SECS_IN_MIN } from "shared/constants"
+import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 import styles from "./Countdown.module.css"
 import { remainTimeToDigitClock } from "./remainTimeToDigitClock"
 
@@ -17,13 +17,13 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
     const minutes = Math.floor(seconds / SECS_IN_MIN)
     const closestDiscreteStage = getFibonacciDiscrete(minutes)
 
-    for (const num of fibonacciNums) {
+    for (const num of FIBONACCI_NUMS) {
       if (closestDiscreteStage === num) {
-        const nextStageIndex = fibonacciNums.indexOf(closestDiscreteStage) + 1
+        const nextStageIndex = FIBONACCI_NUMS.indexOf(closestDiscreteStage) + 1
         const nextStage =
           minutes < closestDiscreteStage
             ? closestDiscreteStage
-            : fibonacciNums[nextStageIndex]
+            : FIBONACCI_NUMS[nextStageIndex]
         const secondsToNextStage = nextStage * SECS_IN_MIN - seconds
 
         const minutesRemain = Math.floor(secondsToNextStage / SECS_IN_MIN)

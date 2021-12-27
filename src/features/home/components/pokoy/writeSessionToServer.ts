@@ -23,7 +23,7 @@ import {
   SECS_IN_MIN,
 } from "shared/constants"
 import { DayData, PokoySession } from "shared/types"
-import { getFibonacciDiscrete } from "shared/utils/getFibonacciDiscrete"
+import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 
 // TODO: solve linter issues
 // eslint-disable-next-line max-statements
@@ -106,7 +106,6 @@ const createNewDay = async (
 
   if (userStatsQuerySnapshot.empty) {
     console.error("User stats not found")
-    console.log("🚀 ~ userStatsQuerySnapshot.docs", userStatsQuerySnapshot.docs)
     return
   }
   const userStatsRef = userStatsQuerySnapshot.docs[0].ref
@@ -155,7 +154,7 @@ const setDay = async (
     await setDoc(dayRef, newDayData)
     console.log("success")
   } catch (e) {
-    console.log("⛔️", e)
+    console.error("⛔️", e)
     window?.localStorage.setItem(
       LOCAL_CACHE_FIELD_NAME,
       JSON.stringify(newDayData)

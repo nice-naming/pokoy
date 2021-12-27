@@ -1,6 +1,8 @@
 import React, { useCallback } from "react"
-import { getFloorFibonacciDiscrete } from "shared/components/progress/getFloorFibonacciDiscrete"
-import { fibonacciNums } from "shared/constants"
+import {
+  getFloorFibonacciDiscrete,
+  getNextFibonacciStage,
+} from "shared/utils/getNextFibonacciStage"
 import { StageWrapper, Wrapper } from "./tips.styles"
 
 interface Props {
@@ -12,12 +14,7 @@ interface Props {
 export const Tips: React.FC<Props> = ({ minutes, isTimerStarted }) => {
   const [currentStage, setCurrentStage] = React.useState(0)
 
-  const getNextStage = useCallback((currentStage: number, minutes: number) => {
-    const nextStageIndex = fibonacciNums.indexOf(currentStage) + 1
-    const nextStage =
-      currentStage > minutes ? currentStage : fibonacciNums[nextStageIndex]
-    return nextStage
-  }, [])
+  const getNextStage = useCallback(getNextFibonacciStage, [])
 
   const nextStage = getNextStage(currentStage, minutes)
 

@@ -1,7 +1,7 @@
-import { fibonacciNums } from "shared/constants"
+import { FIBONACCI_NUMS } from "shared/constants"
 
 export const getColorByFibNum = (num: number) => {
-  const isFibNum = fibonacciNums.includes(num)
+  const isFibNum = FIBONACCI_NUMS.includes(num)
 
   if (!isFibNum) return "#fff"
 

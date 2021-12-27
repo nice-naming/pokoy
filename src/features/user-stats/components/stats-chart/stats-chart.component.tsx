@@ -11,11 +11,13 @@ const totalChartConfig: AxisOptions<PokoyChartData> = {
   max: 34,
   getValue: (datum) => datum.secondary,
   elementType: "area",
+  // id: "1"
 }
 
 const dayMeditationChartConfig: AxisOptions<PokoyChartData> = {
   min: 0,
   max: 34,
+  elementType: "bar",
   getValue: (datum: PokoyChartData) => datum.secondary,
   id: "2",
 }
@@ -33,13 +35,13 @@ export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
   )
 
   const secondaryAxes = useMemo<AxisOptions<PokoyChartData>[]>(
-    () => [dayMeditationChartConfig, totalChartConfig],
+    () => [totalChartConfig, dayMeditationChartConfig],
     []
   )
 
   const defaultColors = useMemo<string[]>(() => {
-    const { GREEN, SPIRAL } = CSSColorVariables
-    const extraGrayColor = getColorFromCSSVar(SPIRAL)
+    const { GREEN, BLUE } = CSSColorVariables
+    const extraGrayColor = getColorFromCSSVar(BLUE)
     const greenColor = getColorFromCSSVar(GREEN)
     const chartColors = [greenColor, extraGrayColor]
 

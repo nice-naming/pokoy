@@ -9,9 +9,9 @@ import {
   SECOND_POINT,
 } from "./progress.constants"
 import { getFibSpiral } from "shared/components/progress/getFibSpiral"
-import { getFloorFibonacciDiscrete } from "shared/components/progress/getFloorFibonacciDiscrete"
 import { drawStrokeByPath } from "shared/components/progress/drawStrokeByPath"
 import { drawCircle } from "shared/components/progress/drawCircle"
+import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 
 interface Props {
   progress: number

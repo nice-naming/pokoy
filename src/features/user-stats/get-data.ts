@@ -4,6 +4,7 @@ import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { UserSerie } from "react-charts"
 import { DayData, PokoyChartData, UserStatsData } from "shared/types"
 import {
+  MINS_IN_HOUR,
   SECONDARY_AXIS_LABEL,
   SECS_IN_DAY,
   TERTIARY_AXIS_LABEL,
@@ -39,8 +40,7 @@ export const getStats = async (
 }
 
 export const getTotalInHours = (minutes: number): number => {
-  const MINS_IN_HOUR = 60
-  return roundToSecondDecimalPlace(minutes / MINS_IN_HOUR)
+  return Math.floor(minutes / MINS_IN_HOUR)
 }
 
 export const getAverage = (statsData: UserStatsData) => {
@@ -51,13 +51,9 @@ export const getAverage = (statsData: UserStatsData) => {
   const { firstMeditationDate } = statsData
   const statsMillisecondsDiff =
     Date.now() - firstMeditationDate.toDate().getTime()
-  const statsRangeInDays = roundToSecondDecimalPlace(
-    statsMillisecondsDiff / SECS_IN_DAY
-  )
+  const statsRangeInDays = statsMillisecondsDiff / SECS_IN_DAY
 
-  const average = roundToSecondDecimalPlace(
-    statsData.totalDuration / statsRangeInDays
-  )
+  const average = Math.floor(statsData.totalDuration / statsRangeInDays)
 
   return average
 }
@@ -104,17 +100,22 @@ function transformDayDataToChartData(
 function getTotalDurationsAsAxisData(
   daysWithMeditationsAsAxis: PokoyChartData[]
 ): PokoyChartData[] {
-  return daysWithMeditationsAsAxis.reduce((acc, d, i) => {
-    const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
-    const total = d.secondary / 60 + prevTotal
-    return [
-      ...acc,
-      {
-        primary: d.primary,
-        secondary: total,
-      },
-    ]
-  }, [] as PokoyChartData[])
+  const totalDurationAsAxisData = daysWithMeditationsAsAxis.reduce(
+    (acc, d, i) => {
+      const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
+      const total = roundToSecondDecimalPlace(d.secondary / 60 + prevTotal)
+      return [
+        ...acc,
+        {
+          primary: d.primary,
+          secondary: total,
+        },
+      ]
+    },
+    [] as PokoyChartData[]
+  )
+
+  return totalDurationAsAxisData
 }
 
 async function fetchDays(user: User): Promise<DayData[]> {

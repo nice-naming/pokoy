@@ -1,13 +1,15 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "date date"
+    "average total";
+  grid-gap: 2rem;
+  justify-items: flex-start;
+
   color: var(--c-extra-gray);
   margin-bottom: 2rem;
   cursor: default;
   user-select: none;
 `
-
-export const StyledSpan = styled.span``

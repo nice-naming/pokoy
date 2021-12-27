@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/m0rtyn/pokoy/compare/v0.6.0...v1.0.0) (2021-12-27)
+
+## [0.6.0](https://github.com/m0rtyn/pokoy/compare/v0.5.3...v0.6.0) (2021-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* make new design for user stats
+
+### Features
+
+* make new design for user stats ([4396400](https://github.com/m0rtyn/pokoy/commit/43964007888439ca412eacb37d315c84361f8496))
+
+
+### Bug Fixes
+
+* button color ([a01d40c](https://github.com/m0rtyn/pokoy/commit/a01d40cd32776843fe1998681f2751b56e326ede))
+
 ### [0.5.4](https://github.com/m0rtyn/pokoy/compare/v0.5.3...v0.5.4) (2021-12-25)
 
 ### [0.5.3](https://github.com/m0rtyn/pokoy/compare/v0.5.2...v0.5.3) (2021-12-19)
