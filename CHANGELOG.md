@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.2) (2022-01-15)
+
+
+### Bug Fixes
+
+* font size of user stats for mobile devices ([2a839c8](https://github.com/m0rtyn/pokoy/commit/2a839c819dc4be5c84b6b833bbd8d311dcecd245))
+
 ### [1.0.1](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.1) (2022-01-15)
 
 
