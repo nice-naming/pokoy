@@ -1,6 +1,5 @@
 import React from "react"
 import { getColorStyleSheetVarName, getColorFromCSSVar } from "./utils"
-import styles from "./Progress.module.css"
 import {
   CANVAS_SIZE,
   CENTER_POINT,
@@ -12,10 +11,19 @@ import { getFibSpiral } from "shared/components/progress/getFibSpiral"
 import { drawStrokeByPath } from "shared/components/progress/drawStrokeByPath"
 import { drawCircle } from "shared/components/progress/drawCircle"
 import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
+import { ReactComponent as FibSpiral } from "shared/assets/svgs/fib-spiral.svg"
+import styled from "styled-components"
 
 interface Props {
   progress: number
 }
+
+const LogoWrapper = styled.div`
+  & path {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 4700;
+  }
+`
 
 // TODO: refactor component
 export const ProgressDrawer: React.FC<Props> = ({ progress }) => {
@@ -64,12 +72,17 @@ export const ProgressDrawer: React.FC<Props> = ({ progress }) => {
 
   return (
     <>
-      <canvas
+      {/* <FibSpiral /> */}
+      <LogoWrapper>
+        <FibSpiral stroke="green" />
+      </LogoWrapper>
+      {/* <SecondFibSpiral style={{ position: "absolute" }} /> */}
+      {/* <canvas
         ref={spiralCanvasRef}
         width={CANVAS_SIZE}
         height={CANVAS_SIZE}
         className={styles["progress-spiral"]}
-      ></canvas>
+      ></canvas> */}
     </>
   )
 }
