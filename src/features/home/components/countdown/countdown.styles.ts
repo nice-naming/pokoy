@@ -1,3 +1,4 @@
+import { TABLET_MIN_WIDTH } from "shared/constants"
 import styled from "styled-components"
 
 export const StyledCountdown = styled.span`
@@ -8,7 +9,7 @@ export const StyledCountdown = styled.span`
   color: var(--c-foreground);
 
   /* TODO: add breakpoint to css vars */
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: ${TABLET_MIN_WIDTH}) {
     margin: 0;
   }
 `

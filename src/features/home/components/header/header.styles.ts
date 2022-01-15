@@ -1,3 +1,4 @@
+import { TABLET_MIN_WIDTH } from "shared/constants"
 import styled from "styled-components/macro"
 
 export const Wrapper = styled.div`
@@ -11,7 +12,7 @@ export const Wrapper = styled.div`
   font-size: 1.5rem;
   padding: 0 4rem;
 
-  @media screen and (min-width: 500px) {
+  @media screen and (min-width: ${TABLET_MIN_WIDTH}) {
     padding: 0;
   }
 `
