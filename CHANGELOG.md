@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.1) (2022-01-15)
+
+
+### Bug Fixes
+
+* replace css-modules by stld-cmpnnts and change color ([5e2f970](https://github.com/m0rtyn/pokoy/commit/5e2f970023f63754622575047c68c9cd5ceb7d4c))
+
 ## [1.0.0](https://github.com/m0rtyn/pokoy/compare/v0.6.0...v1.0.0) (2021-12-27)
 
 ## [0.6.0](https://github.com/m0rtyn/pokoy/compare/v0.5.3...v0.6.0) (2021-12-27)

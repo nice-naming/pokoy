@@ -1,6 +1,6 @@
 import { render, unmountComponentAtNode } from "react-dom"
 import { act } from "react-dom/test-utils"
-import { Countdown } from "./Countdown"
+import { Countdown } from "./countdown.component"
 
 describe("Countdown", () => {
   let container = null

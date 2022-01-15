@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react"
 import { User } from "@firebase/auth"
 import { useNoSleep } from "use-no-sleep"
 import {
@@ -5,15 +6,14 @@ import {
   MAX_TIMER_SECONDS,
   SECS_IN_MIN,
 } from "shared/constants"
-import { firestore } from "features/home/firebase-init"
-import { useState, useEffect, useCallback } from "react"
-import { TimerButton } from "features/home/components/pokoy/timer-button/timer-button.component"
-import { Countdown } from "features/home/components/pokoy/countdown/Countdown"
+import { firestore } from "../../firebase-init"
+import { TimerButton } from "../timer-button/timer-button.component"
+import { Countdown } from "../countdown/countdown.component"
+import { Tips } from "../tips"
 import {
   sendSessionFromLocalStore,
   sendSessionFromSeconds,
-} from "features/home/components/pokoy/writeSessionToServer"
-import { Tip } from "features/home/components/pokoy/tips"
+} from "./writeSessionToServer"
 import { PokoySession, RequestStatus } from "shared/types"
 import { ProgressContainer } from "shared/components/progress/ProgressContainer"
 import { TopTextWrapper, Wrapper } from "./pokoy.styles"
@@ -123,7 +123,7 @@ export const Pokoy = ({ user }: { user: User }) => {
         <ProgressContainer value={timerDiff} />
       </TimerButton>
 
-      <Tip minutes={minutes} isTimerStarted={isStarted} />
+      <Tips minutes={minutes} isTimerStarted={isStarted} />
     </Wrapper>
   )
 }

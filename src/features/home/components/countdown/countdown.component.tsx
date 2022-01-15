@@ -1,7 +1,7 @@
 import React from "react"
 import { FIBONACCI_NUMS, SECS_IN_MIN } from "shared/constants"
 import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
-import styles from "./Countdown.module.css"
+import { StyledCountdown } from "./countdown.styles"
 import { remainTimeToDigitClock } from "./remainTimeToDigitClock"
 
 interface Props {
@@ -52,8 +52,8 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
   }, [minutesRemain, seconds, secondsRemain])
 
   return (
-    <span className={styles.countdown} title="Времени до следующего этапа">
+    <StyledCountdown title="Time left until the next stage">
       {timeRemain}
-    </span>
+    </StyledCountdown>
   )
 }

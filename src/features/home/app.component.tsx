@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "features/home/firebase-init"
-import { Pokoy } from "features/home/components/pokoy/Pokoy"
+import { Pokoy } from "features/home/components/pokoy/pokoy.component"
 import { FibLoader } from "features/home/components/fib-loader"
 import { Wrapper, SwipeableView } from "./app.styles"
 import SwipeableViews from "react-swipeable-views"
