@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/m0rtyn/pokoy/compare/v1.0.2...v1.1.0) (2022-01-15)
+
+
+### Features
+
+* redesign tips under timer ([78320f9](https://github.com/m0rtyn/pokoy/commit/78320f9fb8b92a29e298bca58164c932a1e0f783))
+
 ### [1.0.2](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.2) (2022-01-15)
 
 
