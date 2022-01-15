@@ -14,6 +14,7 @@ export const SwipeButton = styled.button`
   margin-bottom: 6rem;
   border-radius: 3rem;
 `
+
 interface Props {
   isActive: boolean
 }

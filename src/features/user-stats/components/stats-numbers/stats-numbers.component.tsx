@@ -37,7 +37,8 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
 
       {average && (
         <StyledStat>
-          <StyledStatNumber>{average}</StyledStatNumber> minutes in average
+          <StyledStatNumber>{average}</StyledStatNumber>
+          <span> minutes in average</span>
         </StyledStat>
       )}
     </Wrapper>
