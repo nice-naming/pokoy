@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/m0rtyn/pokoy/compare/v1.0.2...v1.2.0) (2022-01-16)
+
+
+### Features
+
+* rework progress drawing from canvas to svg animation ([2dc744a](https://github.com/m0rtyn/pokoy/commit/2dc744aaaefa017eba6be859423d684e0e511d60))
+
 ## [1.1.0](https://github.com/m0rtyn/pokoy/compare/v1.0.2...v1.1.0) (2022-01-15)
 
 
