@@ -1,4 +1,4 @@
-import { getColorFromCSSVar } from "shared/components/progress/utils"
+import { getColorFromCSSVar } from "features/home/utils"
 import React, { useMemo } from "react"
 import { Chart, AxisOptions, UserSerie } from "react-charts"
 import { CSSColorVariables } from "shared/constants"

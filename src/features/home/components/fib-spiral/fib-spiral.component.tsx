@@ -2,7 +2,7 @@ import React, { useMemo } from "react"
 import {
   getColorFromCSSVar,
   getColorStyleSheetVarName,
-} from "shared/components/progress/utils"
+} from "features/home/utils"
 import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 import {
   MAX_SPIRAL_VALUE,

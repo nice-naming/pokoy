@@ -16,7 +16,7 @@ import {
 } from "./writeSessionToServer"
 import { PokoySession, RequestStatus } from "shared/types"
 import { TopTextWrapper, Wrapper } from "./pokoy.styles"
-import { Sound } from "shared/components/progress/Sound"
+import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 
 // TODO: refactor component
