@@ -15,8 +15,9 @@ import {
 } from "features/home/components/pokoy/writeSessionToServer"
 import { Tip } from "features/home/components/pokoy/tips"
 import { PokoySession, RequestStatus } from "shared/types"
-import { ProgressContainer } from "shared/components/progress/ProgressContainer"
 import { TopTextWrapper, Wrapper } from "./pokoy.styles"
+import { Sound } from "shared/components/progress/Sound"
+import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 
 // TODO: refactor component
 export const Pokoy = ({ user }: { user: User }) => {
@@ -120,7 +121,8 @@ export const Pokoy = ({ user }: { user: User }) => {
         isTimerStarted={isStarted}
         requestStatus={requestStatus}
       >
-        <ProgressContainer value={timerDiff} />
+        <Sound progress={timerDiff} />
+        <FibSpiral seconds={timerDiff} />
       </TimerButton>
 
       <Tip minutes={minutes} isTimerStarted={isStarted} />
