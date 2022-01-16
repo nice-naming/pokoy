@@ -37,7 +37,7 @@ export const Wrapper = styled.div<Props>`
   height: 100%;
   padding: 1rem;
 
-  & > canvas {
+  & .progress-spiral {
     animation-name: ${spinning};
     animation-duration: 0.5s;
     animation-timing-function: ease-out;

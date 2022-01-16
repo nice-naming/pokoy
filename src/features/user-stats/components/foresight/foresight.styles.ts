@@ -1,5 +1,5 @@
 import { StyledStatNumber } from "features/user-stats/user-stats.styles"
-import styled from "styled-components"
+import styled from "styled-components/macro"
 
 export const Wrapper = styled.div`
   width: 100%;

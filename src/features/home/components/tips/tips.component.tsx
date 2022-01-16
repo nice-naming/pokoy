@@ -67,7 +67,7 @@ export const Tips: React.FC<Props> = ({ minutes, isTimerStarted }) => {
             <StyledDesc>is current</StyledDesc>
           </StageWrapper>
 
-          <span>＞</span>
+          <span>▶</span>
 
           <StageWrapper>
             <StageNumber>{nextStage}</StageNumber>
