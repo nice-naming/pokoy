@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/m0rtyn/pokoy/compare/v1.2.0...v1.3.0) (2022-01-16)
+
+
+### Features
+
+* set permanent dark mode ([cff16d1](https://github.com/m0rtyn/pokoy/commit/cff16d19a45a55097c674abf38c06d0bb6190c35))
+
+
+### Bug Fixes
+
+* replace icon ([41a37c3](https://github.com/m0rtyn/pokoy/commit/41a37c3713146261ca7c15dc4170289d4b0be473))
+
 ## [1.2.0](https://github.com/m0rtyn/pokoy/compare/v1.0.2...v1.2.0) (2022-01-16)
 
 
