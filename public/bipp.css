@@ -49,7 +49,23 @@ textarea {
 /* base */
 
 :root {
-  /* NOTE: Notion Light Mode text colors */
+  /* NOTE: Notion Dark Mode text colors */
+  --c-gray: #9fa4a9;
+  --c-brown: #d49675;
+  --c-orange: #d98538;
+  --c-yellow: #c99126;
+  --c-green: #71b283;
+  --c-blue: #66aada;
+  --c-purple: #b098d9;
+  --c-pink: #df84d1;
+  --c-red: #ea878c;
+  
+  --c-background: #2f3437;
+  --c-foreground: #ffffffe6;
+  --c-spiral: #202020;
+  --c-extra-gray: #ffffff66;
+
+  /* NOTE: Notion Light Mode text colors
 	--c-gray: #787774;
   --c-brown: #9f6b53;
   --c-orange: #d9730d;
@@ -63,40 +79,16 @@ textarea {
 	--c-background: #ffffff;
 	--c-foreground: #37352f;
   --c-spiral: #F0EBE8;
-  --c-extra-gray: #37352f66;
-}
-
-/* base: dark theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* NOTE: Notion Dark Mode text colors */
-    --c-gray: #9fa4a9;
-    --c-brown: #d49675;
-    --c-orange: #d98538;
-    --c-yellow: #c99126;
-    --c-green: #71b283;
-    --c-blue: #66aada;
-    --c-purple: #b098d9;
-    --c-pink: #df84d1;
-    --c-red: #ea878c;
-    
-    --c-background: #2f3437;
-		--c-foreground: #ffffffe6;
-    --c-spiral: #202020;
-    --c-extra-gray: #ffffff66;
-  }
-
-  --link-bg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(249, 248, 246, .5)'/%3E%3C/svg%3E");
-  --link-bg-focus: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(255, 78, 35 , .5)'/%3E%3C/svg%3E");
+  --c-extra-gray: #37352f66; */
 }
 
 :root {
   --c-brand: var(--c-blue);
 	--c-brand-focus: var(--c-pink);
 	--c-marker: var(--c-gray);
-
-	--link-bg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(0, 0, 0, .3)'/%3E%3C/svg%3E");
-	--link-bg-focus: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(237, 6, 12, .3)' /%3E%3C/svg%3E");
+  
+  --link-bg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(249, 248, 246, .5)'/%3E%3C/svg%3E");
+  --link-bg-focus: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(255, 78, 35 , .5)'/%3E%3C/svg%3E");
   
 	/* button text, text when background is not --c-background */
 	--c-foreground-contrast: rgb(255, 255, 255);
