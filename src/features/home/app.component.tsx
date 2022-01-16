@@ -22,7 +22,8 @@ const swipeableViewsRootStyles = {
   overflow: "hidden",
 }
 const swipeableViewsContainerStyles = {
-  width: "100%",
+  maxWidth: "100%",
+  maxHeight: "100%",
 }
 
 const VirtualizedSwipeableViews = virtualize(SwipeableViews)

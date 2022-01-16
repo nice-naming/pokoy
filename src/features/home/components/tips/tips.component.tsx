@@ -3,7 +3,14 @@ import {
   getFloorFibonacciDiscrete,
   getNextFibonacciStage,
 } from "shared/utils/getNextFibonacciStage"
-import { StageWrapper, Wrapper } from "./tips.styles"
+import {
+  StageNumber,
+  StageWrapper,
+  StyledDesc,
+  StyledTip,
+  StyledUnits,
+  Wrapper,
+} from "./tips.styles"
 
 interface Props {
   minutes: number
@@ -52,24 +59,24 @@ export const Tips: React.FC<Props> = ({ minutes, isTimerStarted }) => {
     <Wrapper>
       {isTimerStarted ? (
         <>
-          <span>
-            Completed stage is{" "}
-            <StageWrapper stage={currentStage}>{currentStage}</StageWrapper>{" "}
-            {currentStage === 1 ? "minute" : "minutes"}
-          </span>
-          <br />
-          <span>
-            The next stage in{" "}
-            <StageWrapper stage={nextStage}>{nextStage}</StageWrapper>{" "}
-            {nextStage === 1 ? "minute" : "minutes"}
-          </span>
+          <StageWrapper>
+            <StageNumber>{currentStage}</StageNumber>
+            <StyledUnits>
+              {currentStage === 1 ? "minute" : "minutes"}
+            </StyledUnits>
+            <StyledDesc>is current</StyledDesc>
+          </StageWrapper>
+
+          <span>＞</span>
+
+          <StageWrapper>
+            <StageNumber>{nextStage}</StageNumber>
+            <StyledUnits>{nextStage === 1 ? "minute" : "minutes"}</StyledUnits>
+            <StyledDesc>is next</StyledDesc>
+          </StageWrapper>
         </>
       ) : (
-        <>
-          <span>Press the circle to start</span>
-          <br />
-          <span>...</span>
-        </>
+        <StyledTip>Press the circle to start</StyledTip>
       )}
     </Wrapper>
   )

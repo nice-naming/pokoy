@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/m0rtyn/pokoy/compare/v1.0.2...v1.1.0) (2022-01-15)
+
+
+### Features
+
+* redesign tips under timer ([78320f9](https://github.com/m0rtyn/pokoy/commit/78320f9fb8b92a29e298bca58164c932a1e0f783))
+
+### [1.0.2](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.2) (2022-01-15)
+
+
+### Bug Fixes
+
+* font size of user stats for mobile devices ([2a839c8](https://github.com/m0rtyn/pokoy/commit/2a839c819dc4be5c84b6b833bbd8d311dcecd245))
+
+### [1.0.1](https://github.com/m0rtyn/pokoy/compare/v0.4.4...v1.0.1) (2022-01-15)
+
+
+### Bug Fixes
+
+* replace css-modules by stld-cmpnnts and change color ([5e2f970](https://github.com/m0rtyn/pokoy/commit/5e2f970023f63754622575047c68c9cd5ceb7d4c))
+
 ## [1.0.0](https://github.com/m0rtyn/pokoy/compare/v0.6.0...v1.0.0) (2021-12-27)
 
 ## [0.6.0](https://github.com/m0rtyn/pokoy/compare/v0.5.3...v0.6.0) (2021-12-27)

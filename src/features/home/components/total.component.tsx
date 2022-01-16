@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { User } from "@firebase/auth"
-import { getUserStats } from "./getUserStats"
+import { getUserStats } from "./pokoy/getUserStats"
 
 export const Total = ({ user }: { user: User }) => {
   const [total, setTotal] = useState(0)
