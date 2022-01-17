@@ -37,7 +37,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
   }, [minutes])
 
   return (
-    <Wrapper progress={START_SPIRAL_OFFSET + progress} color={fibColor}>
+    <Wrapper offset={START_SPIRAL_OFFSET + progress} color={fibColor}>
       <svg
         width="100%"
         height="100%"
@@ -63,7 +63,6 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="1.5rem"
           fillOpacity="0"
           d={PATH_TO_DRAWN}
         />
