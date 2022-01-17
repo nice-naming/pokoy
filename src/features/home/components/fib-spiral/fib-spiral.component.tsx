@@ -39,6 +39,8 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
   return (
     <Wrapper progress={START_SPIRAL_OFFSET + progress} color={fibColor}>
       <svg
+        width="100%"
+        height="100%"
         className="progress-spiral"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
