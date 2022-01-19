@@ -15,4 +15,9 @@ export const StyledStatDate = styled(StyledStatNumber)`
 export const ProgressWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+
+  & .progress-bar {
+    height: 100%;
+    width: 100%;
+  }
 `

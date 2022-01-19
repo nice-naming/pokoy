@@ -48,10 +48,6 @@ export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
     return chartColors
   }, [])
 
-  const isDark: boolean =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-
   return (
     <Wrapper>
       <Chart
@@ -60,7 +56,7 @@ export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
           defaultColors,
           primaryAxis,
           secondaryAxes,
-          dark: isDark,
+          dark: true,
           tooltip: {
             groupingMode: "single",
             show: true,

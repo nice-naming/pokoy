@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.3.5) (2022-01-19)
+
+
+### Bug Fixes
+
+* **safari:** chart font color ([e77c127](https://github.com/m0rtyn/pokoy/commit/e77c127e5f47cbea0c0df1828e3cf5022a37e72d))
+* **safari:** fib loader height ([104b7f7](https://github.com/m0rtyn/pokoy/commit/104b7f7c7423ab41c87881a5f199cf0c9a31feed))
+* **safari:** loader animation ([02c73ca](https://github.com/m0rtyn/pokoy/commit/02c73ca95d62fff2feef4e0de05abe1b53cc9385))
+* **safari:** progress bar appearing ([3b52c90](https://github.com/m0rtyn/pokoy/commit/3b52c904fe698cb3510b22a834ba2fa859e5e07b))
+* **safari:** progress spiral fill animation ([d4b59fa](https://github.com/m0rtyn/pokoy/commit/d4b59fa4dc5cff14d9c4d86718cb9294d4fabf22))
+* **safari:** vertical scroll ([55fa755](https://github.com/m0rtyn/pokoy/commit/55fa75524547a009506e8542cb82946b32764c53))
+
 ### [1.3.4](https://github.com/m0rtyn/pokoy/compare/v1.3.3...v1.3.4) (2022-01-17)
 
 ### [1.3.3](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.3.3) (2022-01-17)

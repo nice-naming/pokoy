@@ -49,6 +49,7 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
 
           <ProgressWrapper>
             <LineProgress
+              className="progress-bar"
               percent={milestoneProgress}
               trailColor={"var(--c-spiral)"}
               strokeColor={"var(--c-green)"}
