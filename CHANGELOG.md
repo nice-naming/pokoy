@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.6](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.3.6) (2022-01-24)
+
+
+### Bug Fixes
+
+* **animation:** add cond cases for extra stages and extract function from component ([df3fa6b](https://github.com/m0rtyn/pokoy/commit/df3fa6bb31bd98040fe13c4927fd3b94f566d880))
+
 ### [1.3.5](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.3.5) (2022-01-19)
 
 

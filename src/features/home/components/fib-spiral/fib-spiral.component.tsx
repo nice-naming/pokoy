@@ -4,24 +4,9 @@ import {
   getColorStyleSheetVarName,
 } from "features/home/utils"
 import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
-import {
-  MAX_SPIRAL_VALUE,
-  PATH_TO_DRAWN,
-  START_SPIRAL_OFFSET,
-} from "./fib-spiral.constants"
+import { PATH_TO_DRAWN, START_SPIRAL_OFFSET } from "./fib-spiral.constants"
 import { Wrapper } from "./fib.spiral.styles"
-
-const getTimerProgress = (seconds: number) => {
-  if (seconds === 0) return 0
-  if (seconds < 60) return (MAX_SPIRAL_VALUE / 60) * seconds
-  if (seconds < 120) return (MAX_SPIRAL_VALUE / 60) * (seconds - 60)
-  if (seconds < 180) return (MAX_SPIRAL_VALUE / 60) * (seconds - 120)
-  if (seconds < 300) return (MAX_SPIRAL_VALUE / 120) * (seconds - 180)
-  if (seconds < 480) return (MAX_SPIRAL_VALUE / 180) * (seconds - 300)
-  if (seconds < 780) return (MAX_SPIRAL_VALUE / 300) * (seconds - 480)
-  if (seconds < 1260) return (MAX_SPIRAL_VALUE / 480) * (seconds - 780)
-  return 1 * seconds
-}
+import { getTimerProgress } from "./get-timer-progress"
 
 interface Props {
   seconds: number
