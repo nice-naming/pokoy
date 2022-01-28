@@ -90,12 +90,19 @@ function createMissedDays(
 }
 
 function getDateDiffInDays(dayTimestamp: Timestamp, expectedDate: Timestamp) {
-  const diffInDays =
+  const diffInDays = Math.ceil(
     (dayTimestamp.toMillis() - expectedDate.toMillis()) / MILLIS_IN_DAY
+  )
 
   if (diffInDays < 0) {
-    throw new Error(`Отрицательная разница между датами`)
+    const errorMsg = `
+      Отрицательная разница между датами
+      currDate: ${dayTimestamp.toDate().toString()}
+      exptDate: ${expectedDate.toDate().toString()}
+      diffDays: ${diffInDays}
+    `
+    throw new Error(errorMsg)
   }
 
-  return Math.ceil(diffInDays)
+  return Math.abs(diffInDays)
 }

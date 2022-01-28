@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.7](https://github.com/m0rtyn/pokoy/compare/v1.3.6...v1.3.7) (2022-01-28)
+
+
+### Bug Fixes
+
+* date diff error for timezone shifted users ([43ed6ac](https://github.com/m0rtyn/pokoy/commit/43ed6ac47f00fb3da151cf7e4f781de8830ea34d))
+
 ### [1.3.6](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.3.6) (2022-01-24)
 
 
