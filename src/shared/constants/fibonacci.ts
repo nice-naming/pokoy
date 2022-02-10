@@ -8,8 +8,9 @@ export const FIB_STYLE_SHEET_COLORS_NAMES = [
   "--c-yellow",
   "--c-green",
   "--c-blue",
-  "--c-purple",
-  "--c-pink",
+  // "--c-purple",
+  // "--c-pink",
+  "--c-magenta",
   "--c-foreground",
 ]
 export const fibNumToStyleSheetVarMap = {

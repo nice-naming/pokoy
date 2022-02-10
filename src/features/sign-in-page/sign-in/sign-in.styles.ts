@@ -41,10 +41,12 @@ export const Info = styled.p`
   padding: 0;
   display: flex;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid var(--c-gray);
   justify-content: center;
   align-content: center;
-  line-height: 1;
+  line-height: 3rem;
+  font-style: italic;
+  font-family: monospace;
 
   &::after {
     opacity: 0;

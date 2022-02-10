@@ -53,7 +53,9 @@ export const getAverage = (statsData: UserStatsData) => {
     Date.now() - firstMeditationDate.toDate().getTime()
   const statsRangeInDays = statsMillisecondsDiff / SECS_IN_DAY
 
-  const average = Math.floor(statsData.totalDuration / statsRangeInDays)
+  const average = roundToSecondDecimalPlace(
+    statsData.totalDuration / statsRangeInDays
+  )
 
   return average
 }

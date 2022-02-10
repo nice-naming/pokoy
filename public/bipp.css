@@ -50,7 +50,7 @@ textarea {
 
 :root {
   /* NOTE: Notion Dark Mode text colors */
-  --c-gray: #9fa4a9;
+  /* --c-gray: #9fa4a9;
   --c-brown: #d49675;
   --c-orange: #d98538;
   --c-yellow: #c99126;
@@ -63,7 +63,22 @@ textarea {
   --c-background: #2f3437;
   --c-foreground: #ffffffe6;
   --c-spiral: #202020;
-  --c-extra-gray: #ffffff66;
+  --c-extra-gray: #ffffff66; */
+
+
+  /* NOTE: Custom oldschool colors scheme */
+  --c-gray: #777777;
+  --c-red: #ff7777;
+  --c-green: #77ff77;
+  --c-blue: #7777ff;
+  --c-cyan: #77ffff;
+  --c-magenta: #ff77ff;
+  --c-yellow: #ffff77;
+  
+  --c-background: #333333;
+  --c-foreground: #ffffff;
+  --c-spiral: #202020; /* ? */
+  --c-extra-gray: #77777777;
 
   /* NOTE: Notion Light Mode text colors
 	--c-gray: #787774;

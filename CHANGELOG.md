@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/m0rtyn/pokoy/compare/v1.3.7...v1.4.0) (2022-02-10)
+
+
+### Features
+
+* new color scheme ([3ca82ba](https://github.com/m0rtyn/pokoy/commit/3ca82baa337287e371de4b8eeae6ef796d45ce0c))
+
+
+### Bug Fixes
+
+* add num rounding to second decimal place ([8635264](https://github.com/m0rtyn/pokoy/commit/8635264b42eab8609a9313ce89a873d157fb11f2))
+* info icon ([6fddc58](https://github.com/m0rtyn/pokoy/commit/6fddc58365afee290e730dbd3217fe7b8cf1e65f))
+
 ### [1.3.7](https://github.com/m0rtyn/pokoy/compare/v1.3.6...v1.3.7) (2022-01-28)
 
 

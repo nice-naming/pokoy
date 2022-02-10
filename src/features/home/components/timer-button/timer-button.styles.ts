@@ -1,4 +1,3 @@
-import { REQUEST_STATUS_TO_COLOR_MAP } from "shared/constants"
 import { RequestStatus } from "shared/types"
 import styled from "styled-components/macro"
 
@@ -8,9 +7,7 @@ interface Props {
 }
 
 export const ButtonWrapper = styled.button<Props>`
-  color: ${({ requestStatus }) =>
-    REQUEST_STATUS_TO_COLOR_MAP.get(requestStatus)};
-  color: ${({ isStarted }) => isStarted && "var(--c-blue)"};
+  color: var(--c-extra-gray);
 
   padding: 0px;
   display: block;
@@ -25,7 +22,10 @@ export const ButtonWrapper = styled.button<Props>`
 
   /* NOTE: pseudo-element for opaque button border with dinamic color */
   &:after {
-    box-shadow: 0 0 0 1rem currentcolor;
+    box-shadow: ${({ isStarted }) =>
+      `0 0 0 ${isStarted ? "0.5rem" : "1rem"} currentcolor`};
+    opacity: ${({ isStarted }) => (isStarted ? 0.3 : 0.6)};
+    transition: box-shadow 0.3s ease-in;
     transform: scale(1);
 
     display: block;
@@ -35,7 +35,6 @@ export const ButtonWrapper = styled.button<Props>`
     width: 100%;
     height: 100%;
     color: inherit;
-    opacity: 0.3;
     border-radius: 50%;
   }
 `

@@ -18,8 +18,9 @@ export const Wrapper = styled.div<StyledProps>`
   }
 
   & .spiral-path {
+    filter: ${({ color }) => `drop-shadow(0 0 8px ${color})`};
     stroke-width: ${({ offset }) =>
-      offset > START_SPIRAL_OFFSET ? "1.5rem" : "0rem"};
+      offset > START_SPIRAL_OFFSET ? "1rem" : "0rem"};
     stroke-dashoffset: ${({ offset }) => offset};
     color: ${({ color }) => color};
     stroke-dasharray: ${INIT_STROKE_DASHARRAY};

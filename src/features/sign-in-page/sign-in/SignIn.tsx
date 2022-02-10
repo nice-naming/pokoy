@@ -41,7 +41,7 @@ export const SignIn = () => {
       </SignInButton>
       <SignInButton type="button" onClick={signInAsAnon}>
         Sign in anonymously
-        <Info>ℹ</Info>
+        <Info>i</Info>
       </SignInButton>
     </Wrapper>
   )
