@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   bottom: 0;
   padding: 2rem;
   font-size: 1rem;
-  color: var(--c-extra-gray);
+  color: var(--c-gray);
   font-size: 1.5rem;
 `
 
@@ -19,7 +19,7 @@ export const StyledUpdateButton = styled.button`
 
 export const StyledAppVersion = styled.button`
   background-color: var(--c-background);
-  color: var(--c-extra-gray);
+  color: var(--c-gray);
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
 `

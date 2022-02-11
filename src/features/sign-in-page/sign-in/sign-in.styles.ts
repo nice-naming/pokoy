@@ -14,7 +14,7 @@ export const SignInButton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: var(--c-background);
-  border: 0.5rem solid var(--c-extra-gray);
+  border: 0.5rem solid var(--c-gray);
   width: 60%;
   color: var(--c-foreground);
 

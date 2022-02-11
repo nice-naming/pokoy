@@ -1,7 +1,7 @@
 import styled from "styled-components/macro"
 
 export const Wrapper = styled.span`
-  color: var(--c-extra-gray);
+  color: var(--c-gray);
   cursor: default;
   margin-bottom: 0;
   margin-top: 3rem;
@@ -26,7 +26,8 @@ export const StageWrapper = styled.div`
   grid-column-gap: 1rem;
   display: grid;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  line-height: 1.5;
   text-align: left;
   align-items: start;
 `
@@ -34,8 +35,7 @@ export const StageWrapper = styled.div`
 export const StageNumber = styled.span`
   grid-row: 1 / 3;
   grid-area: number;
-  font-size: 4rem;
-  color: var(--c-extra-gray);
+  font-size: 5rem;
 `
 
 export const StyledUnits = styled.span`

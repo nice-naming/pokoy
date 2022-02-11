@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   grid-gap: 2rem;
   justify-items: flex-start;
 
-  color: var(--c-extra-gray);
+  color: var(--c-gray);
   margin-bottom: 2rem;
   cursor: default;
   user-select: none;

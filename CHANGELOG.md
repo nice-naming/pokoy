@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.4.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* **ui:** hide orange, add cyan color and add extra stages ([512084b](https://github.com/m0rtyn/pokoy/commit/512084ba8b556557dad829cfa457fd8733194b56))
+
 ## [1.4.0](https://github.com/m0rtyn/pokoy/compare/v1.3.7...v1.4.0) (2022-02-10)
 
 

@@ -11,7 +11,7 @@ export const SwipeButton = styled.button`
   transition: none;
   padding: 1rem 2rem;
   margin: 1rem;
-  margin-bottom: 6rem;
+  margin-bottom: 7rem;
   border-radius: 3rem;
 `
 

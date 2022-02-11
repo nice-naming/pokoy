@@ -69,11 +69,11 @@ textarea {
   /* NOTE: Custom oldschool colors scheme */
   --c-gray: #777777;
   --c-red: #ff7777;
+  --c-yellow: #ffff77;
   --c-green: #77ff77;
   --c-blue: #7777ff;
   --c-cyan: #77ffff;
   --c-magenta: #ff77ff;
-  --c-yellow: #ffff77;
   
   --c-background: #333333;
   --c-foreground: #ffffff;
