@@ -29,13 +29,14 @@ export const StageWrapper = styled.div`
   font-size: 2rem;
   line-height: 1.5;
   text-align: left;
-  align-items: start;
+  align-items: center;
 `
 
 export const StageNumber = styled.span`
   grid-row: 1 / 3;
   grid-area: number;
   font-size: 5rem;
+  line-height: 1;
 `
 
 export const StyledUnits = styled.span`

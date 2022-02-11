@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/m0rtyn/pokoy/compare/v1.4.1...v1.4.2) (2022-02-11)
+
+
+### Bug Fixes
+
+* **ui:** make tips modes same in vertical size ([dbfd62d](https://github.com/m0rtyn/pokoy/commit/dbfd62db1304121b8b51bfb746bef7e2b086b3ac))
+
 ### [1.4.1](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.4.1) (2022-02-11)
 
 
