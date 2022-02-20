@@ -7,14 +7,17 @@ import { showAppVersion } from "shared/utils/show-app-version"
 import { onServiceWorkerUpdate } from "@3m1/service-worker-updater"
 import { AppRouter } from "app-router"
 import { BrowserRouter } from "react-router-dom"
+import { ErrorBoundary } from "error-boundary"
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <ErrorBoundary>
+    <React.StrictMode>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </React.StrictMode>
+  </ErrorBoundary>,
   rootElement
 )
 
