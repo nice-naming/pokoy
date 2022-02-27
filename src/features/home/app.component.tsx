@@ -3,7 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "features/home/firebase-init"
 import { Pokoy } from "features/home/components/pokoy/pokoy.component"
 import { FibLoader } from "features/home/components/fib-loader"
-import { Wrapper, SwipeableView } from "./app.styles"
 import SwipeableViews from "react-swipeable-views"
 import { UserStats } from "features/user-stats/user-stats"
 import { User } from "firebase/auth"
@@ -11,7 +10,9 @@ import { Header } from "./components/header/header.component"
 import { AppUpdater } from "./components/app-updater"
 import { ViewsSwitcher } from "./components/views-switcher/views-switcher.component"
 import { SlideRenderProps, virtualize } from "react-swipeable-views-utils"
+import { AppWrapper, SwipeableView } from "shared/styles/app.styles"
 
+// TODO: rename file to home.component.tsx
 // TODO: extract to constants
 const SLIDES_COUNT = 2
 const swipeableViewsRootStyles = {
@@ -57,7 +58,7 @@ export const App: React.FC = () => {
   )
 
   return (
-    <Wrapper>
+    <AppWrapper>
       <Header />
       <AppUpdater />
 
@@ -72,7 +73,11 @@ export const App: React.FC = () => {
         resistance
       />
 
-      <ViewsSwitcher slideIndex={slideIndex} setSlideIndex={setSlideIndex} />
-    </Wrapper>
+      <ViewsSwitcher
+        slidesCount={2}
+        slideIndex={slideIndex}
+        setSlideIndex={setSlideIndex}
+      />
+    </AppWrapper>
   )
 }
