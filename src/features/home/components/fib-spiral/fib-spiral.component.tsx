@@ -4,8 +4,12 @@ import {
   getColorStyleSheetVarName,
 } from "features/home/utils"
 import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
-import { PATH_TO_DRAWN, START_SPIRAL_OFFSET } from "./fib-spiral.constants"
-import { Wrapper } from "./fib.spiral.styles"
+import {
+  PATH_TO_DRAWN,
+  START_SPIRAL_OFFSET,
+  MAX_SPIRAL_VALUE,
+} from "./fib-spiral.constants"
+import { Wrapper } from "./fib-spiral.styles"
 import { getTimerProgress } from "./get-timer-progress"
 
 interface Props {
@@ -20,6 +24,10 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
     const colorCSSVarName = getColorStyleSheetVarName(fibStage)
     return getColorFromCSSVar(colorCSSVarName)
   }, [minutes])
+  const isEmpty = progress > MAX_SPIRAL_VALUE * 0.99 || progress < 1
+  const spiralProgressClassName = `spiral-path ${
+    isEmpty && "spiral-path-empty"
+  }`
 
   return (
     <Wrapper
@@ -46,7 +54,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
 
         <path
           strokeDashoffset={START_SPIRAL_OFFSET}
-          className="spiral-path"
+          className={spiralProgressClassName}
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"

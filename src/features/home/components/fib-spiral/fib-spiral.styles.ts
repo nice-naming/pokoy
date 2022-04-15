@@ -24,9 +24,14 @@ export const Wrapper = styled.div<StyledProps>`
     stroke-dashoffset: ${({ offset }) => offset};
     color: ${({ color }) => color};
     stroke-dasharray: ${INIT_STROKE_DASHARRAY};
-    will-change: stroke-dashoffset, stroke-dasharray, stroke, color;
-    transition-property: stroke-dashoffset, stroke-width, stroke;
-    transition-duration: 1s, 2s, 3s;
-    transition-timing-function: linear;
+    opacity: 1;
+    will-change: stroke-dashoffset, stroke-dasharray, stroke, color, opacity;
+    transition-property: stroke-dashoffset, stroke-width, stroke, opacity;
+    transition-duration: 1s, 2s, 3s, 0.2s;
+    transition-timing-function: linear, linear, linear, ease-in;
+  }
+
+  & .spiral-path-empty {
+    opacity: 0;
   }
 `
