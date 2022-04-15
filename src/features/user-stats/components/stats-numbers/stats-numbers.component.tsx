@@ -23,13 +23,15 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
     setTotalInHours(getTotalInHours(statsData.totalDuration))
   }, [statsData])
 
+  const totalInHoursExist = totalInHours !== null
+
   return (
     <Wrapper>
-      {totalInHours && average && (
+      {totalInHoursExist && average && (
         <Foresight totalHours={totalInHours} average={average} />
       )}
 
-      {totalInHours && (
+      {totalInHoursExist && (
         <StyledStat>
           <StyledStatNumber>{totalInHours}</StyledStatNumber> hours in total
         </StyledStat>
