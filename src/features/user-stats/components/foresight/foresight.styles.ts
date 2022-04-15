@@ -21,3 +21,8 @@ export const ProgressWrapper = styled.div`
     width: 100%;
   }
 `
+
+export const ForesightDate = styled.span`
+  font-size: 2.2rem;
+  color: var(--c-extra-gray);
+`
