@@ -9,6 +9,7 @@ import { MINS_IN_HOUR } from "features/user-stats/constants"
 import { Line as LineProgress } from "rc-progress"
 import { add, format } from "date-fns"
 
+// TODO: extract to constants
 const PRACTICE_HOURS_PROGRESSION = [
   1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 130, 210, 340, 550, 890, 1300, 2100,
 ]
