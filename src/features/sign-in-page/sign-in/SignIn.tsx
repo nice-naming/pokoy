@@ -10,8 +10,8 @@ import { Info, SignInButton, Wrapper } from "./sign-in.styles"
 
 export const SignIn = () => {
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || "/"
+  const locationState = useLocation().state as { from: { pathname: string } }
+  const from = locationState?.from?.pathname || "/"
 
   const signInAsAnon = async () => {
     try {

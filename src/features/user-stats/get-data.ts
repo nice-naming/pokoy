@@ -3,6 +3,7 @@ import { User } from "firebase/auth"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { UserSerie } from "react-charts"
 import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import { roundToFirstDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 import {
   MINS_IN_HOUR,
   SECONDARY_AXIS_LABEL,
@@ -53,7 +54,7 @@ export const getAverage = (statsData: UserStatsData) => {
     Date.now() - firstMeditationDate.toDate().getTime()
   const statsRangeInDays = statsMillisecondsDiff / SECS_IN_DAY
 
-  const average = roundToSecondDecimalPlace(
+  const average = roundToFirstDecimalPlace(
     statsData.totalDuration / statsRangeInDays
   )
 
@@ -105,7 +106,7 @@ function getTotalDurationsAsAxisData(
   const totalDurationAsAxisData = daysWithMeditationsAsAxis.reduce(
     (acc, d, i) => {
       const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
-      const total = roundToSecondDecimalPlace(d.secondary / 60 + prevTotal)
+      const total = roundToFirstDecimalPlace(d.secondary / 60 + prevTotal)
       return [
         ...acc,
         {
@@ -132,8 +133,4 @@ async function fetchDays(user: User): Promise<DayData[]> {
     (snap) => snap.data() as DayData
   )
   return daysWithMeditations
-}
-
-function roundToSecondDecimalPlace(average: number): number {
-  return Math.round(average * 10) / 10
 }
