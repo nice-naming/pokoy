@@ -23,7 +23,18 @@ import {
   SECS_IN_MIN,
 } from "shared/constants"
 import { DayData, PokoySession } from "shared/types"
-import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
+import { roundToSecondDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
+
+export const getPokoyData = (userId: string, seconds: number): PokoySession => {
+  const timestamp = formatISO(new Date())
+  const duration = roundToSecondDecimalPlace(seconds / SECS_IN_MIN)
+
+  return {
+    userId,
+    timestamp,
+    duration,
+  }
+}
 
 // TODO: solve linter issues
 // eslint-disable-next-line max-statements
@@ -37,14 +48,7 @@ export const sendSessionFromSeconds = async (
     return
   }
 
-  const timestamp = formatISO(new Date())
-  const duration = getFibonacciDiscrete(seconds / SECS_IN_MIN)
-  const pokoyData: PokoySession = {
-    userId: user.uid,
-    timestamp,
-    duration,
-  }
-
+  const pokoyData = getPokoyData(user.uid, seconds)
   return await sendPokoySessionToServer(firestoreDB, pokoyData)
 }
 
