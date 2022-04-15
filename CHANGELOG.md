@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/m0rtyn/pokoy/compare/v1.4.3...v1.5.0) (2022-04-15)
+
+
+### Features
+
+* allow to send metitation with non discrete duration ([083f242](https://github.com/m0rtyn/pokoy/commit/083f242b225da4681a7e932b0f3ff0e986c848bb))
+
 ### [1.4.3](https://github.com/m0rtyn/pokoy/compare/v1.3.2...v1.4.3) (2022-04-15)
 
 
