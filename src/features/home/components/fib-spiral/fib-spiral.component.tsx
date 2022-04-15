@@ -3,7 +3,6 @@ import {
   getColorFromCSSVar,
   getColorStyleSheetVarName,
 } from "features/home/utils"
-import { getFloorFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 import {
   PATH_TO_DRAWN,
   START_SPIRAL_OFFSET,
@@ -11,6 +10,7 @@ import {
 } from "./fib-spiral.constants"
 import { Wrapper } from "./fib-spiral.styles"
 import { getTimerProgress } from "./get-timer-progress"
+import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 
 interface Props {
   seconds: number

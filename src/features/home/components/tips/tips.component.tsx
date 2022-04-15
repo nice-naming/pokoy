@@ -1,8 +1,6 @@
 import React, { useCallback } from "react"
-import {
-  getFloorFibonacciDiscrete,
-  getNextFibonacciStage,
-} from "shared/utils/getNextFibonacciStage"
+import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
+import { getNextFibonacciStage } from "shared/utils/getNextFibonacciStage"
 import {
   StageNumber,
   StageWrapper,
