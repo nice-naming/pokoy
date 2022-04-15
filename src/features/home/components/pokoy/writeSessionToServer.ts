@@ -117,7 +117,9 @@ const createNewDay = async (
   const newDayData: DayData = {
     timestamp: dayTimestamp,
     count: dayData.count + 1,
-    totalDuration: dayData.totalDuration + pokoyData.duration,
+    totalDuration: roundToSecondDecimalPlace(
+      dayData.totalDuration + pokoyData.duration
+    ),
     meditations: [...dayData.meditations, pokoyData],
     statsRef: userStatsRef,
     userId,
@@ -143,7 +145,9 @@ const updateExistingDay = async (
   const newDayData: DayData = {
     ...dayData,
     count: dayData?.count + 1,
-    totalDuration: totalDuration + pokoyData.duration,
+    totalDuration: roundToSecondDecimalPlace(
+      totalDuration + pokoyData.duration
+    ),
     meditations: [...meditations, pokoyData],
   }
 

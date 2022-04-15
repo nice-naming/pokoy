@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/m0rtyn/pokoy/compare/v1.5.0...v1.6.0) (2022-04-15)
+
+
+### Features
+
+* add foresight date to statistics ([5f99e7c](https://github.com/m0rtyn/pokoy/commit/5f99e7cc0cb64e28a8818719121cd803fc993fca))
+
+
+### Bug Fixes
+
+* add guards for null value ([c74c161](https://github.com/m0rtyn/pokoy/commit/c74c161a9642884c45cfb34879826a4442b97572))
+* add rounding to cut long float numbers ([c85a133](https://github.com/m0rtyn/pokoy/commit/c85a133f3648f250d2b5dcd2e546b8bbaed26db2))
+* change import path ([7a073c4](https://github.com/m0rtyn/pokoy/commit/7a073c4368e88bcea8977fc654699f069e6b62a0))
+* type error ([bd88c7a](https://github.com/m0rtyn/pokoy/commit/bd88c7ab0df8fe3be724bb7ee7986ebfa4e2ea53))
+
 ## [1.5.0](https://github.com/m0rtyn/pokoy/compare/v1.4.3...v1.5.0) (2022-04-15)
 
 
