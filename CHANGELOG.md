@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/m0rtyn/pokoy/compare/v1.6.0...v1.7.0) (2022-04-16)
+
+
+### Features
+
+* improve fib-spiral animation ([42ee528](https://github.com/m0rtyn/pokoy/commit/42ee5283d4a3a164dacbfd9d48d10eaf68d51783))
+
 ## [1.6.0](https://github.com/m0rtyn/pokoy/compare/v1.5.0...v1.6.0) (2022-04-15)
 
 
