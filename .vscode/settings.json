@@ -1,6 +1,6 @@
 {
   "typescript.suggest.autoImports": true,
   "javascript.suggest.autoImports": false,
-  "workbench.colorTheme": "Rubber",
+  "workbench.colorTheme": "Default High Contrast",
   "typescript.tsdk": "node_modules/typescript/lib",
 }

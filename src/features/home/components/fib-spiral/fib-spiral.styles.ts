@@ -1,37 +1,43 @@
 import styled from "styled-components/macro"
 import {
   INIT_STROKE_DASHARRAY,
+  MAX_SPIRAL_VALUE,
   START_SPIRAL_OFFSET,
 } from "./fib-spiral.constants"
 
 interface StyledProps {
-  offset: number
+  progress: number
 }
 
-export const Wrapper = styled.div<StyledProps>`
+export const StyledSvg = styled.svg<StyledProps>`
+  transform: ${({ progress }) => {
+    const progressPercent = progress / MAX_SPIRAL_VALUE
+    return `rotate(${progressPercent}turn)`
+  }};
+  transform-origin: 50% 50%;
+  transition: transform 1s linear;
   width: 100%;
+  aspect-ratio: 1;
+  display: block;
+`
 
-  & > svg {
-    width: 100%;
-    aspect-ratio: 1;
-    display: block;
-  }
+interface StyledSpiralPathProps {
+  offset: number
+  isEmpty: boolean
+}
 
-  & .spiral-path {
-    filter: ${({ color }) => `drop-shadow(0 0 8px ${color})`};
-    stroke-width: ${({ offset }) =>
-      offset > START_SPIRAL_OFFSET ? "1rem" : "0rem"};
-    stroke-dashoffset: ${({ offset }) => offset};
-    color: ${({ color }) => color};
-    stroke-dasharray: ${INIT_STROKE_DASHARRAY};
-    opacity: 1;
-    will-change: stroke-dashoffset, stroke-dasharray, stroke, color, opacity;
-    transition-property: stroke-dashoffset, stroke-width, stroke, opacity;
-    transition-duration: 1s, 2s, 3s, 0.2s;
-    transition-timing-function: linear, linear, linear, ease-in;
-  }
+export const StyledSpiralPath = styled.path<StyledSpiralPathProps>`
+  filter: ${({ color }) => `drop-shadow(0 0 8px ${color})`};
+  stroke-width: ${({ offset }) => {
+    const isStarted = offset > START_SPIRAL_OFFSET
+    return isStarted ? "1rem" : "0rem"
+  }};
+  opacity: ${({ isEmpty }) => (isEmpty ? 0 : 1)};
+  stroke-dashoffset: ${({ offset }) => offset};
+  color: ${({ color }) => color};
+  stroke-dasharray: ${INIT_STROKE_DASHARRAY};
 
-  & .spiral-path-empty {
-    opacity: 0;
-  }
+  will-change: stroke-dasharray, stroke-dashoffset, opacity, color;
+  transition: stroke-dashoffset 1s linear, stroke-width 2s linear,
+    opacity 0.15s ease-out, color 3s ease-in 0.5s;
 `
