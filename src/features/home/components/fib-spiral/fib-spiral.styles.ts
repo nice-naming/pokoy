@@ -1,7 +1,6 @@
 import styled, { keyframes, css } from "styled-components/macro"
 import {
   INIT_STROKE_DASHARRAY,
-  MAX_SPIRAL_VALUE,
   START_SPIRAL_OFFSET,
 } from "./fib-spiral.constants"
 
