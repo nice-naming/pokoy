@@ -10,7 +10,7 @@ export interface PokoySession {
 }
 
 export interface UserStatsData {
-  firstMeditationDate: FirebaseFirestore.Timestamp | null
+  firstMeditationDate: FirebaseFirestore.Timestamp | null;
   totalDuration: number;
   count: number;
   userId: string;
