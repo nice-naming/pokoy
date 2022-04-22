@@ -27,6 +27,7 @@ interface StyledProps {
 export const StyledSvg = styled.svg<StyledProps>`
   animation-name: ${animationMixin};
   animation-duration: 60s;
+  /* animation-timing-function: cubic-bezier(.4,.4,.5,.8); */
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
@@ -54,7 +55,7 @@ export const StyledSpiralPath = styled.path<StyledSpiralPathProps>`
   color: ${({ color }) => color};
   stroke-dasharray: ${INIT_STROKE_DASHARRAY};
 
-  will-change: stroke-dashoffset, stroke-width, opacity, color;
+  will-change: stroke-dashoffset;
   transition: //
     stroke-dashoffset 1s linear,
     //
