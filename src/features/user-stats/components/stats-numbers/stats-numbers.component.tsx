@@ -27,8 +27,12 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
 
   return (
     <Wrapper>
-      {totalInHoursExist && average && (
+      {totalInHoursExist && average ? (
         <Foresight totalHours={totalInHours} average={average} />
+      ) : (
+        <span>
+          No date of the first meditation. Please send contact @m0rtyn.
+        </span>
       )}
 
       {totalInHoursExist && (

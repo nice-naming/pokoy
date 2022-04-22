@@ -15,7 +15,7 @@ exports.updateUserStats = functions.firestore
     const userStatsSnapshot = await userStatsRef.get()
     const userStatsData = userStatsSnapshot?.data()
     
-    const userStats = userStatsData || INIT_USER_STATS
+    const userStats = (userStatsData as UserStatsData) || INIT_USER_STATS
     const totalDuration = userStats.totalDuration + dayData.totalDuration
     const userId = dayData.userId
     
@@ -23,7 +23,7 @@ exports.updateUserStats = functions.firestore
       userId,
       totalDuration,
       count: userStats.count + 1,
-      firstMeditationDate: userStats.firstMeditationDate,
+      firstMeditationDate: userStats.firstMeditationDate || dayData.timestamp,
     }
 
     try {
