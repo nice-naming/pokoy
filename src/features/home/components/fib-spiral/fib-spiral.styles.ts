@@ -1,24 +1,41 @@
-import styled from "styled-components/macro"
+import styled, { keyframes, css } from "styled-components/macro"
 import {
   INIT_STROKE_DASHARRAY,
   MAX_SPIRAL_VALUE,
   START_SPIRAL_OFFSET,
 } from "./fib-spiral.constants"
 
+const spinning = keyframes`
+  0% {
+    transporm: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+`
+
+const animationMixin = (props: any) => {
+  return css`
+    ${props.progress > 0 ? spinning : "none"};
+  `
+}
+
 interface StyledProps {
   progress: number
 }
 
 export const StyledSvg = styled.svg<StyledProps>`
-  transform: ${({ progress }) => {
-    const progressPercent = progress / MAX_SPIRAL_VALUE
-    return `rotate(${progressPercent}turn)`
-  }};
+  animation-name: ${animationMixin};
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+
   transform-origin: 50% 50%;
-  transition: transform 1s linear;
   width: 100%;
   aspect-ratio: 1;
   display: block;
+  will-change: transform;
 `
 
 interface StyledSpiralPathProps {
@@ -37,7 +54,13 @@ export const StyledSpiralPath = styled.path<StyledSpiralPathProps>`
   color: ${({ color }) => color};
   stroke-dasharray: ${INIT_STROKE_DASHARRAY};
 
-  will-change: stroke-dasharray, stroke-dashoffset, opacity, color;
-  transition: stroke-dashoffset 1s linear, stroke-width 2s linear,
-    opacity 0.15s ease-out, color 3s ease-in 0.5s;
+  will-change: stroke-dashoffset, stroke-width, opacity, color;
+  transition: //
+    stroke-dashoffset 1s linear,
+    //
+    stroke-width 2s linear,
+    //
+    opacity 0.15s ease-out,
+    //
+    color 3s ease-in 0.5s;
 `
