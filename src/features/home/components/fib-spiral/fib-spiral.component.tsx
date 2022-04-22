@@ -13,7 +13,7 @@ import { getTimerProgress } from "./get-timer-progress"
 import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 
 // TODO: move to constants
-const ALMOST_DONE_PERCENT = 0.99
+const ALMOST_DONE_PERCENT = 0.995
 const ALMOST_DONE_VALUE = MAX_SPIRAL_VALUE * ALMOST_DONE_PERCENT
 
 interface Props {
