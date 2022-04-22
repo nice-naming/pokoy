@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/m0rtyn/pokoy/compare/v1.7.0...v1.8.0) (2022-04-22)
+
+
+### Features
+
+* rework timer animation ([27fa77e](https://github.com/m0rtyn/pokoy/commit/27fa77ef203fa2633a336906c63c8ebf09da7b84))
+
+
+### Bug Fixes
+
+* add responsibility for forsight date ([750dba2](https://github.com/m0rtyn/pokoy/commit/750dba2be1fc65c88ad63c5fbf21f6d4f136bd73))
+* add writing of the first meditation date ([0b6b416](https://github.com/m0rtyn/pokoy/commit/0b6b416e355c3712f6f5c17520275e09459c654a))
+* change value of constant ([a0a986a](https://github.com/m0rtyn/pokoy/commit/a0a986a3ee49fe853e3e854466959637ce3bd374))
+* optimeze component rerenders ([9332d50](https://github.com/m0rtyn/pokoy/commit/9332d50b9d51b707004d29eb032704f3b5c5eef0))
+* reverse timer animation ([548efdb](https://github.com/m0rtyn/pokoy/commit/548efdb075948b1bea7aa0b93774e4877c8cd3aa))
+
 ## [1.7.0](https://github.com/m0rtyn/pokoy/compare/v1.6.0...v1.7.0) (2022-04-16)
 
 
