@@ -28,15 +28,18 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
     totalHours,
     PRACTICE_HOURS_PROGRESSION
   )
+
   const averageHoursInDay = average / MINS_IN_HOUR
   const daysToNextMilestone =
     (nextHoursMilestone - totalHours) / averageHoursInDay
   const nextMilestoneDate = new Date(
     Date.now() + MILLIS_IN_DAY * daysToNextMilestone
   )
+
   const daysUntilNextMilestone = Math.floor(
     (nextMilestoneDate.valueOf() - Date.now()) / MILLIS_IN_DAY
   )
+
   const milestoneProgress = Math.floor((totalHours / nextHoursMilestone) * 100)
   const dateOfNextMilestone = format(
     add(new Date(), { days: daysUntilNextMilestone }),
