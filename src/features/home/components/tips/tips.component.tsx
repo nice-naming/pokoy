@@ -16,66 +16,70 @@ interface Props {
 }
 
 // TODO: refactor component
-export const Tips: React.FC<Props> = ({ minutes, isTimerStarted }) => {
-  const [currentStage, setCurrentStage] = React.useState(0)
+export const Tips: React.FC<Props> = React.memo(
+  ({ minutes, isTimerStarted }) => {
+    const [currentStage, setCurrentStage] = React.useState(0)
 
-  const getNextStage = useCallback(getNextFibonacciStage, [])
+    const getNextStage = useCallback(getNextFibonacciStage, [])
 
-  const nextStage = getNextStage(currentStage, minutes)
+    const nextStage = getNextStage(currentStage, minutes)
 
-  // TODO: extract function
-  const timerProgressToMinutes = React.useCallback(
-    (minutes: number) => {
-      const closestFibonacciDiscrete = getFloorFibonacciDiscrete(minutes)
-      const nextStage = getNextStage(closestFibonacciDiscrete, minutes)
+    // TODO: extract function
+    const timerProgressToMinutes = React.useCallback(
+      (minutes: number) => {
+        const closestFibonacciDiscrete = getFloorFibonacciDiscrete(minutes)
+        const nextStage = getNextStage(closestFibonacciDiscrete, minutes)
 
-      const currentStage =
-        minutes < closestFibonacciDiscrete
-          ? nextStage
-          : closestFibonacciDiscrete
+        const currentStage =
+          minutes < closestFibonacciDiscrete
+            ? nextStage
+            : closestFibonacciDiscrete
 
-      return currentStage
-    },
-    [getNextStage]
-  )
+        return currentStage
+      },
+      [getNextStage]
+    )
 
-  React.useEffect(() => {
-    if (minutes) {
-      const currentStage = timerProgressToMinutes(minutes)
-      setCurrentStage(currentStage)
-      // setNextStage(nextStage)
-    }
-  }, [minutes, timerProgressToMinutes])
+    React.useEffect(() => {
+      if (minutes) {
+        const currentStage = timerProgressToMinutes(minutes)
+        setCurrentStage(currentStage)
+        // setNextStage(nextStage)
+      }
+    }, [minutes, timerProgressToMinutes])
 
-  React.useEffect(() => {
-    if (minutes === 0) {
-      setCurrentStage(0)
-    }
-  }, [currentStage, minutes])
+    React.useEffect(() => {
+      if (minutes === 0) {
+        setCurrentStage(0)
+      }
+    }, [currentStage, minutes])
 
-  return (
-    <Wrapper>
-      {isTimerStarted ? (
-        <>
-          <StageWrapper>
-            <StageNumber>{currentStage}</StageNumber>
-            <StyledUnits>
-              {currentStage === 1 ? "minute" : "minutes"}
-            </StyledUnits>
-            <StyledDesc>is current</StyledDesc>
-          </StageWrapper>
+    return (
+      <Wrapper>
+        {isTimerStarted ? (
+          <>
+            <StageWrapper>
+              <StageNumber>{currentStage}</StageNumber>
+              <StyledUnits>
+                {currentStage === 1 ? "minute" : "minutes"}
+              </StyledUnits>
+              <StyledDesc>is current</StyledDesc>
+            </StageWrapper>
 
-          <span>▶</span>
+            <span>▶</span>
 
-          <StageWrapper>
-            <StageNumber>{nextStage}</StageNumber>
-            <StyledUnits>{nextStage === 1 ? "minute" : "minutes"}</StyledUnits>
-            <StyledDesc>is next</StyledDesc>
-          </StageWrapper>
-        </>
-      ) : (
-        <StyledTip>Press the circle to start</StyledTip>
-      )}
-    </Wrapper>
-  )
-}
+            <StageWrapper>
+              <StageNumber>{nextStage}</StageNumber>
+              <StyledUnits>
+                {nextStage === 1 ? "minute" : "minutes"}
+              </StyledUnits>
+              <StyledDesc>is next</StyledDesc>
+            </StageWrapper>
+          </>
+        ) : (
+          <StyledTip>Press the circle to start</StyledTip>
+        )}
+      </Wrapper>
+    )
+  }
+)
