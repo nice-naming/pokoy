@@ -1,6 +1,6 @@
 {
   "short_name": "Pokoy",
-  "name": "Fibonacci timer for meditation",
+  "name": "A meditation app for impulsive minds",
   "icons": [
     {
       "src": "favicon.ico",
@@ -30,6 +30,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#333333"
 }
