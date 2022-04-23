@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/m0rtyn/pokoy/compare/v1.8.0...v1.8.1) (2022-04-23)
+
+
+### Bug Fixes
+
+* change config for auto verision bump ([f99ee28](https://github.com/m0rtyn/pokoy/commit/f99ee280d38c7647be8f2c87cc42a945d201f72c))
+* labels, dates formatting and scaling in chart tooltip ([2a0123a](https://github.com/m0rtyn/pokoy/commit/2a0123a036a17cdeddf9dbe9d5537233c38dc22d))
+* update token and save project name to secrets ([826dce1](https://github.com/m0rtyn/pokoy/commit/826dce18463f49f60e7682b77fb12e7bf8f2984f))
+
 ## [1.8.0](https://github.com/m0rtyn/pokoy/compare/v1.7.0...v1.8.0) (2022-04-22)
 
 
