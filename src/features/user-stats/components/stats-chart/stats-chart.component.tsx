@@ -1,25 +1,29 @@
-import { getColorFromCSSVar } from "features/home/utils"
 import React, { useMemo } from "react"
 import { Chart, AxisOptions, UserSerie } from "react-charts"
 import { CSSColorVariables } from "shared/constants"
 import { PokoyChartData } from "shared/types"
+import { getColorFromCSSVar } from "features/home/utils"
 import { Wrapper } from "./stats-chart.styles"
 
 // TODO: extract to types and constants
 const totalChartConfig: AxisOptions<PokoyChartData> = {
   // TODO: add dynamic max value
-  max: 34,
+  max: 3,
   getValue: (datum) => datum.secondary,
   elementType: "area",
-  // id: "1"
+  formatters: {
+    tooltip: (value: number) => `${value} hours`,
+  },
 }
 
 const dayMeditationChartConfig: AxisOptions<PokoyChartData> = {
   min: 0,
-  max: 34,
   elementType: "bar",
   getValue: (datum: PokoyChartData) => datum.secondary,
   id: "2",
+  formatters: {
+    tooltip: (value: number) => `${value} minutes`,
+  },
 }
 
 interface Props {
@@ -29,7 +33,13 @@ interface Props {
 export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
   const primaryAxis = useMemo<AxisOptions<PokoyChartData>>(
     () => ({
-      getValue: (datum: PokoyChartData) => datum.primary,
+      getValue: (datum: PokoyChartData) => {
+        datum.primary.setUTCHours(0)
+        datum.primary.setUTCMinutes(0)
+        datum.primary.setUTCSeconds(0)
+        datum.primary.setUTCMilliseconds(0)
+        return datum.primary
+      },
     }),
     []
   )

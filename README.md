@@ -1,6 +1,6 @@
 [![wakatime](https://wakatime.com/badge/github/m0rtyn/pokoy.svg)](https://wakatime.com/badge/github/m0rtyn/pokoy)
 
-# Pokoy — Fibonacci timer for meditation
+# Pokoy — a meditation app for impulsive minds
 
 ## Concept
 
@@ -8,7 +8,7 @@ This is a Fibonacci timer for meditation. In more complicated terms it reverse t
 
 ## Usage
 
-Just visit https://pokoy.netlify.app and play! Can be installed to homescreen as PWA
+Just visit https://pokoy.app and play! Can be installed to homescreen as PWA
 
 <!-- <img width="521" alt="image" src="https://user-images.githubusercontent.com/20739202/120170972-cd4c0800-c201-11eb-9e86-edfe913c7191.png"> -->
 <img width="500" alt="Pokoy App main screen" src="https://user-images.githubusercontent.com/20739202/155886022-6dca6ecb-a016-4a39-9f6f-a9aa175c895f.png" />
