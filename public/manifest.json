@@ -1,6 +1,18 @@
 {
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "short_name": "Pokoy",
-  "name": "A meditation app for impulsive minds",
+  "name": "Pokoy",
+  "description": "A meditation app for impulsive minds",
+  "author": "Martyn",
+  "developer": {
+    "name": "Martyn",
+    "url": "https://someta.site"
+  },
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#333333",
+  "background_color": "#333333",
+  "categories": ["meditation"],
   "icons": [
     {
       "src": "favicon.ico",
@@ -27,9 +39,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#333333"
+  ]
 }
