@@ -60,6 +60,7 @@ export const sendSessionFromLocalStore = async (
 ): Promise<DocumentReference<DocumentData> | void> => {
   const isSessionLongerThanMinute =
     Number(LocalPokoyData.duration) > SECS_IN_MIN
+
   if (!isSessionLongerThanMinute || !user) {
     return
   }
@@ -81,15 +82,25 @@ const sendPokoySessionToServer = async (
     where("userId", "==", userId),
     where("timestamp", "==", dayTimestamp)
   )
-  const daysQuerySnapshot = await getDocs(daysQuery)
 
-  if (!daysQuerySnapshot.empty) {
-    await updateExistingDay(daysQuerySnapshot, pokoyData)
-  } else if (daysQuerySnapshot.empty) {
-    await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
+  try {
+    const daysQuerySnapshot = await getDocs(daysQuery)
+
+    if (daysQuerySnapshot.empty) {
+      await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
+    } else if (daysQuerySnapshot.empty) {
+      await updateExistingDay(daysQuerySnapshot, pokoyData)
+    }
+  } catch (e) {
+    console.error("⛔️", e)
+    window?.localStorage.setItem(
+      LOCAL_CACHE_FIELD_NAME,
+      JSON.stringify(pokoyData)
+    )
   }
 }
 
+// TODO: refactor this function
 /* eslint-disable-next-line max-statements */
 const createNewDay = async (
   daysColRef: CollectionReference<DocumentData>,
@@ -97,7 +108,7 @@ const createNewDay = async (
   pokoyData: PokoySession,
   userId: string
 ) => {
-  console.log("write day to NEW document")
+  // console.info("write day to the NEW document")
   const newDayRef = doc(daysColRef)
   const dayData = INIT_DAY_DATA
 
@@ -125,7 +136,7 @@ const createNewDay = async (
     userId,
   }
 
-  await setDay(newDayRef, newDayData)
+  await setDay(newDayRef, newDayData, pokoyData)
 }
 
 /* eslint-disable-next-line max-statements */
@@ -133,7 +144,7 @@ const updateExistingDay = async (
   daysQuerySnapshot: QuerySnapshot<DocumentData>,
   pokoyData: PokoySession
 ) => {
-  console.log("write day to EXISTED document")
+  // console.info("write day to the EXISTED document")
   // TODO: replace hardcode by dynamic code
   const dayDocRef = daysQuerySnapshot.docs[0].ref
   const daySnapshot = await getDoc(dayDocRef)
@@ -151,12 +162,13 @@ const updateExistingDay = async (
     meditations: [...meditations, pokoyData],
   }
 
-  await setDay(dayDocRef, newDayData)
+  await setDay(dayDocRef, newDayData, pokoyData)
 }
 
 const setDay = async (
   dayRef: DocumentReference<DocumentData>,
-  newDayData: any
+  newDayData: any,
+  pokoyData: PokoySession
 ) => {
   try {
     await setDoc(dayRef, newDayData)
@@ -165,7 +177,7 @@ const setDay = async (
     console.error("⛔️", e)
     window?.localStorage.setItem(
       LOCAL_CACHE_FIELD_NAME,
-      JSON.stringify(newDayData)
+      JSON.stringify(pokoyData)
     )
   }
 }
