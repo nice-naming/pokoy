@@ -27,7 +27,6 @@ export interface DayData {
 }
 
 export interface UserStatsData {
-  // TODO: remove nullable values from this field
   firstMeditationDate: Timestamp | null
   totalDuration: number
   count: number
