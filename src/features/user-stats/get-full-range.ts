@@ -1,9 +1,6 @@
 import { Timestamp } from "firebase/firestore"
+import { MILLIS_IN_DAY } from "shared/constants"
 import { DayData } from "shared/types"
-
-// TODO: add tests
-// TODO: extract to constants
-export const MILLIS_IN_DAY = 1000 * 3600 * 24
 
 // NOTE: return array of every meditation for every day from first meditation date
 // TODO: refactor function

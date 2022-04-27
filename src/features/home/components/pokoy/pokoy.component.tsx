@@ -46,7 +46,6 @@ export const Pokoy = ({ user }: { user: User }) => {
 
       try {
         setRequestStatus(RequestStatus.REQUEST)
-
         // NOTE: line below for developing
         // await sendSessionFromSeconds(firestore, user, 61)
         await sendSessionFromSeconds(firestore, user, timerDiff)

@@ -5,7 +5,7 @@ export * from "./time"
 export * from "./fibonacci"
 export * from "./data"
 
-export enum CSSColorVariables {
+export enum CSS_COLOR_VARIABLES {
   RED = "--c-red",
   ORANGE = "--c-orange",
   YELLOW = "--c-yellow",

@@ -1,38 +1,22 @@
-import { useCallback, useEffect, useState } from "react"
 import { User } from "@firebase/auth"
-import { UserSerie } from "react-charts"
-import { PokoyChartData, UserStatsData } from "shared/types"
-import { fetchAndsetChartData, getStats } from "./get-data"
 import { StatsChart } from "./components/stats-chart/stats-chart.component"
 import { StatsNumbers } from "./components/stats-numbers/stats-numbers.component"
 import { Wrapper } from "./user-stats.styles"
+import { useStats } from "./useStats"
 
 interface Props {
   user: User
 }
 
 export const UserStats: React.FC<Props> = ({ user }) => {
-  const [chartData, setChartData] = useState<UserSerie<PokoyChartData>[]>([])
-  const [statsData, setStatsData] = useState<UserStatsData | null>(null)
-
-  const memoizedGetChartData = useCallback(fetchAndsetChartData, [])
-  const memoizedGetStats = useCallback(getStats, [])
-
-  useEffect(() => {
-    memoizedGetChartData(setChartData, user)
-    memoizedGetStats(setStatsData, user)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const dataLength = chartData?.[0]?.data?.length
-  const statsExist = dataLength && dataLength > 1
+  const userStats = useStats(user)
 
   return (
     <Wrapper>
-      {statsExist ? (
+      {userStats !== null ? (
         <>
-          <StatsNumbers statsData={statsData} />
-          <StatsChart pokoyData={chartData} />
+          <StatsNumbers statsData={userStats.statsData} />
+          <StatsChart pokoyData={userStats.chartData} />
         </>
       ) : (
         <span>

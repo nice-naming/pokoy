@@ -1,27 +1,69 @@
 import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
+import {
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  Timestamp,
+  where,
+} from "firebase/firestore"
 import { UserSerie } from "react-charts"
+import {
+  INITIAL_MEDITATION_DURATION,
+  MILLIS_IN_DAY,
+  MINS_IN_HOUR,
+  SECS_IN_DAY,
+} from "shared/constants"
 import { DayData, PokoyChartData, UserStatsData } from "shared/types"
 import { roundToFirstDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
-import {
-  MINS_IN_HOUR,
-  SECONDARY_AXIS_LABEL,
-  SECS_IN_DAY,
-  TERTIARY_AXIS_LABEL,
-} from "./constants"
+import { SECONDARY_AXIS_LABEL, TERTIARY_AXIS_LABEL } from "./constants"
 import { getFullRange } from "./get-full-range"
 
-const INITIAL_MEDITATION_DURATION = 0
+export const ADDITIONAL_DATA_LENGTH = 14
+
+// eslint-disable-next-line max-statements
+export const getForesightChartData = async (
+  daysData: DayData[],
+  user: User
+) => {
+  const lastData = daysData[daysData.length - 1]
+  const lastDateTimestampSeconds = lastData.timestamp.seconds
+
+  const stats = await fetchStats(user)
+  const averageMeditationDuration = getAverageMeditationPerDay(stats)
+  const daysToNextMilestone = ADDITIONAL_DATA_LENGTH
+
+  const additionalDaysData: DayData[] = new Array(daysToNextMilestone)
+    .fill(null)
+    .map((_, i) => ({
+      timestamp: new Timestamp(
+        lastDateTimestampSeconds + (i + 1) * SECS_IN_DAY,
+        0
+      ),
+      totalDuration: averageMeditationDuration,
+      count: 0,
+      meditations: [],
+      userId: user.uid,
+    }))
+
+  return additionalDaysData
+}
 
 // TODO: refactor this module
-export const fetchAndsetChartData = async (
+export const fetchAndSetChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
   user: User
 ): Promise<void> => {
   const daysWithMeditations = await fetchDays(user)
-  const dayDataFullRange = getFullRange(daysWithMeditations)
-  const chartData = transformDayDataToChartData(dayDataFullRange)
+  const daysDataFullRange = getFullRange(daysWithMeditations)
+
+  const additionalDaysData = await getForesightChartData(
+    daysDataFullRange,
+    user
+  )
+  const daysDataWithForesight = daysDataFullRange.concat(additionalDaysData)
+  const chartData = transformDayDataToChartData(daysDataWithForesight)
 
   return setDataToComponentState(chartData)
 }
@@ -44,15 +86,15 @@ export const getTotalInHours = (minutes: number): number => {
   return Math.floor(minutes / MINS_IN_HOUR)
 }
 
-export const getAverage = (statsData: UserStatsData) => {
+export const getAverageMeditationPerDay = (statsData: UserStatsData) => {
   if (!statsData || !statsData.firstMeditationDate) {
-    return null
+    throw new Error("there are no user statistics yet")
   }
 
   const { firstMeditationDate } = statsData
   const statsMillisecondsDiff =
     Date.now() - firstMeditationDate.toDate().getTime()
-  const statsRangeInDays = statsMillisecondsDiff / SECS_IN_DAY
+  const statsRangeInDays = statsMillisecondsDiff / MILLIS_IN_DAY
 
   const average = roundToFirstDecimalPlace(
     statsData.totalDuration / statsRangeInDays
@@ -71,9 +113,9 @@ async function fetchStats(user: User): Promise<UserStatsData> {
 }
 
 function transformDayDataToChartData(
-  dayDataFullRange: DayData[]
+  daysDataFullRange: DayData[]
 ): UserSerie<PokoyChartData>[] {
-  const daysWithMeditationsAsAxis: PokoyChartData[] = dayDataFullRange.map(
+  const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataFullRange.map(
     (d) => ({
       primary: new Date(d.timestamp.toDate().toDateString()),
       secondary: d.totalDuration,

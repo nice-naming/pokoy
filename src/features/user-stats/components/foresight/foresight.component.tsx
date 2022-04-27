@@ -3,11 +3,10 @@ import {
   getNextStageInProgression,
 } from "shared/utils/getNextFibonacciStage"
 import { StyledStat, StyledStatNumber } from "../../user-stats.styles"
-import { MILLIS_IN_DAY } from "../../get-full-range"
 import { ForesightDate, ProgressWrapper, Wrapper } from "./foresight.styles"
-import { MINS_IN_HOUR } from "features/user-stats/constants"
 import { Line as LineProgress } from "rc-progress"
 import { add, format } from "date-fns"
+import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 
 // TODO: extract to constants
 const PRACTICE_HOURS_PROGRESSION = [

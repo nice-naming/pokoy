@@ -1,4 +1,7 @@
-import { getAverage, getTotalInHours } from "features/user-stats/get-data"
+import {
+  getAverageMeditationPerDay,
+  getTotalInHours,
+} from "features/user-stats/get-data"
 import {
   StyledStatNumber,
   StyledStat,
@@ -19,7 +22,7 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
     const totalDurationExists = !!statsData?.totalDuration
     if (!totalDurationExists) return
 
-    setAverage(getAverage(statsData))
+    setAverage(getAverageMeditationPerDay(statsData))
     setTotalInHours(getTotalInHours(statsData.totalDuration))
   }, [statsData])
 
