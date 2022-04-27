@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/m0rtyn/pokoy/compare/v1.8.1...v1.9.0) (2022-04-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* add chart foresight
+
+### Features
+
+* add chart foresight ([73e9414](https://github.com/m0rtyn/pokoy/commit/73e9414b44675d3e560fe37708dcb00b45dcd70d))
+
+
+### Bug Fixes
+
+* add error case for writing to server flow ([b3a4c77](https://github.com/m0rtyn/pokoy/commit/b3a4c774d46cf776773739bd813e830b850a99c1))
+
 ### [1.8.1](https://github.com/m0rtyn/pokoy/compare/v1.8.0...v1.8.1) (2022-04-23)
 
 
