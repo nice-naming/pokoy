@@ -3,6 +3,7 @@ import { User } from "firebase/auth"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { UserSerie } from "react-charts"
 import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import { THIRD_PART } from "./constants"
 import { getFullRange } from "./get-full-range"
 import {
   getAverageMeditationPerDay,
@@ -10,8 +11,6 @@ import {
   sliceDaysDataRange,
   transformDayDataToChartData,
 } from "./utils"
-
-export const THIRD_PART = 0.3
 
 export const fetchAndSetChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,

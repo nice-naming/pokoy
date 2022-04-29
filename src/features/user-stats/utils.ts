@@ -8,9 +8,11 @@ import {
 } from "shared/constants"
 import { DayData, PokoyChartData, UserStatsData } from "shared/types"
 import { roundToFirstDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
-import { SECONDARY_AXIS_LABEL, TERTIARY_AXIS_LABEL } from "./constants"
-
-const MAX_DAYS_DATA_LENGTH = 200
+import {
+  MAX_DAYS_DATA_LENGTH,
+  SECONDARY_AXIS_LABEL,
+  TERTIARY_AXIS_LABEL,
+} from "./constants"
 
 export const getTotalInHours = (minutes: number): number => {
   return Math.floor(minutes / MINS_IN_HOUR)

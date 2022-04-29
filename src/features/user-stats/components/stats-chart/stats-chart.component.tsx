@@ -9,7 +9,7 @@ import {
   SECONDARY_AXES_CONFIG,
   SECONDARY_CURSOR_CONFIG,
 } from "./constants"
-import { THIRD_PART } from "features/user-stats/get-data"
+import { THIRD_PART } from "features/user-stats/constants"
 
 interface Props {
   pokoyData: UserSerie<PokoyChartData>[]
