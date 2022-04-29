@@ -1,84 +1,50 @@
-import React, { useMemo } from "react"
-import { Chart, AxisOptions, UserSerie } from "react-charts"
-import { CSSColorVariables } from "shared/constants"
+import React, { useCallback, useMemo } from "react"
+import { Chart, UserSerie, Datum, DatumStyles } from "react-charts"
 import { PokoyChartData } from "shared/types"
-import { getColorFromCSSVar } from "features/home/utils"
 import { Wrapper } from "./stats-chart.styles"
-
-// TODO: extract to types and constants
-const totalChartConfig: AxisOptions<PokoyChartData> = {
-  // TODO: add dynamic max value
-  max: 3,
-  getValue: (datum) => datum.secondary,
-  elementType: "area",
-  formatters: {
-    tooltip: (value: number) => `${value} hours`,
-  },
-}
-
-const dayMeditationChartConfig: AxisOptions<PokoyChartData> = {
-  min: 0,
-  elementType: "bar",
-  getValue: (datum: PokoyChartData) => datum.secondary,
-  id: "2",
-  formatters: {
-    tooltip: (value: number) => `${value} minutes`,
-  },
-}
+import {
+  CHART_COLORS,
+  CHART_TOOLTIP_CONFIG,
+  PRIMARY_AXIS_CONFIG,
+  SECONDARY_AXES_CONFIG,
+  SECONDARY_CURSOR_CONFIG,
+} from "./constants"
+import { THIRD_PART } from "features/user-stats/constants"
 
 interface Props {
   pokoyData: UserSerie<PokoyChartData>[]
 }
 
 export const StatsChart: React.FC<Props> = ({ pokoyData }) => {
-  const primaryAxis = useMemo<AxisOptions<PokoyChartData>>(
+  const getDatumStyle = useCallback(
+    (datum: Datum<PokoyChartData>): DatumStyles => {
+      const dataLength = pokoyData[0].data.length
+      const startPositionOfForesight = Math.round(dataLength / (1 + THIRD_PART))
+
+      return datum.index + 1 > startPositionOfForesight ? { opacity: 0.5 } : {}
+    },
+    [pokoyData]
+  )
+
+  const chartOptions = useMemo(
     () => ({
-      getValue: (datum: PokoyChartData) => {
-        datum.primary.setUTCHours(0)
-        datum.primary.setUTCMinutes(0)
-        datum.primary.setUTCSeconds(0)
-        datum.primary.setUTCMilliseconds(0)
-        return datum.primary
-      },
+      data: pokoyData,
+      getDatumStyle,
+      //
+      dark: true,
+      primaryCursor: true,
+      defaultColors: CHART_COLORS,
+      tooltip: CHART_TOOLTIP_CONFIG,
+      primaryAxis: PRIMARY_AXIS_CONFIG,
+      secondaryAxes: SECONDARY_AXES_CONFIG,
+      secondaryCursor: SECONDARY_CURSOR_CONFIG,
     }),
-    []
+    [getDatumStyle, pokoyData]
   )
-
-  const secondaryAxes = useMemo<AxisOptions<PokoyChartData>[]>(
-    () => [totalChartConfig, dayMeditationChartConfig],
-    []
-  )
-
-  const defaultColors = useMemo<string[]>(() => {
-    const { GREEN, BLUE } = CSSColorVariables
-    const extraGrayColor = getColorFromCSSVar(BLUE)
-    const greenColor = getColorFromCSSVar(GREEN)
-    const chartColors = [greenColor, extraGrayColor]
-
-    return chartColors
-  }, [])
 
   return (
     <Wrapper>
-      <Chart
-        options={{
-          data: pokoyData,
-          defaultColors,
-          primaryAxis,
-          secondaryAxes,
-          dark: true,
-          tooltip: {
-            groupingMode: "single",
-            show: true,
-          },
-          primaryCursor: true,
-          secondaryCursor: {
-            show: true,
-            showLine: true,
-            showLabel: true,
-          },
-        }}
-      />
+      <Chart options={chartOptions} />
     </Wrapper>
   )
 }

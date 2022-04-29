@@ -43,32 +43,6 @@ export const Info = styled.p`
   border-radius: 50%;
   border: 1px solid var(--c-gray);
   justify-content: center;
-  align-content: center;
-  line-height: 3rem;
-  font-style: italic;
+  align-content: baseline;
   font-family: monospace;
-
-  &::after {
-    opacity: 0;
-    position: absolute;
-    display: block;
-    content: "⚠️ Anonymous users can use timer, but do not have statistics.";
-    margin: 2rem;
-    padding: 2rem;
-    background-color: var(--c-foreground);
-    color: var(--c-background);
-    top: 5rem;
-    right: 5rem;
-    transform: translateY(-50);
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-    border-radius: 1rem;
-    width: 30rem;
-  }
-
-  &:hover::after,
-  &:active::after,
-  &:focus::after {
-    opacity: 1;
-    transform: translateY(0);
-  }
 `

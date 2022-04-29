@@ -1,8 +1,11 @@
-import { getAverage, getTotalInHours } from "features/user-stats/get-data"
 import {
   StyledStatNumber,
   StyledStat,
 } from "features/user-stats/user-stats.styles"
+import {
+  getAverageMeditationPerDay,
+  getTotalInHours,
+} from "features/user-stats/utils"
 import { useEffect, useState } from "react"
 import { UserStatsData } from "shared/types"
 import { Foresight } from "../foresight/foresight.component"
@@ -19,7 +22,7 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
     const totalDurationExists = !!statsData?.totalDuration
     if (!totalDurationExists) return
 
-    setAverage(getAverage(statsData))
+    setAverage(getAverageMeditationPerDay(statsData))
     setTotalInHours(getTotalInHours(statsData.totalDuration))
   }, [statsData])
 

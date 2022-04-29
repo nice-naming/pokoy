@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/m0rtyn/pokoy/compare/v1.9.0...v1.10.0) (2022-04-29)
+
+
+### Features
+
+* add component for tooltip ([b903f0c](https://github.com/m0rtyn/pokoy/commit/b903f0c523975b9c2f6cf13125b248fc595321bb))
+* add slicing of long statitstics history and extract methods ([75357c1](https://github.com/m0rtyn/pokoy/commit/75357c17565add6016f99b99439f4ffb1982ecff))
+
+
+### Bug Fixes
+
+* add underline, extract const, and change import path ([df5c61e](https://github.com/m0rtyn/pokoy/commit/df5c61e4cf012e6750212cf9b0f4210e8fd6b42d))
+* add writing to local store on request error ([c1e9833](https://github.com/m0rtyn/pokoy/commit/c1e9833f202de8e3b519ad2f3fc935e27c4fdeb2))
+* change import path ([b7d88f1](https://github.com/m0rtyn/pokoy/commit/b7d88f1d2eb7ea2f38212604e5f3de0179907782))
+* remove version-bump on CI ([a4d2b92](https://github.com/m0rtyn/pokoy/commit/a4d2b92f8558111cf21255fb54dd1f09b415e860))
+
+## [1.9.0](https://github.com/m0rtyn/pokoy/compare/v1.8.1...v1.9.0) (2022-04-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* add chart foresight
+
+### Features
+
+* add chart foresight ([73e9414](https://github.com/m0rtyn/pokoy/commit/73e9414b44675d3e560fe37708dcb00b45dcd70d))
+
+
+### Bug Fixes
+
+* add error case for writing to server flow ([b3a4c77](https://github.com/m0rtyn/pokoy/commit/b3a4c774d46cf776773739bd813e830b850a99c1))
+
 ### [1.8.1](https://github.com/m0rtyn/pokoy/compare/v1.8.0...v1.8.1) (2022-04-23)
 
 

@@ -3,16 +3,12 @@ import {
   getNextStageInProgression,
 } from "shared/utils/getNextFibonacciStage"
 import { StyledStat, StyledStatNumber } from "../../user-stats.styles"
-import { MILLIS_IN_DAY } from "../../get-full-range"
-import { ForesightDate, ProgressWrapper, Wrapper } from "./foresight.styles"
-import { MINS_IN_HOUR } from "features/user-stats/constants"
+import { ProgressWrapper, Wrapper } from "./foresight.styles"
 import { Line as LineProgress } from "rc-progress"
 import { add, format } from "date-fns"
-
-// TODO: extract to constants
-const PRACTICE_HOURS_PROGRESSION = [
-  1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 130, 210, 340, 550, 890, 1300, 2100,
-]
+import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
+import { PRACTICE_HOURS_PROGRESSION } from "features/user-stats/constants"
+import { StyledTooltip } from "shared/components/styled-tooltip.styles"
 
 interface Props {
   totalHours: number
@@ -51,12 +47,15 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
       {nextHoursMilestone && nextMilestoneDate ? (
         <>
           <StyledStat>
-            <ForesightDate>{dateOfNextMilestone}</ForesightDate>
             <StyledStatNumber>{daysUntilNextMilestone}</StyledStatNumber>
             <span>days of practice left </span>
             <div>
-              to {nextHoursMilestone} hour{nextHoursMilestone === 1 ? "" : "s"}{" "}
-              of meditation
+              to{" "}
+              <StyledTooltip content={dateOfNextMilestone}>
+                <u>{nextHoursMilestone}</u>
+              </StyledTooltip>{" "}
+              hour
+              {nextHoursMilestone === 1 ? "" : "s"} of meditation
             </div>
           </StyledStat>
 

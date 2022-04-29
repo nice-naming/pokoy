@@ -1,4 +1,5 @@
 import React from "react"
+import { StyledTooltip } from "shared/components/styled-tooltip.styles"
 import { FIBONACCI_NUMS, SECS_IN_MIN } from "shared/constants"
 import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 import { StyledCountdown } from "./countdown.styles"
@@ -52,8 +53,12 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
   }, [minutesRemain, seconds, secondsRemain])
 
   return (
-    <StyledCountdown title="Time left until the next stage">
-      {timeRemain}
-    </StyledCountdown>
+    <StyledTooltip
+      wrap
+      position="bottom"
+      content={"Time left until the next stage"}
+    >
+      <StyledCountdown>{timeRemain}</StyledCountdown>
+    </StyledTooltip>
   )
 }
