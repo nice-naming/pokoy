@@ -1,3 +1,5 @@
+// TODO: solve linter issue
+/* eslint-disable max-lines */
 import { User } from "@firebase/auth"
 import { formatISO } from "date-fns"
 import { firestore } from "features/home/firebase-init"
@@ -93,10 +95,7 @@ const sendPokoySessionToServer = async (
     }
   } catch (e) {
     console.error("⛔️", e)
-    window?.localStorage.setItem(
-      LOCAL_CACHE_FIELD_NAME,
-      JSON.stringify(pokoyData)
-    )
+    writeToLocalStore(pokoyData)
   }
 }
 
@@ -108,7 +107,6 @@ const createNewDay = async (
   pokoyData: PokoySession,
   userId: string
 ) => {
-  // console.info("write day to the NEW document")
   const newDayRef = doc(daysColRef)
   const dayData = INIT_DAY_DATA
 
@@ -144,7 +142,6 @@ const updateExistingDay = async (
   daysQuerySnapshot: QuerySnapshot<DocumentData>,
   pokoyData: PokoySession
 ) => {
-  // console.info("write day to the EXISTED document")
   // TODO: replace hardcode by dynamic code
   const dayDocRef = daysQuerySnapshot.docs[0].ref
   const daySnapshot = await getDoc(dayDocRef)
@@ -172,12 +169,15 @@ const setDay = async (
 ) => {
   try {
     await setDoc(dayRef, newDayData)
-    console.log("success")
   } catch (e) {
     console.error("⛔️", e)
-    window?.localStorage.setItem(
-      LOCAL_CACHE_FIELD_NAME,
-      JSON.stringify(pokoyData)
-    )
+    writeToLocalStore(pokoyData)
   }
+}
+
+function writeToLocalStore(pokoyData: PokoySession) {
+  window?.localStorage.setItem(
+    LOCAL_CACHE_FIELD_NAME,
+    JSON.stringify(pokoyData)
+  )
 }
