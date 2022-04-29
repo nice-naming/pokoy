@@ -50,7 +50,6 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
             <StyledStatNumber>{daysUntilNextMilestone}</StyledStatNumber>
             <span>days of practice left </span>
             <div>
-              {/* // TODO: replace title by tooltip component */}
               to{" "}
               <StyledTooltip content={dateOfNextMilestone}>
                 <u>{nextHoursMilestone}</u>
