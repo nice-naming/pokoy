@@ -11,6 +11,8 @@ import {
   transformDayDataToChartData,
 } from "./utils"
 
+export const THIRD_PART = 0.3
+
 export const fetchAndSetChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
   user: User
@@ -18,7 +20,7 @@ export const fetchAndSetChartData = async (
   const daysWithMeditations = await fetchDays(user)
   const daysDataFullRange = getFullRange(daysWithMeditations)
 
-  const additionalDataLength = Math.round(daysDataFullRange.length * 0.3)
+  const additionalDataLength = Math.round(daysDataFullRange.length * THIRD_PART)
   const additionalDaysData = await getForesightChartData(
     sliceDaysDataRange(daysDataFullRange),
     user,
