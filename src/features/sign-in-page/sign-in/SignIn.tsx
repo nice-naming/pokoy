@@ -7,6 +7,7 @@ import { auth } from "features/home/firebase-init"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ReactComponent as GoogleLogo } from "./google-logo.svg"
 import { Info, SignInButton, Wrapper } from "./sign-in.styles"
+import { StyledTooltip } from "shared/components/styled-tooltip.styles"
 
 export const SignIn = () => {
   const navigate = useNavigate()
@@ -41,7 +42,14 @@ export const SignIn = () => {
       </SignInButton>
       <SignInButton type="button" onClick={signInAsAnon}>
         Sign in anonymously
-        <Info>i</Info>
+        <Info>
+          <StyledTooltip
+            wrap
+            content="⚠️ Anonymous users can use timer, but do not have statistics."
+          >
+            ?
+          </StyledTooltip>
+        </Info>
       </SignInButton>
     </Wrapper>
   )

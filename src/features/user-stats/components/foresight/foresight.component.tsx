@@ -8,6 +8,7 @@ import { Line as LineProgress } from "rc-progress"
 import { add, format } from "date-fns"
 import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 import { PRACTICE_HOURS_PROGRESSION } from "features/user-stats/constants"
+import { StyledTooltip } from "shared/components/styled-tooltip.styles"
 
 interface Props {
   totalHours: number
@@ -50,7 +51,11 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
             <span>days of practice left </span>
             <div>
               {/* // TODO: replace title by tooltip component */}
-              to <u title={dateOfNextMilestone}>{nextHoursMilestone}</u> hour
+              to{" "}
+              <StyledTooltip content={dateOfNextMilestone}>
+                <u>{nextHoursMilestone}</u>
+              </StyledTooltip>{" "}
+              hour
               {nextHoursMilestone === 1 ? "" : "s"} of meditation
             </div>
           </StyledStat>
