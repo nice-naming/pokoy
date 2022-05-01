@@ -8,7 +8,6 @@ interface Props {
 
 export const ButtonWrapper = styled.button<Props>`
   color: var(--c-extra-gray);
-
   padding: 0px;
   display: block;
   background-color: transparent;
@@ -23,10 +22,14 @@ export const ButtonWrapper = styled.button<Props>`
   /* NOTE: pseudo-element for opaque button border with dinamic color */
   &:after {
     box-shadow: ${({ isStarted }) =>
-      `0 0 0 ${isStarted ? "0.5rem" : "1rem"} currentcolor`};
-    opacity: ${({ isStarted }) => (isStarted ? 0.3 : 0.6)};
-    transition: box-shadow 0.3s ease-in;
-    transform: scale(1);
+      isStarted
+        ? "0 0 0 0.5rem currentcolor"
+        : `
+          0 0 0 0.5rem var(--c-gray),
+          0 0 0.5rem 1rem var(--c-spiral)
+        `};
+    transform: ${({ isStarted }) => (isStarted ? "scale(0.99)" : "scale(1)")};
+    transition: box-shadow 0.3s ease-in, transform 0.3s ease-in;
 
     display: block;
     position: absolute;
