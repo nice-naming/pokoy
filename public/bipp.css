@@ -49,57 +49,29 @@ textarea {
 /* base */
 
 :root {
-  /* NOTE: Notion Dark Mode text colors */
-  /* --c-gray: #9fa4a9;
-  --c-brown: #d49675;
-  --c-orange: #d98538;
-  --c-yellow: #c99126;
-  --c-green: #71b283;
-  --c-blue: #66aada;
-  --c-purple: #b098d9;
-  --c-pink: #df84d1;
-  --c-red: #ea878c;
-  
-  --c-background: #2f3437;
-  --c-foreground: #ffffffe6;
-  --c-spiral: #202020;
-  --c-extra-gray: #ffffff66; */
+  /* NOTE: Custom colors scheme */
+  /* NOTE: the conrast of the colors gradualy increases relatively to base color */
+  --c-base: #333; /* constrast 0 */
+  /* TODO: make this color base */
+  --c-spiral: #2b2b2b; /* constrast -1.12 */
+  --c-extra-gray: #656565; /* constrast 2.17 */
+  --c-gray: #7f7f7f; /* constrast 3.16 */
+  --c-red: #ff7c7c; /* constrast 5.07 */
+  --c-orange: #ff8002; /* constrast 5.05 */
+  --c-yellow: #aaaa00; /* constrast 5.09 */
+  --c-green: #00ce00; /* constrast 5.91 */
+  --c-cyan: #00d7d7; /* constrast 7.04 */
+  --c-blue: #a6d2ff; /* constrast 7.99 */
+  --c-magenta: #ffddee; /* constrast 10.13 */
+  --c-white: #fafafa; /* constrast 12.10 */
 
-
-  /* NOTE: Custom oldschool colors scheme */
-  --c-gray: #777777;
-  --c-red: #ff7777;
-  --c-yellow: #ffff77;
-  --c-green: #77ff77;
-  --c-blue: #7777ff;
-  --c-cyan: #77ffff;
-  --c-magenta: #ff77ff;
-  
-  --c-background: #333333;
-  --c-foreground: #ffffff;
-  --c-spiral: #202020; /* ? */
-  --c-extra-gray: #77777777;
-
-  /* NOTE: Notion Light Mode text colors
-	--c-gray: #787774;
-  --c-brown: #9f6b53;
-  --c-orange: #d9730d;
-	--c-yellow: #cb912f;
-	--c-green: #448361;
-	--c-blue: #337ea9;
-  --c-purple: #9065b0;
-  --c-pink: #c14c8a;
-  --c-red: #d44c47;
-
-	--c-background: #ffffff;
-	--c-foreground: #37352f;
-  --c-spiral: #F0EBE8;
-  --c-extra-gray: #37352f66; */
+  --c-background: var(--c-base);
+  --c-foreground: var(--c-white);
 }
 
 :root {
   --c-brand: var(--c-blue);
-	--c-brand-focus: var(--c-pink);
+	--c-brand-focus: var(--c-magenta);
 	--c-marker: var(--c-gray);
   
   --link-bg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(249, 248, 246, .5)'/%3E%3C/svg%3E");
