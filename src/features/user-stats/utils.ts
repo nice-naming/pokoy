@@ -6,13 +6,11 @@ import {
   MINS_IN_HOUR,
   SECS_IN_DAY,
 } from "shared/constants"
+import { DayData, PokoyChartData, UserStatsData } from "shared/types"
 import {
-  DayData,
-  PokoyChartData,
-  ShallowUserStatsData,
-  UserStatsData,
-} from "shared/types"
-import { roundToFirstDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
+  roundToFirstDecimalPlace,
+  roundToSecondDecimalPlace,
+} from "shared/utils/roundToSecondDecimalPlace"
 import {
   MAX_DAYS_DATA_LENGTH,
   SECONDARY_AXIS_LABEL,
@@ -24,7 +22,7 @@ export const getTotalInHours = (minutes: number): number => {
 }
 
 // eslint-disable-next-line max-statements
-export const getAverageMeditationPerDay = (statsData: ShallowUserStatsData) => {
+export const getAverageMeditationPerDay = (statsData: UserStatsData) => {
   if (!statsData || !statsData.firstMeditationDate) {
     throw new Error("there are no user statistics yet")
   }
@@ -45,7 +43,7 @@ export const transformDayDataToChartData = (
 ): UserSerie<PokoyChartData>[] => {
   const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataFullRange.map(
     (d) => ({
-      primary: new Date(d.timestamp.toDate().toDateString()),
+      primary: new Date(d.timestamp),
       secondary: d.totalDuration,
     })
   )
@@ -76,7 +74,7 @@ function getTotalDurationsAsAxisData(
   const totalDurationAsAxisData = daysWithMeditationsAsAxis.reduce(
     (acc, d, i) => {
       const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
-      const total = roundToFirstDecimalPlace(d.secondary / 60 + prevTotal)
+      const total = roundToSecondDecimalPlace(d.secondary / 60 + prevTotal)
       return [
         ...acc,
         {
@@ -104,10 +102,10 @@ export const sliceDaysDataRange = (daysData: DayData[]) => {
 
 export const getPseudoDayData = (
   index: number,
-  lastTimestampSeconds: number,
+  lastTimestampMillis: number,
   averageMeditationDuration: number
 ) => ({
-  timestamp: new Timestamp(lastTimestampSeconds + (index + 1) * SECS_IN_DAY, 0),
+  timestamp: lastTimestampMillis + (index + 1) * MILLIS_IN_DAY,
   totalDuration: averageMeditationDuration,
   count: 0,
   meditations: [],

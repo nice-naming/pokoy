@@ -7,12 +7,12 @@ import {
   getTotalInHours,
 } from "features/user-stats/utils"
 import { useEffect, useState } from "react"
-import { ShallowUserStatsData, UserStatsData } from "shared/types"
+import { UserStatsData } from "shared/types"
 import { Foresight } from "../foresight/foresight.component"
 import { Wrapper } from "./stats-numbers.styles"
 
 interface Props {
-  statsData: ShallowUserStatsData | null
+  statsData: UserStatsData | null
 }
 export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
   const [average, setAverage] = useState<number | null>(null)

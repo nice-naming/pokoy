@@ -24,11 +24,11 @@ import {
   LOCAL_CACHE_FIELD_NAME,
   SECS_IN_MIN,
 } from "shared/constants"
-import { DayData, PokoySession } from "shared/types"
+import { DayData, PokoySession, RequestDayData } from "shared/types"
 import { roundToSecondDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 
 export const getPokoyData = (userId: string, seconds: number): PokoySession => {
-  const timestamp = formatISO(new Date())
+  const timestamp = new Date().getTime()
   const duration = roundToSecondDecimalPlace(seconds / SECS_IN_MIN)
 
   return {
@@ -77,8 +77,7 @@ const sendPokoySessionToServer = async (
 ): Promise<DocumentReference<DocumentData> | void> => {
   const userId = pokoyData.userId
   const daysColRef = collection(firestoreDB, "days")
-  const dayDateString = new Date(pokoyData.timestamp).toDateString()
-  const dayTimestamp = Timestamp.fromDate(new Date(dayDateString))
+  const dayTimestamp = Timestamp.fromMillis(pokoyData.timestamp)
   const daysQuery = query(
     daysColRef,
     where("userId", "==", userId),
@@ -123,7 +122,7 @@ const createNewDay = async (
   }
   const userStatsRef = userStatsQuerySnapshot.docs[0].ref
 
-  const newDayData: DayData = {
+  const newDayData: RequestDayData = {
     timestamp: dayTimestamp,
     count: dayData.count + 1,
     totalDuration: roundToSecondDecimalPlace(
@@ -145,12 +144,12 @@ const updateExistingDay = async (
   // TODO: replace hardcode by dynamic code
   const dayDocRef = daysQuerySnapshot.docs[0].ref
   const daySnapshot = await getDoc(dayDocRef)
-  const dayData = daySnapshot.data() as DayData
+  const dayData = daySnapshot.data() as RequestDayData
 
   const totalDuration = dayData?.totalDuration ?? 0
   const meditations = dayData?.meditations ?? []
 
-  const newDayData: DayData = {
+  const newDayData: RequestDayData = {
     ...dayData,
     count: dayData?.count + 1,
     totalDuration: roundToSecondDecimalPlace(
@@ -164,7 +163,7 @@ const updateExistingDay = async (
 
 const setDay = async (
   dayRef: DocumentReference<DocumentData>,
-  newDayData: any,
+  newDayData: RequestDayData,
   pokoyData: PokoySession
 ) => {
   try {

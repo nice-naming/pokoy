@@ -15,11 +15,14 @@ import {
   Timestamp,
   where,
 } from "firebase/firestore"
-import { PokoySession, DayData } from "shared/types"
+import { PokoySession, DayData, RequestDayData } from "shared/types"
 
-const INIT_DAY_DATA: DayData = {
-  // FIXME: hardcode!
-  timestamp: Timestamp.fromDate(new Date(new Date().toDateString())),
+// eslint-disable
+const timestamp = Timestamp.fromDate(new Date(new Date().toDateString()))
+const INIT_DAY_DATA: RequestDayData = {
+  // NOTE: hardcode!
+  // ts-ignore
+  timestamp,
   count: 0,
   totalDuration: 0,
   meditations: [],
@@ -41,7 +44,7 @@ export const migratePokoyToDay = async (
       const userId: string =
         typeof pokoyData.user === "string"
           ? (pokoyData.user as string).replace("users/", "")
-          : pokoyData.user?.id || "user-id-not-found" // FIXME: check and replace hardcode
+          : pokoyData.user?.id || "user-id-not-found" // NOTE: check and replace hardcode
 
       const daysColRef = collection(firestore, "days")
       const dayDateString = new Date(pokoyData.timestamp).toDateString()
@@ -62,7 +65,7 @@ export const migratePokoyToDay = async (
         const daySnapshot = await getDoc(dayDocRef)
         const dayData = daySnapshot.data()
 
-        const newDayData: DayData = {
+        const newDayData: RequestDayData = {
           timestamp: dayTimestamp,
           count: dayData?.count + 1,
           totalDuration: dayData?.totalDuration + pokoyData.duration,
@@ -85,7 +88,7 @@ export const migratePokoyToDay = async (
         const newDayRef = doc(daysColRef)
         const dayData = INIT_DAY_DATA
 
-        const newDayData: DayData = {
+        const newDayData: RequestDayData = {
           timestamp: dayTimestamp,
           count: dayData.count + 1,
           totalDuration: dayData.totalDuration + pokoyData.duration,

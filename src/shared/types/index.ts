@@ -12,12 +12,23 @@ export interface StatsData {
 
 export interface PokoySession {
   duration: number
-  timestamp: string
+  timestamp: Milliseconds
   user?: string | DocumentReference<DocumentData>
   userId: string
 }
 
+export type FirestoreRefPath = Flavor<string, "FirestoreRefPath">
+
 export interface DayData {
+  timestamp: Milliseconds
+  totalDuration: number
+  count: number
+  meditations: PokoySession[]
+  userId: string
+  statsRef?: FirestoreRefPath
+}
+
+export interface RequestDayData {
   timestamp: Timestamp
   totalDuration: number
   count: number
@@ -26,17 +37,22 @@ export interface DayData {
   statsRef?: DocumentReference<DocumentData>
 }
 
+interface Flavoring<FlavorT> {
+  _type?: FlavorT
+}
+export type Flavor<T, FlavorT> = T & Flavoring<FlavorT>
+
+export type Milliseconds = Flavor<number, "Miliseconds">
+
 export interface UserStatsData {
-  firstMeditationDate: Timestamp | null
+  firstMeditationDate: Milliseconds | null
   totalDuration: number
   count: number
   userId: string
 }
 
-type Milliseconds = number
-
-export interface ShallowUserStatsData {
-  firstMeditationDate: Milliseconds | null
+export interface ServerUserStatsData {
+  firstMeditationDate: Timestamp | null
   totalDuration: number
   count: number
   userId: string

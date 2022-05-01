@@ -1,28 +1,59 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { User } from "firebase/auth"
-import { UserStatsData } from "shared/types"
-import { setStats } from "./pokoySlice"
-import { fetchStats } from "./user-stats/get-data"
-
-const FEATURE_NAME = "pokoy"
+import { FEATURE_NAME, setChartData, setStats } from "./pokoySlice"
+import { THIRD_PART } from "./user-stats/constants"
+import {
+  fetchDays,
+  fetchStats,
+  getForesightChartData as getForesighDaysData,
+} from "./user-stats/get-data"
+import { getFullRange } from "./user-stats/get-full-range"
+import { sliceDaysDataRange } from "./user-stats/utils"
 
 const getStatsActionType = `${FEATURE_NAME}/getStats` as const
 
-export const getStatsThunk = createAsyncThunk(
+export const thunkGetStats = createAsyncThunk(
   getStatsActionType,
+  // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
     const statsData = await fetchStats(user)
 
     if (statsData.firstMeditationDate === null) {
-      console.error("there are no user statistics yet")
+      console.error("there is no first meditation date")
     }
 
-    const shallowStatsData = {
-      ...statsData,
-      // TODO: remove nullable value from type
-      firstMeditationDate: statsData.firstMeditationDate || null,
-    }
+    const setStatsAction = setStats(statsData)
+    thunkAPI.dispatch(setStatsAction)
+  }
+)
 
-    return thunkAPI.dispatch(setStats(shallowStatsData))
+const getDaysActionType = `${FEATURE_NAME}/getDays` as const
+
+export const getChartDataThunk = createAsyncThunk(
+  getDaysActionType,
+  // TODO: refactor this method
+  // eslint-disable-next-line max-statements
+  async (user: User, thunkAPI) => {
+    const daysWithMeditations = await fetchDays(user)
+    const shallowDaysWithMeditations = daysWithMeditations.map((d) => ({
+      ...d,
+      timestamp: d.timestamp.toMillis(),
+      statsRef: d.statsRef?.path,
+    }))
+
+    const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
+
+    const additionalDataLength = Math.round(
+      daysDataFullRange.length * THIRD_PART
+    )
+    const additionalDaysData = await getForesighDaysData(
+      sliceDaysDataRange(daysDataFullRange),
+      user,
+      additionalDataLength
+    )
+    const daysDataWithForesight = daysDataFullRange.concat(additionalDaysData)
+    const setChartDataAction = setChartData(daysDataWithForesight)
+
+    thunkAPI.dispatch(setChartDataAction)
   }
 )

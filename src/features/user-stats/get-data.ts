@@ -5,7 +5,8 @@ import { UserSerie } from "react-charts"
 import {
   DayData,
   PokoyChartData,
-  ShallowUserStatsData,
+  RequestDayData as ServerDayData,
+  ServerUserStatsData,
   UserStatsData,
 } from "shared/types"
 import { THIRD_PART } from "./constants"
@@ -17,12 +18,19 @@ import {
   transformDayDataToChartData,
 } from "./utils"
 
+// eslint-disable-next-line max-statements
 export const fetchToLocalStateChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
   user: User
 ): Promise<void> => {
   const daysWithMeditations = await fetchDays(user)
-  const daysDataFullRange = getFullRange(daysWithMeditations)
+  const shallowDaysWithMeditations = daysWithMeditations.map((d) => ({
+    ...d,
+    timestamp: d.timestamp.toMillis(),
+    statsRef: d.statsRef?.path,
+  }))
+
+  const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
 
   const additionalDataLength = Math.round(daysDataFullRange.length * THIRD_PART)
   const additionalDaysData = await getForesightChartData(
@@ -50,7 +58,6 @@ export async function getForesightChartData(
   additionalDataLength: number
 ) {
   const lastData = daysData[daysData.length - 1]
-  const lastDateTimestampSeconds = lastData.timestamp.seconds
 
   const stats = await fetchStats(user)
   const averageMeditationDuration = getAverageMeditationPerDay(stats)
@@ -59,14 +66,14 @@ export async function getForesightChartData(
   const additionalDaysData: DayData[] = new Array(daysToNextMilestone)
     .fill(null)
     .map((_, i) =>
-      getPseudoDayData(i, lastDateTimestampSeconds, averageMeditationDuration)
+      getPseudoDayData(i, lastData.timestamp, averageMeditationDuration)
     )
 
   return additionalDaysData
 }
 
 export const fetchToLocalStateStats = async (
-  setDataToComponentState: (data: ShallowUserStatsData) => void,
+  setDataToComponentState: (data: UserStatsData) => void,
   user: User
 ): Promise<void> => {
   const statsData = await fetchStats(user)
@@ -79,13 +86,13 @@ export const fetchToLocalStateStats = async (
   setDataToComponentState(statsData)
 }
 
-export async function fetchStats(user: User): Promise<ShallowUserStatsData> {
+export async function fetchStats(user: User): Promise<UserStatsData> {
   const statsColRef = collection(firestore, "stats")
   const statsQuery = query(statsColRef, where("userId", "==", user.uid))
   const daysColSnapshot = await getDocs(statsQuery)
-  const statsData = daysColSnapshot?.docs[0]?.data() as UserStatsData
+  const statsData = daysColSnapshot?.docs[0]?.data() as ServerUserStatsData
 
-  const shallowStatsData = {
+  const shallowStatsData: UserStatsData = {
     ...statsData,
     // TODO: remove nullable value from type
     firstMeditationDate: statsData.firstMeditationDate?.toMillis() || null,
@@ -94,7 +101,7 @@ export async function fetchStats(user: User): Promise<ShallowUserStatsData> {
   return shallowStatsData
 }
 
-async function fetchDays(user: User): Promise<DayData[]> {
+export async function fetchDays(user: User): Promise<ServerDayData[]> {
   const daysColRef = collection(firestore, "days")
   const daysQuery = query(
     daysColRef,
@@ -103,7 +110,7 @@ async function fetchDays(user: User): Promise<DayData[]> {
   )
   const daysColSnapshot = await getDocs(daysQuery)
   const daysWithMeditations = daysColSnapshot.docs.map(
-    (snap) => snap.data() as DayData
+    (snap) => snap.data() as ServerDayData
   )
   return daysWithMeditations
 }

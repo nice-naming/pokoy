@@ -11,26 +11,33 @@ export const CHART_COLORS = [
 ]
 
 export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
-  // TODO: add max value as next milestone
-  // max: 3,
+  scaleType: "linear",
+  tickCount: 3,
+  position: "right",
   elementType: "area",
+  getValue: (datum) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} hours`,
+    scale: (value: number) => `${value} h`,
   },
-  getValue: (datum) => datum.secondary,
 }
 
 export const DAY_MEDITATIONS_CHART_CONFIG: AxisOptions<PokoyChartData> = {
-  min: 0,
+  showDatumElements: false,
+  tickCount: 3,
+  scaleType: "linear",
+  position: "left",
   elementType: "bar",
-  getValue: (datum: PokoyChartData) => datum.secondary,
   id: "2",
+  getValue: (datum: PokoyChartData) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} minutes`,
+    scale: (value: number) => `${value} m`,
   },
 }
 
 export const PRIMARY_AXIS_CONFIG: AxisOptions<PokoyChartData> = {
+  scaleType: "time",
   getValue: ({ primary }: PokoyChartData) => {
     // TODO: move date rounding to data source
     primary.setUTCHours(0)
