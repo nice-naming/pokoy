@@ -6,16 +6,18 @@ export * from "./fibonacci"
 export * from "./data"
 
 export enum CSS_COLOR_VARIABLES {
+  SPIRAL = "--c-spiral",
+  BASE = "--c-base",
+  EXTRA_GRAY = "--c-extra-gray",
+  GRAY = "--c-gray",
   RED = "--c-red",
   ORANGE = "--c-orange",
   YELLOW = "--c-yellow",
   GREEN = "--c-green",
+  CYAN = "--c-cyan",
   BLUE = "--c-blue",
-  PURPLE = "--c-purple",
-  PINK = "--c-pink",
-  GRAY = "--c-gray",
-  EXTRA_GRAY = "--c-extra-gray",
-  SPIRAL = "--c-spiral",
+  MAGENTA = "--c-magenta",
+  WHITE = "--c-white",
 }
 
 export const SERVER_URL = process.env.REACT_APP_SHEET_URL

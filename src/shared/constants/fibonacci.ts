@@ -5,17 +5,15 @@ export const fibonacciMinsToSeconds = [60, 120, 180, 300, 480, 780, 1260]
 export const FIB_NUMS_FOR_TIMER = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 export const FIB_STYLE_SHEET_COLORS_NAMES = [
   "--c-red",
-  // "--c-orange",
+  "--c-orange",
   "--c-yellow",
   "--c-green",
-  "--c-blue",
   "--c-cyan",
-  // "--c-purple",
-  // "--c-pink",
+  "--c-blue",
   "--c-magenta",
-  "--c-foreground",
-  "--c-foreground",
-  "--c-foreground",
+  "--c-white",
+  "--c-white",
+  "--c-white",
 ]
 export const fibNumToStyleSheetVarMap = {
   [FIB_NUMS_FOR_TIMER[0]]: FIB_STYLE_SHEET_COLORS_NAMES[0],
