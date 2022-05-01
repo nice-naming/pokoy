@@ -1,21 +1,25 @@
 import { User } from "firebase/auth"
 import { useCallback, useEffect, useState } from "react"
 import { UserSerie } from "react-charts"
-import { PokoyChartData, UserStatsData } from "shared/types"
-import { fetchAndSetChartData, getStats } from "./get-data"
+import {
+  PokoyChartData,
+  ShallowUserStatsData,
+  UserStatsData,
+} from "shared/types"
+import { fetchToLocalStateChartData, fetchToLocalStateStats } from "./get-data"
 
 export interface UserStats {
   chartData: UserSerie<PokoyChartData>[]
-  statsData: UserStatsData
+  statsData: ShallowUserStatsData
 }
 
 // eslint-disable-next-line max-statements
 export const useStats = (user: User): UserStats | null => {
   const [chartData, setChartData] = useState<UserSerie<PokoyChartData>[]>([])
-  const [statsData, setStatsData] = useState<UserStatsData | null>(null)
+  const [statsData, setStatsData] = useState<ShallowUserStatsData | null>(null)
 
-  const getChartDataMemoized = useCallback(fetchAndSetChartData, [])
-  const getStatsMemoized = useCallback(getStats, [])
+  const getChartDataMemoized = useCallback(fetchToLocalStateChartData, [])
+  const getStatsMemoized = useCallback(fetchToLocalStateStats, [])
 
   useEffect(() => {
     getStatsMemoized(setStatsData, user)

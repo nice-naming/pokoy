@@ -6,7 +6,12 @@ import {
   MINS_IN_HOUR,
   SECS_IN_DAY,
 } from "shared/constants"
-import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import {
+  DayData,
+  PokoyChartData,
+  ShallowUserStatsData,
+  UserStatsData,
+} from "shared/types"
 import { roundToFirstDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 import {
   MAX_DAYS_DATA_LENGTH,
@@ -19,14 +24,13 @@ export const getTotalInHours = (minutes: number): number => {
 }
 
 // eslint-disable-next-line max-statements
-export const getAverageMeditationPerDay = (statsData: UserStatsData) => {
+export const getAverageMeditationPerDay = (statsData: ShallowUserStatsData) => {
   if (!statsData || !statsData.firstMeditationDate) {
     throw new Error("there are no user statistics yet")
   }
 
   const { firstMeditationDate } = statsData
-  const statsMillisecondsDiff =
-    Date.now() - firstMeditationDate.toDate().getTime()
+  const statsMillisecondsDiff = Date.now() - firstMeditationDate
   const statsRangeInDays = statsMillisecondsDiff / MILLIS_IN_DAY
 
   const average = roundToFirstDecimalPlace(

@@ -2,7 +2,12 @@ import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { UserSerie } from "react-charts"
-import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import {
+  DayData,
+  PokoyChartData,
+  ShallowUserStatsData,
+  UserStatsData,
+} from "shared/types"
 import { THIRD_PART } from "./constants"
 import { getFullRange } from "./get-full-range"
 import {
@@ -12,7 +17,7 @@ import {
   transformDayDataToChartData,
 } from "./utils"
 
-export const fetchAndSetChartData = async (
+export const fetchToLocalStateChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
   user: User
 ): Promise<void> => {
@@ -30,6 +35,12 @@ export const fetchAndSetChartData = async (
 
   return setDataToComponentState(chartData)
 }
+
+// export const fetchChartData = async (
+//   user: User,
+// ): Promise<UserSerie<PokoyChartData>[]> => {
+
+// }
 
 // TODO: refactor this method
 // eslint-disable-next-line max-statements
@@ -54,8 +65,8 @@ export async function getForesightChartData(
   return additionalDaysData
 }
 
-export const getStats = async (
-  setDataToComponentState: (data: UserStatsData) => void,
+export const fetchToLocalStateStats = async (
+  setDataToComponentState: (data: ShallowUserStatsData) => void,
   user: User
 ): Promise<void> => {
   const statsData = await fetchStats(user)
@@ -68,13 +79,19 @@ export const getStats = async (
   setDataToComponentState(statsData)
 }
 
-async function fetchStats(user: User): Promise<UserStatsData> {
+export async function fetchStats(user: User): Promise<ShallowUserStatsData> {
   const statsColRef = collection(firestore, "stats")
   const statsQuery = query(statsColRef, where("userId", "==", user.uid))
   const daysColSnapshot = await getDocs(statsQuery)
   const statsData = daysColSnapshot?.docs[0]?.data() as UserStatsData
 
-  return statsData
+  const shallowStatsData = {
+    ...statsData,
+    // TODO: remove nullable value from type
+    firstMeditationDate: statsData.firstMeditationDate?.toMillis() || null,
+  }
+
+  return shallowStatsData
 }
 
 async function fetchDays(user: User): Promise<DayData[]> {

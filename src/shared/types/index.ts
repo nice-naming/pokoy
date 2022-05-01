@@ -33,6 +33,15 @@ export interface UserStatsData {
   userId: string
 }
 
+type Milliseconds = number
+
+export interface ShallowUserStatsData {
+  firstMeditationDate: Milliseconds | null
+  totalDuration: number
+  count: number
+  userId: string
+}
+
 export enum RequestStatus {
   NONE,
   REQUEST,
