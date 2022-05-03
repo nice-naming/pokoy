@@ -3,11 +3,11 @@ import { AxisOptions, TooltipOptions } from "react-charts"
 import { CSS_COLOR_VARIABLES } from "shared/constants"
 import { PokoyChartData } from "shared/types"
 
-const { GRAY, GREEN } = CSS_COLOR_VARIABLES
+const { EXTRA_GRAY, CYAN } = CSS_COLOR_VARIABLES
 
 export const CHART_COLORS = [
-  getColorFromCSSVar(GREEN),
-  getColorFromCSSVar(GRAY),
+  getColorFromCSSVar(CYAN),
+  getColorFromCSSVar(EXTRA_GRAY),
 ]
 
 export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
@@ -15,6 +15,7 @@ export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
   tickCount: 3,
   position: "right",
   elementType: "area",
+  showGrid: false,
   getValue: (datum) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} hours`,
@@ -23,7 +24,6 @@ export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
 }
 
 export const DAY_MEDITATIONS_CHART_CONFIG: AxisOptions<PokoyChartData> = {
-  showDatumElements: false,
   tickCount: 3,
   scaleType: "linear",
   position: "left",
