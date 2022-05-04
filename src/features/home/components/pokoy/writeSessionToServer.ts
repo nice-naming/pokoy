@@ -27,7 +27,10 @@ import {
 import { DayData, PokoySession, RequestDayData } from "shared/types"
 import { roundToSecondDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 
-export const getPokoyData = (userId: string, seconds: number): PokoySession => {
+export const createPokoyData = (
+  userId: string,
+  seconds: number
+): PokoySession => {
   const timestamp = new Date().getTime()
   const duration = roundToSecondDecimalPlace(seconds / SECS_IN_MIN)
 
@@ -50,7 +53,7 @@ export const sendSessionFromSeconds = async (
     return
   }
 
-  const pokoyData = getPokoyData(user.uid, seconds)
+  const pokoyData = createPokoyData(user.uid, seconds)
   return await sendPokoySessionToServer(firestoreDB, pokoyData)
 }
 
@@ -78,6 +81,7 @@ const sendPokoySessionToServer = async (
   const userId = pokoyData.userId
   const daysColRef = collection(firestoreDB, "days")
   const dayTimestamp = Timestamp.fromMillis(pokoyData.timestamp)
+
   const daysQuery = query(
     daysColRef,
     where("userId", "==", userId),

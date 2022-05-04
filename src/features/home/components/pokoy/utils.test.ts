@@ -1,4 +1,4 @@
-import { getPokoyData } from "./writeSessionToServer"
+import { createPokoyData } from "./writeSessionToServer"
 
 describe("getPokoyData", () => {
   it("should return properly values", () => {
@@ -9,7 +9,7 @@ describe("getPokoyData", () => {
     // expect.hasAssertions()
     // eslint-disable-next-line max-nested-callbacks
     secondsArray.forEach((seconds, i) => {
-      const result = getPokoyData(userId, seconds)
+      const result = createPokoyData(userId, seconds)
       expect(result.duration).toEqual(expected[i])
     })
   })
