@@ -18,9 +18,11 @@ const ALMOST_DONE_VALUE = MAX_SPIRAL_VALUE * ALMOST_DONE_PERCENT
 
 interface Props {
   seconds: number
+  color?: string
+  width?: string
 }
 
-export const FibSpiral: React.FC<Props> = ({ seconds }) => {
+export const FibSpiral: React.FC<Props> = ({ seconds, color, width }) => {
   const progress = getTimerProgress(seconds)
   const minutes = Math.floor(seconds / 60)
   const isEmpty = progress > ALMOST_DONE_VALUE || progress < 1
@@ -41,11 +43,11 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
       viewBox="0 0 760 769"
     >
       <path
-        stroke="var(--c-spiral)"
+        stroke={color ? color : "var(--c-spiral)"}
+        strokeWidth={width ? width : "1rem"}
         className="spiral-trial"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1rem"
         fillOpacity="0"
         d={PATH_TO_DRAWN}
       />
