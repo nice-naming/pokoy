@@ -3,34 +3,42 @@ import { AxisOptions, TooltipOptions } from "react-charts"
 import { CSS_COLOR_VARIABLES } from "shared/constants"
 import { PokoyChartData } from "shared/types"
 
-const { GRAY, GREEN } = CSS_COLOR_VARIABLES
+const { CYAN, EXTRA_GRAY } = CSS_COLOR_VARIABLES
 
 export const CHART_COLORS = [
-  getColorFromCSSVar(GREEN),
-  getColorFromCSSVar(GRAY),
+  getColorFromCSSVar(CYAN),
+  getColorFromCSSVar(EXTRA_GRAY),
 ]
 
 export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
   // TODO: add max value as next milestone
-  // max: 3,
+  scaleType: "linear",
+  tickCount: 3,
+  position: "right",
+  showGrid: false,
   elementType: "area",
+  getValue: (datum) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} hours`,
+    scale: (value: number) => `${value}h`,
   },
-  getValue: (datum) => datum.secondary,
 }
 
 export const DAY_MEDITATIONS_CHART_CONFIG: AxisOptions<PokoyChartData> = {
-  min: 0,
+  tickCount: 3,
+  scaleType: "linear",
+  position: "left",
   elementType: "bar",
   getValue: (datum: PokoyChartData) => datum.secondary,
   id: "2",
   formatters: {
     tooltip: (value: number) => `${value} minutes`,
+    scale: (value: number) => `${value}m`,
   },
 }
 
 export const PRIMARY_AXIS_CONFIG: AxisOptions<PokoyChartData> = {
+  scaleType: "time",
   getValue: ({ primary }: PokoyChartData) => {
     // TODO: move date rounding to data source
     primary.setUTCHours(0)
