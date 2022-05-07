@@ -67,6 +67,9 @@ textarea {
 
   --c-background: var(--c-base);
   --c-foreground: var(--c-white);
+
+  /* NOTE: layout variables */
+  --header-height: 60px;
 }
 
 :root {
