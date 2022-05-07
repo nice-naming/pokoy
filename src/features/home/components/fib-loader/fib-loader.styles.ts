@@ -20,6 +20,7 @@ interface Props {
 
 export const Wrapper = styled.div<Props>`
   /* NOTE: opacity transition for fading off after appearance in animation */
+  grid-area: spiral;
   opacity: ${({ stillLoading }) => (stillLoading ? 1 : 0)};
   z-index: ${({ stillLoading }) => (stillLoading ? 2 : 0)};
   display: flex;

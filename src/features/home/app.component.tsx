@@ -24,6 +24,7 @@ const swipeableViewsRootStyles = {
 const swipeableViewsContainerStyles = {
   maxWidth: "100%",
   maxHeight: "100%",
+  height: "100%",
 }
 
 const VirtualizedSwipeableViews = virtualize(SwipeableViews)
@@ -59,7 +60,6 @@ export const App: React.FC = () => {
   return (
     <Wrapper>
       <Header />
-      <AppUpdater />
 
       <VirtualizedSwipeableViews
         style={swipeableViewsRootStyles}

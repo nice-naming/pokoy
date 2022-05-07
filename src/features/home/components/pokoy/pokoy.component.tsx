@@ -15,9 +15,10 @@ import {
   sendSessionFromSeconds,
 } from "./writeSessionToServer"
 import { PokoySession, RequestStatus } from "shared/types"
-import { TopTextWrapper, Wrapper } from "./pokoy.styles"
+import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
 import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
+import { AppUpdater } from "../app-updater"
 
 // TODO: refactor component
 export const Pokoy = ({ user }: { user: User }) => {
@@ -125,7 +126,11 @@ export const Pokoy = ({ user }: { user: User }) => {
         <FibSpiral seconds={timerDiff} />
       </TimerButton>
 
-      <Tips minutes={minutes} isTimerStarted={isStarted} />
+      <AppUpdater />
+
+      <BottomTextWrapper>
+        <Tips minutes={minutes} isTimerStarted={isStarted} />
+      </BottomTextWrapper>
     </Wrapper>
   )
 }

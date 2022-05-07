@@ -8,6 +8,7 @@ interface Props {
 
 export const ButtonWrapper = styled.button<Props>`
   color: var(--c-extra-gray);
+  grid-area: spiral;
   padding: 0px;
   display: block;
   background-color: transparent;
