@@ -35,7 +35,7 @@ export const StageWrapper = styled.div`
   text-align: left;
   align-items: center;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (hover: none) and (orientation: landscape) {
     grid-template-areas: "number number";
   }
 `
@@ -50,7 +50,7 @@ export const StageNumber = styled.span`
 export const StyledUnits = styled.span`
   align-self: end;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (hover: none) and (orientation: landscape) {
     display: none;
   }
 `
@@ -58,7 +58,7 @@ export const StyledUnits = styled.span`
 export const StyledDesc = styled.span`
   align-self: start;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (hover: none) and (orientation: landscape) {
     display: none;
   }
 `

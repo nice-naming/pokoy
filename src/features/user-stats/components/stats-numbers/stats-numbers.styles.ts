@@ -1,4 +1,3 @@
-import { TABLET_MIN_WIDTH } from "shared/constants"
 import styled from "styled-components/macro"
 
 export const Wrapper = styled.div`
@@ -15,11 +14,11 @@ export const Wrapper = styled.div`
   cursor: default;
   user-select: none;
 
-  @media screen and (min-width: ${TABLET_MIN_WIDTH}) {
+  @media screen and (hover: hover) {
     font-size: 4rem;
   }
 
-  @media screen and (orientation: landscape) {
+  @media screen and (hover: none) and (orientation: landscape) {
     font-size: 2rem;
   }
 `

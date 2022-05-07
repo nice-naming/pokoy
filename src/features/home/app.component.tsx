@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { auth } from "features/home/firebase-init"
 import { Pokoy } from "features/home/components/pokoy/pokoy.component"
-import { FibLoader } from "features/home/components/fib-loader"
 import { Wrapper, SwipeableView } from "./app.styles"
 import SwipeableViews from "react-swipeable-views"
 import { UserStats } from "features/user-stats/user-stats"
@@ -40,8 +39,7 @@ export const App: React.FC = () => {
         case 0:
           return (
             <SwipeableView key={key}>
-              <FibLoader stillLoading={isStillLoading} />
-              <Pokoy user={user as User} />
+              <Pokoy user={user as User} stillLoading={isStillLoading} />
             </SwipeableView>
           )
 

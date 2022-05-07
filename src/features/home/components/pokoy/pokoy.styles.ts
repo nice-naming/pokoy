@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: grid;
   max-height: 100%;
   height: 100%;
-  grid-template-rows: 1fr auto min-content 1fr;
+  grid-template-rows: 4fr auto 1.5fr 3fr;
   grid-template-areas:
     "countdown"
     "spiral"
@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+  row-gap: 3rem;
 
   @media screen and (orientation: landscape) and (hover: none) {
     grid-template-columns: 1fr 2fr;
@@ -28,12 +29,10 @@ export const Wrapper = styled.div`
 
 export const TopTextWrapper = styled.p`
   grid-area: countdown;
-  margin: 3rem 0;
-  margin-top: 6rem;
   align-self: flex-end;
+  margin: 0;
 
   @media screen and (hover: none) and (orientation: landscape) {
-    margin: 0;
     align-self: flex-end;
     justify-self: center;
   }
@@ -42,9 +41,6 @@ export const TopTextWrapper = styled.p`
 export const BottomTextWrapper = styled.p`
   grid-area: tips;
   margin: 0;
-  margin-top: 3rem;
-  /* margin: 3rem 0; */
-  /* margin-bottom: 6rem; */
 
   @media screen and (hover: none) and (orientation: landscape) {
     margin: 0;

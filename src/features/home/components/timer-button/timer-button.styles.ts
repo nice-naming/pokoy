@@ -4,6 +4,7 @@ import styled from "styled-components/macro"
 interface Props {
   requestStatus: RequestStatus
   isStarted: boolean
+  stillLoading: boolean
 }
 
 export const ButtonWrapper = styled.button<Props>`
@@ -14,21 +15,17 @@ export const ButtonWrapper = styled.button<Props>`
   background-color: transparent;
   position: relative;
   border-radius: 50%;
-  transition-property: color, transform;
-  transition-duration: 0.3s;
-  transition-timing-function: linear, ease-out;
-  will-change: color, transform;
+
   z-index: 1;
 
-  /* NOTE: pseudo-element for opaque button border with dinamic color */
+  // NOTE: pseudo-element for opaque button border with dinamic color
   &:after {
-    box-shadow: ${({ isStarted }) =>
-      isStarted
+    box-shadow: ${({ isStarted, stillLoading }) =>
+      stillLoading
+        ? "none"
+        : isStarted
         ? "0 0 0 0.5rem currentcolor"
-        : `
-          0 0 0 0.5rem var(--c-gray),
-          0 0 0.5rem 1rem var(--c-spiral)
-        `};
+        : `0 0 0 0.5rem var(--c-gray), 0 0 0.5rem 1rem var(--c-spiral)`};
     transform: ${({ isStarted }) => (isStarted ? "scale(0.99)" : "scale(1)")};
     transition: box-shadow 0.3s ease-in, transform 0.3s ease-in;
 

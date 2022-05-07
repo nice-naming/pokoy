@@ -20,8 +20,13 @@ import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 import { AppUpdater } from "../app-updater"
 
+interface Props {
+  user: User
+  stillLoading: boolean
+}
+
 // TODO: refactor component
-export const Pokoy = ({ user }: { user: User }) => {
+export const Pokoy: React.FC<Props> = ({ user, stillLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
   const [isStarted, setStartedFlag] = useState(false)
@@ -114,22 +119,23 @@ export const Pokoy = ({ user }: { user: User }) => {
   return (
     <Wrapper>
       <TopTextWrapper>
-        <Countdown seconds={timerDiff} />
+        {!stillLoading && <Countdown seconds={timerDiff} />}
       </TopTextWrapper>
 
       <TimerButton
         handleTimerClick={handleClick}
         isTimerStarted={isStarted}
         requestStatus={requestStatus}
+        stillLoading={stillLoading}
       >
         <Sound progress={timerDiff} />
-        <FibSpiral seconds={timerDiff} />
+        <FibSpiral seconds={timerDiff} stillLoading={stillLoading} />
       </TimerButton>
 
       <AppUpdater />
 
       <BottomTextWrapper>
-        <Tips minutes={minutes} isTimerStarted={isStarted} />
+        {!stillLoading && <Tips minutes={minutes} isTimerStarted={isStarted} />}
       </BottomTextWrapper>
     </Wrapper>
   )
