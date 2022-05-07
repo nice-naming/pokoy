@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   height: 100%;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (hover: none) and (orientation: landscape) {
     display: none;
   }
 `

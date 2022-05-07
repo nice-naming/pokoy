@@ -8,7 +8,6 @@ import SwipeableViews from "react-swipeable-views"
 import { UserStats } from "features/user-stats/user-stats"
 import { User } from "firebase/auth"
 import { Header } from "./components/header/header.component"
-import { AppUpdater } from "./components/app-updater"
 import { ViewsSwitcher } from "./components/views-switcher/views-switcher.component"
 import { SlideRenderProps, virtualize } from "react-swipeable-views-utils"
 
