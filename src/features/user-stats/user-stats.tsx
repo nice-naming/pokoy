@@ -1,4 +1,5 @@
 import { User } from "@firebase/auth"
+import { AppUpdater } from "features/home/components/app-updater"
 import { getChartDataThunk, thunkGetStats } from "features/pokoyThunks"
 import { useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -40,6 +41,7 @@ export const UserStats: React.FC<Props> = ({ user }) => {
         <>
           <StatsNumbers statsData={userStatistics} />
           <StatsChart pokoyData={userChartData} />
+          <AppUpdater />
         </>
       ) : (
         <span>

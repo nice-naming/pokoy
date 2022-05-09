@@ -10,9 +10,9 @@ export const Wrapper = styled.div`
   align-items: center;
   color: var(--c-gray);
   font-size: 1.5rem;
-  padding: 0 4rem;
+  padding: 1rem 4rem;
 
   @media screen and (min-width: ${TABLET_MIN_WIDTH}) {
-    padding: 0;
+    padding: 2rem 4rem;
   }
 `

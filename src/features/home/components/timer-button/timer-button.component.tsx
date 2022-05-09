@@ -8,6 +8,7 @@ type Props = {
   handleTimerClick: () => void
   isTimerStarted: boolean
   requestStatus: RequestStatus
+  stillLoading: boolean
 }
 
 export const TimerButton: React.FC<Props> = ({
@@ -15,6 +16,7 @@ export const TimerButton: React.FC<Props> = ({
   handleTimerClick,
   requestStatus,
   children,
+  stillLoading,
 }) => {
   const [playClick] = useSound(clickSfx)
 
@@ -25,6 +27,7 @@ export const TimerButton: React.FC<Props> = ({
 
   return (
     <ButtonWrapper
+      stillLoading={stillLoading}
       onClick={clickWithSound}
       requestStatus={requestStatus}
       isStarted={isTimerStarted}

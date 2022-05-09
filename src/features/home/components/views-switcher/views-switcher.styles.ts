@@ -11,8 +11,12 @@ export const SwipeButton = styled.button`
   transition: none;
   padding: 1rem 2rem;
   margin: 1rem;
-  margin-bottom: 7rem;
+  margin-bottom: 10vh;
   border-radius: 3rem;
+
+  @media screen and (hover: none) and (orientation: landscape) {
+    display: none;
+  }
 `
 
 interface Props {

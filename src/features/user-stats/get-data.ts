@@ -32,13 +32,14 @@ export const fetchToLocalStateChartData = async (
 
   const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
 
-  const additionalDataLength = Math.round(daysDataFullRange.length * THIRD_PART)
+  const slicedRange = sliceDaysDataRange(daysDataFullRange)
+  const additionalDataLength = Math.round(slicedRange.length * THIRD_PART)
   const additionalDaysData = await getForesightChartData(
-    sliceDaysDataRange(daysDataFullRange),
+    slicedRange,
     user,
     additionalDataLength
   )
-  const daysDataWithForesight = daysDataFullRange.concat(additionalDaysData)
+  const daysDataWithForesight = slicedRange.concat(additionalDaysData)
   const chartData = transformDayDataToChartData(daysDataWithForesight)
 
   return setDataToComponentState(chartData)

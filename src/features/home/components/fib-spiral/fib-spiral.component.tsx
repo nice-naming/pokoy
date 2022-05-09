@@ -8,7 +8,11 @@ import {
   START_SPIRAL_OFFSET,
   MAX_SPIRAL_VALUE,
 } from "./fib-spiral.constants"
-import { StyledSpiralPath, StyledSvg } from "./fib-spiral.styles"
+import {
+  StyledSpiralBackground,
+  StyledSpiralPath,
+  StyledSvg,
+} from "./fib-spiral.styles"
 import { getTimerProgress } from "./get-timer-progress"
 import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 
@@ -18,9 +22,10 @@ const ALMOST_DONE_VALUE = MAX_SPIRAL_VALUE * ALMOST_DONE_PERCENT
 
 interface Props {
   seconds: number
+  stillLoading: boolean
 }
 
-export const FibSpiral: React.FC<Props> = ({ seconds }) => {
+export const FibSpiral: React.FC<Props> = ({ seconds, stillLoading }) => {
   const progress = getTimerProgress(seconds)
   const minutes = Math.floor(seconds / 60)
   const isEmpty = progress > ALMOST_DONE_VALUE || progress < 1
@@ -40,12 +45,11 @@ export const FibSpiral: React.FC<Props> = ({ seconds }) => {
       fill="none"
       viewBox="0 0 760 769"
     >
-      <path
-        stroke="var(--c-spiral)"
+      <StyledSpiralBackground
+        stillLoading={stillLoading}
         className="spiral-trial"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="1rem"
         fillOpacity="0"
         d={PATH_TO_DRAWN}
       />
