@@ -12,6 +12,7 @@ import {
   transformDayDataToChartData,
 } from "./utils"
 
+// eslint-disable-next-line max-statements
 export const fetchAndSetChartData = async (
   setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
   user: User
@@ -19,13 +20,14 @@ export const fetchAndSetChartData = async (
   const daysWithMeditations = await fetchDays(user)
   const daysDataFullRange = getFullRange(daysWithMeditations)
 
-  const additionalDataLength = Math.round(daysDataFullRange.length * THIRD_PART)
+  const slicedRange = sliceDaysDataRange(daysDataFullRange)
+  const additionalDataLength = Math.round(slicedRange.length * THIRD_PART)
   const additionalDaysData = await getForesightChartData(
-    sliceDaysDataRange(daysDataFullRange),
+    slicedRange,
     user,
     additionalDataLength
   )
-  const daysDataWithForesight = daysDataFullRange.concat(additionalDaysData)
+  const daysDataWithForesight = slicedRange.concat(additionalDaysData)
   const chartData = transformDayDataToChartData(daysDataWithForesight)
 
   return setDataToComponentState(chartData)
