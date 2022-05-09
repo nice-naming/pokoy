@@ -15,12 +15,17 @@ import {
   sendSessionFromSeconds,
 } from "./writeSessionToServer"
 import { PokoySession, RequestStatus } from "shared/types"
-import { TopTextWrapper, Wrapper } from "./pokoy.styles"
+import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
 import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 
+interface Props {
+  user: User
+  stillLoading: boolean
+}
+
 // TODO: refactor component
-export const Pokoy = ({ user }: { user: User }) => {
+export const Pokoy: React.FC<Props> = ({ user, stillLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
   const [isStarted, setStartedFlag] = useState(false)
@@ -113,19 +118,22 @@ export const Pokoy = ({ user }: { user: User }) => {
   return (
     <Wrapper>
       <TopTextWrapper>
-        <Countdown seconds={timerDiff} />
+        {!stillLoading && <Countdown seconds={timerDiff} />}
       </TopTextWrapper>
 
       <TimerButton
         handleTimerClick={handleClick}
         isTimerStarted={isStarted}
         requestStatus={requestStatus}
+        stillLoading={stillLoading}
       >
         <Sound progress={timerDiff} />
-        <FibSpiral seconds={timerDiff} />
+        <FibSpiral seconds={timerDiff} stillLoading={stillLoading} />
       </TimerButton>
 
-      <Tips minutes={minutes} isTimerStarted={isStarted} />
+      <BottomTextWrapper>
+        {!stillLoading && <Tips minutes={minutes} isTimerStarted={isStarted} />}
+      </BottomTextWrapper>
     </Wrapper>
   )
 }
