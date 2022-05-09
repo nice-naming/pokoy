@@ -18,7 +18,6 @@ import { PokoySession, RequestStatus } from "shared/types"
 import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
 import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
-import { AppUpdater } from "../app-updater"
 
 interface Props {
   user: User
