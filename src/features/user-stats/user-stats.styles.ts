@@ -15,25 +15,24 @@ export const Wrapper = styled.div`
     padding: 18rem 0;
   }
 `
-
-export const StyledStatNumber = styled.span`
-  font-size: 1.5em;
-  line-height: 1;
-  color: var(--c-foreground);
-
-  @media screen and (pointer: fine) {
-    font-size: 3em;
-  }
-`
-
 export const StyledStat = styled.span`
   display: flex;
-  font-size: 0.8em;
+  font-size: 1.5rem;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
 
-  @media screen and (pointer: fine) {
-    font-size: 1em;
+  @media screen and (hover: hover) {
+    font-size: 2rem;
+  }
+`
+
+export const StyledStatNumber = styled.span`
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--c-foreground);
+
+  @media screen and (hover: hover) {
+    font-size: 5rem;
   }
 `
