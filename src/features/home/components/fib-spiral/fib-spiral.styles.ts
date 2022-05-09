@@ -30,12 +30,10 @@ export const StyledSvg = styled.svg<StyledProps>`
   animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
-
   transform-origin: 50% 50%;
   width: 100%;
   aspect-ratio: 1;
   display: block;
-  will-change: transform;
 `
 
 interface StyledSpiralPathProps {
@@ -63,4 +61,16 @@ export const StyledSpiralPath = styled.path<StyledSpiralPathProps>`
     opacity 0.15s ease-out,
     //
     color 3s ease-in 0.5s;
+`
+
+interface StyledSpiralBackgroundProps {
+  stillLoading: boolean
+}
+
+export const StyledSpiralBackground = styled.path<StyledSpiralBackgroundProps>`
+  stroke: ${({ stillLoading }) => (stillLoading ? "white" : "var(--c-spiral)")};
+  stroke-width: ${({ stillLoading }) => (stillLoading ? "3rem" : "1rem")};
+  transform: ${({ stillLoading }) =>
+    stillLoading ? "translateY(3rem)" : "translateX(0)"};
+  transition: all 0.5s ease-out;
 `

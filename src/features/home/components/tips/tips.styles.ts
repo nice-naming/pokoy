@@ -4,7 +4,6 @@ export const Wrapper = styled.span`
   color: var(--c-gray);
   cursor: default;
   margin-bottom: 0;
-  margin-top: 3rem;
 
   display: grid;
   grid-template-areas: "current t next";
@@ -15,7 +14,12 @@ export const Wrapper = styled.span`
 `
 
 export const StyledTip = styled.span`
+  grid-area: t;
   line-height: 3;
+
+  @media screen and (orientation: landscape) {
+    line-height: 1.5;
+  }
 `
 
 export const StageWrapper = styled.div`
@@ -30,6 +34,10 @@ export const StageWrapper = styled.div`
   line-height: 1.5;
   text-align: left;
   align-items: center;
+
+  @media screen and (hover: none) and (orientation: landscape) {
+    grid-template-areas: "number number";
+  }
 `
 
 export const StageNumber = styled.span`
@@ -41,8 +49,16 @@ export const StageNumber = styled.span`
 
 export const StyledUnits = styled.span`
   align-self: end;
+
+  @media screen and (hover: none) and (orientation: landscape) {
+    display: none;
+  }
 `
 
 export const StyledDesc = styled.span`
   align-self: start;
+
+  @media screen and (hover: none) and (orientation: landscape) {
+    display: none;
+  }
 `

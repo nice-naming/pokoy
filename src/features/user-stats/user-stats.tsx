@@ -1,4 +1,5 @@
 import { User } from "@firebase/auth"
+import { AppUpdater } from "features/home/components/app-updater"
 import { StatsChart } from "./components/stats-chart/stats-chart.component"
 import { StatsNumbers } from "./components/stats-numbers/stats-numbers.component"
 import { Wrapper } from "./user-stats.styles"
@@ -17,6 +18,7 @@ export const UserStats: React.FC<Props> = ({ user }) => {
         <>
           <StatsNumbers statsData={userStats.statsData} />
           <StatsChart pokoyData={userStats.chartData} />
+          <AppUpdater />
         </>
       ) : (
         <span>
