@@ -132,8 +132,6 @@ export const Pokoy: React.FC<Props> = ({ user, stillLoading }) => {
         <FibSpiral seconds={timerDiff} stillLoading={stillLoading} />
       </TimerButton>
 
-      <AppUpdater />
-
       <BottomTextWrapper>
         {!stillLoading && <Tips minutes={minutes} isTimerStarted={isStarted} />}
       </BottomTextWrapper>
