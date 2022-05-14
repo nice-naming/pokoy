@@ -28,7 +28,7 @@ export interface DayData {
   statsRef?: FirestoreRefPath
 }
 
-export interface RequestDayData {
+export interface ServerDayData {
   timestamp: Timestamp
   totalDuration: number
   count: number
@@ -38,7 +38,7 @@ export interface RequestDayData {
 }
 
 export interface MockDayData {
-  timestamp: Timestamp
+  timestamp: Milliseconds
   totalDuration: number
 }
 

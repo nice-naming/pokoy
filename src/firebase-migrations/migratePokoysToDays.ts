@@ -64,7 +64,7 @@ export const migratePokoyToDay = async (
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       if (daysQuerySnapshot.docs.length > 0) {
-        console.log("write day to EXISTED document")
+        console.info("write day to EXISTED document")
         const dayDocRef = daysQuerySnapshot.docs[0].ref
         const daySnapshot = await getDoc(dayDocRef)
         const dayData = daySnapshot.data()
@@ -77,18 +77,16 @@ export const migratePokoyToDay = async (
           userId,
         }
 
-        // console.log("🚀 ~ newDayData.count", newDayData.count);
-
         await setDoc(dayDocRef, newDayData)
           .then((res) => {
-            console.log("success ", index)
+            console.info("success ", index)
           })
-          .catch((e) => console.log("⛔️", e))
+          .catch((e) => console.error("⛔️", e))
         await deleteDoc(pokoySnapshot.ref)
 
         // NOTE: WRITE NEW DAY
       } else if (daysQuerySnapshot.docs.length === 0) {
-        console.log("write day to NEW document")
+        console.info("write day to NEW document")
         const newDayRef = doc(daysColRef)
         const dayData = INIT_DAY_DATA
 
@@ -102,9 +100,9 @@ export const migratePokoyToDay = async (
 
         await setDoc(newDayRef, newDayData)
           .then(() => {
-            console.log("success ", index)
+            console.info("success ", index)
           })
-          .catch((e) => console.log("⛔️", e))
+          .catch((e) => console.error("⛔️", e))
         await deleteDoc(pokoySnapshot.ref)
       }
     },
@@ -119,7 +117,7 @@ export const migratePokoysToDays = async () => {
   const pokoysColRef = collection(firestore, "pokoys")
   const q = query(pokoysColRef, orderBy("timestamp", "desc"))
   const querySnapshot = await getDocs(q)
-  console.log("осталось Покоев", querySnapshot.size)
+  console.info("осталось Покоев", querySnapshot.size)
 
   const pokoysDocs = querySnapshot.docs.slice(0, 100)
   pokoysDocs.forEach((snapshot, i) => {

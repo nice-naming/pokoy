@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { UserSerie } from "react-charts"
-import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import {
+  DayData,
+  MockDayData,
+  PokoyChartData,
+  UserStatsData,
+} from "shared/types"
 import { getChartDataThunk, thunkGetStats } from "./pokoyThunks"
 
 export const FEATURE_NAME = "pokoy"
 
 export interface PokoyState {
-  daysData: DayData[]
+  daysData: (DayData | MockDayData)[]
   stats: UserStatsData | null
   status: "idle" | "loading" | "error" | "loaded"
 }
@@ -27,7 +32,7 @@ export const pokoySlice = createSlice({
     setStats: (state, action: PayloadAction<UserStatsData>) => {
       state.stats = action.payload
     },
-    setChartData: (state, action: PayloadAction<DayData[]>) => {
+    setChartData: (state, action: PayloadAction<(DayData | MockDayData)[]>) => {
       state.daysData = action.payload
     },
   },

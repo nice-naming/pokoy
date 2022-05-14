@@ -24,7 +24,7 @@ import {
   LOCAL_CACHE_FIELD_NAME,
   SECS_IN_MIN,
 } from "shared/constants"
-import { DayData, PokoySession, RequestDayData } from "shared/types"
+import { DayData, PokoySession, ServerDayData } from "shared/types"
 import { roundToSecondDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 
 export const createPokoyData = (
@@ -110,7 +110,7 @@ const createNewDay = async (
   pokoyData: PokoySession,
   userId: string
 ) => {
-  console.log("🚀 ~ createNewDay")
+  console.info("🚀 ~ createNewDay")
   const newDayRef = doc(daysColRef)
   const dayData = INIT_DAY_DATA
 
@@ -127,7 +127,7 @@ const createNewDay = async (
   }
   const userStatsRef = userStatsQuerySnapshot.docs[0].ref
 
-  const newDayData: RequestDayData = {
+  const newDayData: ServerDayData = {
     timestamp: dayTimestamp,
     count: dayData.count + 1,
     totalDuration: roundToSecondDecimalPlace(
@@ -149,12 +149,12 @@ const updateExistingDay = async (
   // TODO: replace hardcode by dynamic code
   const dayDocRef = daysQuerySnapshot.docs[0].ref
   const daySnapshot = await getDoc(dayDocRef)
-  const dayData = daySnapshot.data() as RequestDayData
+  const dayData = daySnapshot.data() as ServerDayData
 
   const totalDuration = dayData?.totalDuration ?? 0
   const meditations = dayData?.meditations ?? []
 
-  const newDayData: RequestDayData = {
+  const newDayData: ServerDayData = {
     ...dayData,
     count: dayData?.count + 1,
     totalDuration: roundToSecondDecimalPlace(
@@ -168,7 +168,7 @@ const updateExistingDay = async (
 
 const setDay = async (
   dayRef: DocumentReference<DocumentData>,
-  newDayData: RequestDayData,
+  newDayData: ServerDayData,
   pokoyData: PokoySession
 ) => {
   try {

@@ -43,15 +43,14 @@ export const getChartDataThunk = createAsyncThunk(
 
     const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
 
-    const additionalDataLength = Math.round(
-      daysDataFullRange.length * THIRD_PART
-    )
+    const slicedRange = sliceDaysDataRange(daysDataFullRange)
+    const additionalDataLength = Math.round(slicedRange.length * THIRD_PART)
     const additionalDaysData = await getForesighDaysData(
-      sliceDaysDataRange(daysDataFullRange),
+      slicedRange,
       user,
       additionalDataLength
     )
-    const daysDataWithForesight = daysDataFullRange.concat(additionalDaysData)
+    const daysDataWithForesight = [...slicedRange, ...additionalDaysData]
     const setChartDataAction = setChartData(daysDataWithForesight)
 
     thunkAPI.dispatch(setChartDataAction)
