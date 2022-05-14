@@ -122,10 +122,3 @@ export const getPseudoDayData = (
   timestamp: new Timestamp(lastTimestampSeconds + (index + 1) * SECS_IN_DAY, 0),
   totalDuration: averageMeditationDuration,
 })
-
-function cutLongChartData(arr: PokoyChartData[]) {
-  const maxLengthDiff = arr.length - MAX_DAYS_DATA_LENGTH
-  const slicedChartData = arr.slice(maxLengthDiff, arr.length)
-
-  return slicedChartData
-}
