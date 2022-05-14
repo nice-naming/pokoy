@@ -44,10 +44,16 @@ export const UserStats: React.FC<Props> = ({ user }) => {
           <AppUpdater />
         </>
       ) : (
-        <span>
-          There are no statistics yet. Try meditating for more than two days.
-        </span>
+        <>
+          <p>There are no statistics 🤷‍♂️</p>
+          <p>
+            Try meditating for more than two days
+            <br />
+            or contact with <a href="https://t.me/m0rtyn">@m0rtyn</a>
+          </p>
+        </>
       )}
+      <AppUpdater />
     </Wrapper>
   )
 }

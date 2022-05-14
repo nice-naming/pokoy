@@ -93,7 +93,7 @@ const sendPokoySessionToServer = async (
 
     if (daysQuerySnapshot.empty) {
       await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
-    } else if (!daysQuerySnapshot.empty) {
+    } else {
       await updateExistingDay(daysQuerySnapshot, pokoyData)
     }
   } catch (e) {
@@ -110,6 +110,7 @@ const createNewDay = async (
   pokoyData: PokoySession,
   userId: string
 ) => {
+  console.log("🚀 ~ createNewDay")
   const newDayRef = doc(daysColRef)
   const dayData = INIT_DAY_DATA
 

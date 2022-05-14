@@ -34,7 +34,12 @@ export interface RequestDayData {
   count: number
   meditations: PokoySession[]
   userId: string
-  statsRef?: DocumentReference<DocumentData>
+  statsRef: DocumentReference<DocumentData>
+}
+
+export interface MockDayData {
+  timestamp: Timestamp
+  totalDuration: number
 }
 
 interface Flavoring<FlavorT> {
@@ -63,4 +68,12 @@ export enum RequestStatus {
   REQUEST,
   SUCCESS,
   FAILURE,
+}
+
+export interface PseudoDayData {
+  timestamp: Timestamp
+  totalDuration: number
+  count: number
+  meditations: PokoySession[]
+  userId: string
 }

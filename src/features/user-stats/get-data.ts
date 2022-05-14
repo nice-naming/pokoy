@@ -5,8 +5,9 @@ import { UserSerie } from "react-charts"
 import {
   DayData,
   PokoyChartData,
-  RequestDayData as ServerDayData,
+  ServerDayData,
   ServerUserStatsData,
+  MockDayData,
   UserStatsData,
 } from "shared/types"
 import { THIRD_PART } from "./constants"
@@ -39,7 +40,7 @@ export const fetchToLocalStateChartData = async (
     user,
     additionalDataLength
   )
-  const daysDataWithForesight = slicedRange.concat(additionalDaysData)
+  const daysDataWithForesight = [...slicedRange, ...additionalDaysData]
   const chartData = transformDayDataToChartData(daysDataWithForesight)
 
   return setDataToComponentState(chartData)
@@ -64,7 +65,7 @@ export async function getForesightChartData(
   const averageMeditationDuration = getAverageMeditationPerDay(stats)
   const daysToNextMilestone = additionalDataLength
 
-  const additionalDaysData: DayData[] = new Array(daysToNextMilestone)
+  const additionalDaysData: MockDayData[] = new Array(daysToNextMilestone)
     .fill(null)
     .map((_, i) =>
       getPseudoDayData(i, lastData.timestamp, averageMeditationDuration)

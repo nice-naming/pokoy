@@ -6,13 +6,19 @@ import {
   MINS_IN_HOUR,
   SECS_IN_DAY,
 } from "shared/constants"
-import { DayData, PokoyChartData, UserStatsData } from "shared/types"
 import {
   roundToFirstDecimalPlace,
   roundToSecondDecimalPlace,
 } from "shared/utils/roundToSecondDecimalPlace"
 import {
+  DayData,
+  MockDayData,
+  PokoyChartData,
+  UserStatsData,
+} from "shared/types"
+import {
   MAX_DAYS_DATA_LENGTH,
+  MAX_DAYS_DATA_LENGTH_WITH_FORESIGHT,
   SECONDARY_AXIS_LABEL,
   TERTIARY_AXIS_LABEL,
 } from "./constants"
@@ -39,7 +45,7 @@ export const getAverageMeditationPerDay = (statsData: UserStatsData) => {
 }
 
 export const transformDayDataToChartData = (
-  daysDataFullRange: DayData[]
+  daysDataFullRange: (DayData | MockDayData)[]
 ): UserSerie<PokoyChartData>[] => {
   const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataFullRange.map(
     (d) => ({
@@ -47,6 +53,7 @@ export const transformDayDataToChartData = (
       secondary: d.totalDuration,
     })
   )
+
   const totalDurationsAxisData: PokoyChartData[] = getTotalDurationsAsAxisData(
     daysWithMeditationsAsAxis
   )
@@ -69,24 +76,33 @@ export const transformDayDataToChartData = (
 }
 
 function getTotalDurationsAsAxisData(
-  daysWithMeditationsAsAxis: PokoyChartData[]
+  chartData: PokoyChartData[]
 ): PokoyChartData[] {
-  const totalDurationAsAxisData = daysWithMeditationsAsAxis.reduce(
-    (acc, d, i) => {
-      const prevTotal = acc[i - 1]?.secondary || INITIAL_MEDITATION_DURATION
-      const total = roundToSecondDecimalPlace(d.secondary / 60 + prevTotal)
-      return [
-        ...acc,
-        {
-          primary: d.primary,
-          secondary: total,
-        },
-      ]
-    },
-    [] as PokoyChartData[]
-  )
+  const totalDurationAsAxisData = chartData.reduce((acc, d, i, arr) => {
+    const prevTotal = acc[i - 1]?.secondary
+    const total = roundToSecondDecimalPlace(
+      d.secondary / 60 + (prevTotal || INITIAL_MEDITATION_DURATION)
+    )
+    const isFirstElementOfSlicedChartData =
+      arr.length === MAX_DAYS_DATA_LENGTH_WITH_FORESIGHT && i === 0
+
+    return [
+      ...acc,
+      {
+        primary: d.primary,
+        secondary: isFirstElementOfSlicedChartData
+          ? getTotalFromSlicedChartData(arr)
+          : total,
+      },
+    ]
+  }, [] as PokoyChartData[])
 
   return totalDurationAsAxisData
+}
+
+function getTotalFromSlicedChartData(chartData: PokoyChartData[]) {
+  const firstElement = chartData[0]
+  return firstElement.secondary
 }
 
 export const sliceDaysDataRange = (daysData: DayData[]) => {
@@ -104,10 +120,7 @@ export const getPseudoDayData = (
   index: number,
   lastTimestampMillis: number,
   averageMeditationDuration: number
-) => ({
+): MockDayData => ({
   timestamp: lastTimestampMillis + (index + 1) * MILLIS_IN_DAY,
   totalDuration: averageMeditationDuration,
-  count: 0,
-  meditations: [],
-  userId: "",
 })
