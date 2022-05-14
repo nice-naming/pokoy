@@ -15,9 +15,9 @@ import {
   Timestamp,
   where,
 } from "firebase/firestore"
-import { PokoySession, DayData } from "shared/types"
+import { PokoySession, PseudoDayData } from "shared/types"
 
-const INIT_DAY_DATA: DayData = {
+const INIT_DAY_DATA: PseudoDayData = {
   // FIXME: hardcode!
   timestamp: Timestamp.fromDate(new Date(new Date().toDateString())),
   count: 0,
@@ -62,7 +62,7 @@ export const migratePokoyToDay = async (
         const daySnapshot = await getDoc(dayDocRef)
         const dayData = daySnapshot.data()
 
-        const newDayData: DayData = {
+        const newDayData: PseudoDayData = {
           timestamp: dayTimestamp,
           count: dayData?.count + 1,
           totalDuration: dayData?.totalDuration + pokoyData.duration,
@@ -85,7 +85,7 @@ export const migratePokoyToDay = async (
         const newDayRef = doc(daysColRef)
         const dayData = INIT_DAY_DATA
 
-        const newDayData: DayData = {
+        const newDayData: PseudoDayData = {
           timestamp: dayTimestamp,
           count: dayData.count + 1,
           totalDuration: dayData.totalDuration + pokoyData.duration,
