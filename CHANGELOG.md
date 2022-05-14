@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/m0rtyn/pokoy/compare/v1.13.0...v1.15.0) (2022-05-14)
+
+
+### Features
+
+* add simplified horizontal layout ([f283119](https://github.com/m0rtyn/pokoy/commit/f283119f2def8ff73f1c9f6fa88235f66ec85303))
+* rework loader and fix new layout ([c12d1fd](https://github.com/m0rtyn/pokoy/commit/c12d1fda772bbec59844de91f426d2ea6ace33bb))
+
+
+### Bug Fixes
+
+* chart data slicing over max length ([18ca2f5](https://github.com/m0rtyn/pokoy/commit/18ca2f5c217f4f7bc24eb0b80e63feac60709f3a))
+* **horizontal view:** change font sizes in statistics ([8520747](https://github.com/m0rtyn/pokoy/commit/85207478e1795878914466246dbe681d3d6368a1))
+* minor fixes after last minor version update ([c570ec8](https://github.com/m0rtyn/pokoy/commit/c570ec8d2580bf32efda1af206a3f662725b87a2))
+* return sign-out button to desktop ([149b9ba](https://github.com/m0rtyn/pokoy/commit/149b9ba90e416fd6a03d490f888c4976ec10827d))
+
 ## [1.14.0](https://github.com/m0rtyn/pokoy/compare/v1.13.0...v1.14.0) (2022-05-09)
 
 
