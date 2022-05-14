@@ -2,7 +2,12 @@ import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
 import { UserSerie } from "react-charts"
-import { DayData, PokoyChartData, UserStatsData } from "shared/types"
+import {
+  DayData,
+  MockDayData,
+  PokoyChartData,
+  UserStatsData,
+} from "shared/types"
 import { THIRD_PART } from "./constants"
 import { getFullRange } from "./get-full-range"
 import {
@@ -27,7 +32,7 @@ export const fetchAndSetChartData = async (
     user,
     additionalDataLength
   )
-  const daysDataWithForesight = slicedRange.concat(additionalDaysData)
+  const daysDataWithForesight = [...slicedRange, ...additionalDaysData]
   const chartData = transformDayDataToChartData(daysDataWithForesight)
 
   return setDataToComponentState(chartData)
@@ -47,7 +52,7 @@ export async function getForesightChartData(
   const averageMeditationDuration = getAverageMeditationPerDay(stats)
   const daysToNextMilestone = additionalDataLength
 
-  const additionalDaysData: DayData[] = new Array(daysToNextMilestone)
+  const additionalDaysData: MockDayData[] = new Array(daysToNextMilestone)
     .fill(null)
     .map((_, i) =>
       getPseudoDayData(i, lastDateTimestampSeconds, averageMeditationDuration)
