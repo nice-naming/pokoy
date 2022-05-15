@@ -1,17 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { UserSerie } from "react-charts"
+import { DayData, UserStatsData } from "shared/types"
 import {
-  DayData,
-  MockDayData,
-  PokoyChartData,
-  UserStatsData,
-} from "shared/types"
-import { getChartDataThunk, thunkGetStats } from "./pokoyThunks"
+  getChartDataThunk,
+  setMeditationThunk,
+  getStatsThunk,
+} from "./pokoyThunks"
 
 export const FEATURE_NAME = "pokoy"
 
 export interface PokoyState {
-  daysData: (DayData | MockDayData)[]
+  daysData: DayData[]
   stats: UserStatsData | null
   status: "idle" | "loading" | "error" | "loaded"
 }
@@ -29,23 +27,30 @@ export const pokoySlice = createSlice({
     addDay: (state, action: PayloadAction<DayData>) => {
       state.daysData.push(action.payload)
     },
+    updateDay: (
+      state,
+      action: PayloadAction<{ dayData: DayData; index: number }>
+    ) => {
+      const { dayData, index } = action.payload
+      state.daysData[index] = dayData
+    },
     setStats: (state, action: PayloadAction<UserStatsData>) => {
       state.stats = action.payload
     },
-    setChartData: (state, action: PayloadAction<(DayData | MockDayData)[]>) => {
+    setChartData: (state, action: PayloadAction<DayData[]>) => {
       state.daysData = action.payload
     },
   },
 
   extraReducers: (builder) => {
     builder
-      .addCase(thunkGetStats.pending, (state, action) => {
+      .addCase(getStatsThunk.pending, (state, action) => {
         state.status = "loading"
       })
-      .addCase(thunkGetStats.fulfilled, (state, action) => {
+      .addCase(getStatsThunk.fulfilled, (state, action) => {
         state.status = "loaded"
       })
-      .addCase(thunkGetStats.rejected, (state, action) => {
+      .addCase(getStatsThunk.rejected, (state, action) => {
         state.status = "error"
       })
       .addCase(getChartDataThunk.pending, (state, action) => {
@@ -57,10 +62,15 @@ export const pokoySlice = createSlice({
       .addCase(getChartDataThunk.rejected, (state, action) => {
         state.status = "error"
       })
+      .addCase(setMeditationThunk.fulfilled, (state, action) => {
+        state.status = "loaded"
+      })
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addDay, setChartData, setStats } = pokoySlice.actions
+export const pokoyActions = {
+  ...pokoySlice.actions,
+}
 
 export const pokoySliceReducer = pokoySlice.reducer

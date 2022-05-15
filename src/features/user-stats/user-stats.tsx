@@ -1,6 +1,6 @@
 import { User } from "@firebase/auth"
 import { AppUpdater } from "features/home/components/app-updater"
-import { getChartDataThunk, thunkGetStats } from "features/pokoyThunks"
+import { getChartDataThunk, getStatsThunk } from "features/pokoyThunks"
 import { useEffect, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "store"
@@ -20,14 +20,14 @@ export const UserStats: React.FC<Props> = ({ user }) => {
   const userDaysData = useSelector((state: RootState) => state.pokoy.daysData)
   const dispatch: AppDispatch = useDispatch()
 
-  const userChartData = useMemo(
-    () => transformDayDataToChartData(userDaysData),
-    [userDaysData]
-  )
+  const userChartData = useMemo(() => {
+    if (!userStatistics || !userDaysData) return null
+    return transformDayDataToChartData(userDaysData, userStatistics)
+  }, [userDaysData, userStatistics])
 
   useEffect(() => {
     if (user) {
-      dispatch(thunkGetStats(user))
+      dispatch(getStatsThunk(user))
       dispatch(getChartDataThunk(user))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

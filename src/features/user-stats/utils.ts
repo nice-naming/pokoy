@@ -1,10 +1,8 @@
-import { Timestamp } from "firebase/firestore"
 import { UserSerie } from "react-charts"
 import {
   INITIAL_MEDITATION_DURATION,
   MILLIS_IN_DAY,
   MINS_IN_HOUR,
-  SECS_IN_DAY,
 } from "shared/constants"
 import {
   roundToFirstDecimalPlace,
@@ -21,7 +19,9 @@ import {
   MAX_DAYS_DATA_LENGTH_WITH_FORESIGHT,
   SECONDARY_AXIS_LABEL,
   TERTIARY_AXIS_LABEL,
+  THIRD_PART,
 } from "./constants"
+import { getForesightDaysData } from "./get-data"
 
 export const getTotalInHours = (minutes: number): number => {
   return Math.floor(minutes / MINS_IN_HOUR)
@@ -44,10 +44,14 @@ export const getAverageMeditationPerDay = (statsData: UserStatsData) => {
   return average
 }
 
+// eslint-disable-next-line max-statements
 export const transformDayDataToChartData = (
-  daysDataFullRange: (DayData | MockDayData)[]
+  daysData: DayData[],
+  statsData: UserStatsData
 ): UserSerie<PokoyChartData>[] => {
-  const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataFullRange.map(
+  const daysDataWithForesight = getDataWithForesight(daysData, statsData)
+
+  const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataWithForesight.map(
     (d) => ({
       primary: new Date(d.timestamp),
       secondary: d.totalDuration,
@@ -124,3 +128,14 @@ export const getPseudoDayData = (
   timestamp: lastTimestampMillis + (index + 1) * MILLIS_IN_DAY,
   totalDuration: averageMeditationDuration,
 })
+
+function getDataWithForesight(daysData: DayData[], statsData: UserStatsData) {
+  const additionalDataLength = Math.round(daysData.length * THIRD_PART)
+  const additionalDaysData = getForesightDaysData(
+    daysData,
+    statsData,
+    additionalDataLength
+  )
+  const daysDataWithForesight = [...daysData, ...additionalDaysData]
+  return daysDataWithForesight
+}

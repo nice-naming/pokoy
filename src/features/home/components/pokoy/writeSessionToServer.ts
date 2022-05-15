@@ -1,7 +1,6 @@
 // TODO: solve linter issue
 /* eslint-disable max-lines */
 import { User } from "@firebase/auth"
-import { formatISO } from "date-fns"
 import { firestore } from "features/home/firebase-init"
 import {
   collection,
@@ -24,14 +23,14 @@ import {
   LOCAL_CACHE_FIELD_NAME,
   SECS_IN_MIN,
 } from "shared/constants"
-import { DayData, PokoySession, ServerDayData } from "shared/types"
+import { PokoySession, ServerDayData } from "shared/types"
 import { roundToSecondDecimalPlace } from "shared/utils/roundToSecondDecimalPlace"
 
 export const createPokoyData = (
   userId: string,
   seconds: number
 ): PokoySession => {
-  const timestamp = new Date().getTime()
+  const timestamp = new Date().toISOString()
   const duration = roundToSecondDecimalPlace(seconds / SECS_IN_MIN)
 
   return {
@@ -47,7 +46,7 @@ export const sendSessionFromSeconds = async (
   firestoreDB: Firestore,
   user: User | null | undefined,
   seconds: number
-): Promise<DocumentReference<DocumentData> | void> => {
+) => {
   if (!user) {
     console.error("User is not defined. Request not sended.", "user: ", user)
     return
@@ -62,7 +61,7 @@ export const sendSessionFromLocalStore = async (
   firestoreDB: Firestore,
   user: User | null | undefined,
   LocalPokoyData: PokoySession
-): Promise<DocumentReference<DocumentData> | void> => {
+) => {
   const isSessionLongerThanMinute =
     Number(LocalPokoyData.duration) > SECS_IN_MIN
 
@@ -74,13 +73,15 @@ export const sendSessionFromLocalStore = async (
 }
 
 /* eslint-disable-next-line max-statements */
-const sendPokoySessionToServer = async (
+export const sendPokoySessionToServer = async (
   firestoreDB: Firestore,
   pokoyData: PokoySession
-): Promise<DocumentReference<DocumentData> | void> => {
+) => {
   const userId = pokoyData.userId
   const daysColRef = collection(firestoreDB, "days")
-  const dayTimestamp = Timestamp.fromMillis(pokoyData.timestamp)
+  const dayTimestamp = Timestamp.fromMillis(
+    new Date(pokoyData.timestamp).setHours(0, 0, 0, 0)
+  )
 
   const daysQuery = query(
     daysColRef,
@@ -92,9 +93,9 @@ const sendPokoySessionToServer = async (
     const daysQuerySnapshot = await getDocs(daysQuery)
 
     if (daysQuerySnapshot.empty) {
-      await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
+      return await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
     } else {
-      await updateExistingDay(daysQuerySnapshot, pokoyData)
+      return await updateExistingDay(daysQuerySnapshot, pokoyData)
     }
   } catch (e) {
     console.error("⛔️", e)
@@ -139,6 +140,7 @@ const createNewDay = async (
   }
 
   await setDay(newDayRef, newDayData, pokoyData)
+  return newDayData
 }
 
 /* eslint-disable-next-line max-statements */
@@ -164,6 +166,7 @@ const updateExistingDay = async (
   }
 
   await setDay(dayDocRef, newDayData, pokoyData)
+  return newDayData
 }
 
 const setDay = async (

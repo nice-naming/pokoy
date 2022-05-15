@@ -1,18 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { User } from "firebase/auth"
-import { FEATURE_NAME, setChartData, setStats } from "./pokoySlice"
-import { THIRD_PART } from "./user-stats/constants"
+import { serverDayDataToStore } from "shared/utils/adapters"
+import { AppDispatch, RootState } from "store"
 import {
-  fetchDays,
-  fetchStats,
-  getForesightChartData as getForesighDaysData,
-} from "./user-stats/get-data"
+  createPokoyData,
+  sendPokoySessionToServer,
+} from "./home/components/pokoy/writeSessionToServer"
+import { firestore } from "./home/firebase-init"
+import { FEATURE_NAME, pokoyActions } from "./pokoySlice"
+import { fetchDays, fetchStats } from "./user-stats/get-data"
 import { getFullRange } from "./user-stats/get-full-range"
 import { sliceDaysDataRange } from "./user-stats/utils"
 
 const getStatsActionType = `${FEATURE_NAME}/getStats` as const
-
-export const thunkGetStats = createAsyncThunk(
+export const getStatsThunk = createAsyncThunk(
   getStatsActionType,
   // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
@@ -22,13 +23,12 @@ export const thunkGetStats = createAsyncThunk(
       console.error("there is no first meditation date")
     }
 
-    const setStatsAction = setStats(statsData)
+    const setStatsAction = pokoyActions.setStats(statsData)
     thunkAPI.dispatch(setStatsAction)
   }
 )
 
 const getDaysActionType = `${FEATURE_NAME}/getDays` as const
-
 export const getChartDataThunk = createAsyncThunk(
   getDaysActionType,
   // TODO: refactor this method
@@ -42,17 +42,49 @@ export const getChartDataThunk = createAsyncThunk(
     }))
 
     const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
+    const slicedChartData = sliceDaysDataRange(daysDataFullRange)
 
-    const slicedRange = sliceDaysDataRange(daysDataFullRange)
-    const additionalDataLength = Math.round(slicedRange.length * THIRD_PART)
-    const additionalDaysData = await getForesighDaysData(
-      slicedRange,
-      user,
-      additionalDataLength
-    )
-    const daysDataWithForesight = [...slicedRange, ...additionalDaysData]
-    const setChartDataAction = setChartData(daysDataWithForesight)
-
+    const setChartDataAction = pokoyActions.setChartData(slicedChartData)
     thunkAPI.dispatch(setChartDataAction)
+  }
+)
+
+// NOTE: WIP
+const setMeditationActionType = `${FEATURE_NAME}/setMeditation` as const
+export const setMeditationThunk = createAsyncThunk<
+  void,
+  {
+    user: User
+    seconds: number
+  },
+  {
+    state: RootState
+    dispatch: AppDispatch
+  }
+>(
+  setMeditationActionType,
+  // eslint-disable-next-line max-statements
+  async ({ user, seconds }, thunkAPI): Promise<void> => {
+    if (!user) {
+      console.error("User is not defined. Request not sended.", "user: ", user)
+      return
+    }
+
+    const pokoyData = createPokoyData(user.uid, seconds)
+
+    const serverDayData = await sendPokoySessionToServer(firestore, pokoyData)
+
+    if (!serverDayData) throw new Error("Request failure")
+
+    const dayData = serverDayDataToStore(serverDayData)
+    const index = thunkAPI
+      .getState()
+      .pokoy.daysData.findIndex((d) => d.timestamp === dayData.timestamp)
+
+    if (index === -1) {
+      thunkAPI.dispatch(pokoyActions.addDay(dayData))
+    } else {
+      thunkAPI.dispatch(pokoyActions.updateDay({ dayData, index }))
+    }
   }
 )

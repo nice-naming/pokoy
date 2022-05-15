@@ -12,7 +12,7 @@ export interface StatsData {
 
 export interface PokoySession {
   duration: number
-  timestamp: Milliseconds
+  timestamp: DateString
   user?: string | DocumentReference<DocumentData>
   userId: string
 }
@@ -48,6 +48,8 @@ interface Flavoring<FlavorT> {
 export type Flavor<T, FlavorT> = T & Flavoring<FlavorT>
 
 export type Milliseconds = Flavor<number, "Miliseconds">
+
+export type DateString = Flavor<string, "DateString">
 
 export interface UserStatsData {
   firstMeditationDate: Milliseconds | null
