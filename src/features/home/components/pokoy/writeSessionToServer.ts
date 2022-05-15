@@ -111,7 +111,6 @@ const createNewDay = async (
   pokoyData: PokoySession,
   userId: string
 ) => {
-  console.info("🚀 ~ createNewDay")
   const newDayRef = doc(daysColRef)
   const dayData = INIT_DAY_DATA
 

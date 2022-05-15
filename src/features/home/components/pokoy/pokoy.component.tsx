@@ -52,9 +52,8 @@ export const Pokoy: React.FC<Props> = ({ user, stillLoading }) => {
 
       try {
         setRequestStatus(RequestStatus.REQUEST)
-        /** NOTE: line below for fast debugging
-         * dispatch(setMeditationThunk({ user, seconds: 61 }))
-         */
+        // NOTE: line below for fast debugging
+        // dispatch(setMeditationThunk({ user, seconds: 61 }))
         dispatch(setMeditationThunk({ user, seconds: timerDiff }))
 
         setRequestStatus(RequestStatus.SUCCESS)

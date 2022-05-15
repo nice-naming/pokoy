@@ -15,7 +15,6 @@ interface Props {
 
 // TODO: rename to StatisticsPage
 export const UserStats: React.FC<Props> = ({ user }) => {
-  // const userStats = useStats(user)
   const userStatistics = useSelector((state: RootState) => state.pokoy.stats)
   const userDaysData = useSelector((state: RootState) => state.pokoy.daysData)
   const dispatch: AppDispatch = useDispatch()
@@ -37,6 +36,7 @@ export const UserStats: React.FC<Props> = ({ user }) => {
 
   return (
     <Wrapper>
+      {/* TODO: add loding skeleton */}
       {userChartData && isChartDataExist ? (
         <>
           <StatsNumbers statsData={userStatistics} />
