@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/m0rtyn/pokoy/compare/v1.15.0...v1.16.0) (2022-05-15)
+
+
+### Features
+
+* add store for user statistics ([2c4f9f9](https://github.com/m0rtyn/pokoy/commit/2c4f9f937ce2f83d303a237c36e68775c5dab0db))
+* connect api requests to the global store ([0125973](https://github.com/m0rtyn/pokoy/commit/0125973e7fda6e0b2ed92bedc8b4500415d23802))
+
+
+### Bug Fixes
+
+* remove wrong changelog history ([d83b9fd](https://github.com/m0rtyn/pokoy/commit/d83b9fdf9fa41fde74c132022c509a60e7034d9a))
+* styled component attribute ([0c73038](https://github.com/m0rtyn/pokoy/commit/0c73038599f883f78e83c1582e2908d6777e8a29))
+
 ## [1.15.0](https://github.com/m0rtyn/pokoy/compare/v1.13.0...v1.15.0) (2022-05-14)
 
 
