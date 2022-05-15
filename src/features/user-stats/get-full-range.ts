@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore"
 import { MILLIS_IN_DAY } from "shared/constants"
 import { DayData, Milliseconds } from "shared/types"
 

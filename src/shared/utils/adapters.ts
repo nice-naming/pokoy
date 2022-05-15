@@ -1,4 +1,3 @@
-import { Timestamp } from "@firebase/firestore"
 import { DayData, ServerDayData } from "shared/types"
 
 export const serverDayDataToStore = (dayData: ServerDayData): DayData => {

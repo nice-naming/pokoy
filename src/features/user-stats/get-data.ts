@@ -1,67 +1,24 @@
 import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
-import { UserSerie } from "react-charts"
 import {
   DayData,
-  PokoyChartData,
   ServerDayData,
   ServerUserStatsData,
   MockDayData,
   UserStatsData,
 } from "shared/types"
-import { THIRD_PART } from "./constants"
-import { getFullRange } from "./get-full-range"
-import {
-  getAverageMeditationPerDay,
-  getPseudoDayData,
-  sliceDaysDataRange,
-  transformDayDataToChartData,
-} from "./utils"
-
-// eslint-disable-next-line max-statements
-export const fetchToLocalStateChartData = async (
-  setDataToComponentState: (data: UserSerie<PokoyChartData>[]) => void,
-  user: User
-): Promise<void> => {
-  const daysWithMeditations = await fetchDays(user)
-  const shallowDaysWithMeditations = daysWithMeditations.map((d) => ({
-    ...d,
-    timestamp: d.timestamp.toMillis(),
-    statsRef: d.statsRef?.path,
-  }))
-
-  const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
-
-  const slicedRange = sliceDaysDataRange(daysDataFullRange)
-  const additionalDataLength = Math.round(slicedRange.length * THIRD_PART)
-  const additionalDaysData = await getForesightChartData(
-    slicedRange,
-    user,
-    additionalDataLength
-  )
-  const daysDataWithForesight = [...slicedRange, ...additionalDaysData]
-  const chartData = transformDayDataToChartData(daysDataWithForesight)
-
-  return setDataToComponentState(chartData)
-}
-
-// export const fetchChartData = async (
-//   user: User,
-// ): Promise<UserSerie<PokoyChartData>[]> => {
-
-// }
+import { getAverageMeditationPerDay, getPseudoDayData } from "./utils"
 
 // TODO: refactor this method
 // eslint-disable-next-line max-statements
-export async function getForesightChartData(
+export function getForesightDaysData(
   daysData: DayData[],
-  user: User,
+  stats: UserStatsData,
   additionalDataLength: number
 ) {
   const lastData = daysData[daysData.length - 1]
 
-  const stats = await fetchStats(user)
   const averageMeditationDuration = getAverageMeditationPerDay(stats)
   const daysToNextMilestone = additionalDataLength
 
@@ -72,20 +29,6 @@ export async function getForesightChartData(
     )
 
   return additionalDaysData
-}
-
-export const fetchToLocalStateStats = async (
-  setDataToComponentState: (data: UserStatsData) => void,
-  user: User
-): Promise<void> => {
-  const statsData = await fetchStats(user)
-
-  if (!statsData) {
-    console.error("there are no user statistics yet")
-    return
-  }
-
-  setDataToComponentState(statsData)
 }
 
 export async function fetchStats(user: User): Promise<UserStatsData> {
