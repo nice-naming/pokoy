@@ -41,6 +41,8 @@ export const TopTextWrapper = styled.p`
 export const BottomTextWrapper = styled.div`
   grid-area: tips;
   margin: 0;
+  width: auto;
+  justify-self: center;
 
   @media screen and (hover: none) and (orientation: landscape) {
     margin: 0;

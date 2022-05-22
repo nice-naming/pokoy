@@ -20,7 +20,8 @@ export const UserStats: React.FC<Props> = ({ user }) => {
   const dispatch: AppDispatch = useDispatch()
 
   const userChartData = useMemo(() => {
-    if (!userStatistics || !userDaysData) return null
+    if (!userStatistics) return null
+
     return transformDayDataToChartData(userDaysData, userStatistics)
   }, [userDaysData, userStatistics])
 
