@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export const StyledCountdown = styled.span`
   margin: 0;
-  font-family: "Courier Prime", "Courier New", "Liberation Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 6rem;
   line-height: 1;
   cursor: help;
