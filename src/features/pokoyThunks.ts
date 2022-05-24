@@ -56,7 +56,7 @@ export const setUserStatsThunk = createAsyncThunk(
   `${FEATURE_NAME}/setUserStats` as const,
   // eslint-disable-next-line max-statements
   async ({ dayData, user }: { dayData: DayData; user: User }, thunkAPI) => {
-    const statsColRef = collection(firestore, "test-stats")
+    const statsColRef = collection(firestore, "stats")
     const q = query(statsColRef, where("userId", "==", user.uid), limit(1))
     const querySnapshot = await getDocs(q)
 
