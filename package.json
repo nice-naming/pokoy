@@ -1,6 +1,6 @@
 {
   "name": "pokoy-app",
-  "version": "1.17.0",
+  "version": "1.18.3",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -58,7 +58,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "standard-version --no-verify"
     }
   },
   "lint-staged": {

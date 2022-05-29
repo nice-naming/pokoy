@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.3](https://github.com/m0rtyn/pokoy/compare/v1.18.2...v1.18.3) (2022-05-29)
+
+### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.1...v1.18.2) (2022-05-29)
+
+### [1.18.1](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.1) (2022-05-29)
+
+## [1.18.0](https://github.com/m0rtyn/pokoy/compare/v1.16.1...v1.18.0) (2022-05-29)
+
+
+### Features
+
+* add state slice for extracted feature — main screen ([cf6fdb7](https://github.com/m0rtyn/pokoy/commit/cf6fdb7ce26ea4f03c40bc8abc12fd04ca4b95c1))
+
+
+### Bug Fixes
+
+* set right name of firebase collection ([8c6cf66](https://github.com/m0rtyn/pokoy/commit/8c6cf662c8d95099eb40062ccbdd1a4a0747e2cf))
+
 ## [1.17.0](https://github.com/m0rtyn/pokoy/compare/v1.16.1...v1.17.0) (2022-05-24)
 
 
