@@ -1,4 +1,4 @@
-import { mainScreenActions } from "features/mainScreenSlice"
+import { mainScreenActions } from "features/home/main-screen.slice"
 import React from "react"
 import { useAppDispatch, useAppSelector } from "store"
 import { Circle, SwipeButton } from "./views-switcher.styles"

@@ -1,11 +1,11 @@
 import { AnyAction, configureStore, ThunkAction } from "@reduxjs/toolkit"
-import { mainScreenSliceReducer } from "features/mainScreenSlice"
-import { pokoySliceReducer } from "features/pokoySlice"
+import { mainScreenSliceReducer } from "features/home/main-screen.slice"
+import { userStatsSliceReducer } from "features/user-stats/store/user-stats.slice"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 
 export const store = configureStore({
   reducer: {
-    pokoy: pokoySliceReducer,
+    userStats: userStatsSliceReducer,
     mainScreen: mainScreenSliceReducer,
   },
 })

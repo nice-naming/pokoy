@@ -64,13 +64,13 @@ export const StyledSpiralPath = styled.path<StyledSpiralPathProps>`
 `
 
 interface StyledSpiralBackgroundProps {
-  stillLoading: boolean
+  authLoading: boolean
 }
 
 export const StyledSpiralBackground = styled.path<StyledSpiralBackgroundProps>`
-  stroke: ${({ stillLoading }) => (stillLoading ? "white" : "var(--c-spiral)")};
-  stroke-width: ${({ stillLoading }) => (stillLoading ? "3rem" : "1rem")};
-  transform: ${({ stillLoading }) =>
-    stillLoading ? "translateY(3rem)" : "translateX(0)"};
+  stroke: ${({ authLoading }) => (authLoading ? "white" : "var(--c-spiral)")};
+  stroke-width: ${({ authLoading }) => (authLoading ? "3rem" : "1rem")};
+  transform: ${({ authLoading }) =>
+    authLoading ? "translateY(3rem)" : "translateX(0)"};
   transition: all 0.5s ease-out;
 `

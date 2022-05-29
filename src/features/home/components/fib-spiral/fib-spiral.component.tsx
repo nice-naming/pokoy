@@ -22,10 +22,10 @@ const ALMOST_DONE_VALUE = MAX_SPIRAL_VALUE * ALMOST_DONE_PERCENT
 
 interface Props {
   seconds: number
-  stillLoading: boolean
+  authLoading: boolean
 }
 
-export const FibSpiral: React.FC<Props> = ({ seconds, stillLoading }) => {
+export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
   const progress = getTimerProgress(seconds)
   const minutes = Math.floor(seconds / 60)
   const isEmpty = progress > ALMOST_DONE_VALUE || progress < 1
@@ -46,7 +46,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds, stillLoading }) => {
       viewBox="0 0 760 769"
     >
       <StyledSpiralBackground
-        stillLoading={stillLoading}
+        authLoading={authLoading}
         className="spiral-trial"
         strokeLinecap="round"
         strokeLinejoin="round"
