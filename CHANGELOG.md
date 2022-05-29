@@ -2,14 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.18.3](https://github.com/m0rtyn/pokoy/compare/v1.18.2...v1.18.3) (2022-05-29)
+### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.2) (2022-05-29)
 
-### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.1...v1.18.2) (2022-05-29)
+
+### Bug Fixes
+
+* rewrite wrong changelog ([2a03ee1](https://github.com/m0rtyn/pokoy/commit/2a03ee1f06f711857c166453f9d99b6b454d536d))
+* try to fix version auto-bumbing cycle on pre-push hook ([057802a](https://github.com/m0rtyn/pokoy/commit/057802abcb7aab914f48a52cc87a2ffced53d9c9))
 
 ### [1.18.1](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.1) (2022-05-29)
 
-## [1.18.0](https://github.com/m0rtyn/pokoy/compare/v1.16.1...v1.18.0) (2022-05-29)
 
+### Bug Fixes
+
+* try to fix version auto-bumbing cycle on pre-push hook ([057802a](https://github.com/m0rtyn/pokoy/commit/057802abcb7aab914f48a52cc87a2ffced53d9c9))
+
+## [1.18.0](https://github.com/m0rtyn/pokoy/compare/v1.16.1...v1.18.0) (2022-05-29)
 
 ### Features
 
