@@ -48,6 +48,7 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
         <>
           <StyledStat>
             <StyledStatNumber>{daysUntilNextMilestone}</StyledStatNumber>
+
             <span>days of practice left </span>
             <div>
               to{" "}

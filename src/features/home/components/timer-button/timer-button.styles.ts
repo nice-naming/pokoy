@@ -4,7 +4,7 @@ import styled from "styled-components/macro"
 interface Props {
   requestStatus: RequestStatus
   isStarted: boolean
-  stillLoading: boolean
+  authLoading: boolean
 }
 
 export const ButtonWrapper = styled.button<Props>`
@@ -15,14 +15,13 @@ export const ButtonWrapper = styled.button<Props>`
   background-color: transparent;
   position: relative;
   border-radius: 50%;
-  max-width: 400px;
 
   z-index: 1;
 
   // NOTE: pseudo-element for opaque button border with dinamic color
   &:after {
-    box-shadow: ${({ isStarted, stillLoading }) =>
-      stillLoading
+    box-shadow: ${({ isStarted, authLoading }) =>
+      authLoading
         ? "none"
         : isStarted
         ? "0 0 0 0.5rem currentcolor"
