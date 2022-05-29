@@ -59,7 +59,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "standard-version"
+      "pre-push": "standard-version --no-verify"
     }
   },
   "lint-staged": {
