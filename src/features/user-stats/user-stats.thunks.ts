@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { User } from "firebase/auth"
 import { getDocs, limit, query, setDoc, where } from "firebase/firestore"
 import { INIT_USER_STATS } from "shared/constants"
-import { DayData, UserStatsData } from "shared/types"
+import { DayData, ServerUserStatsData, UserStatsData } from "shared/types"
 import { serverDayDataToStore } from "shared/utils/adapters"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 import { AppDispatch, RootState } from "store"
@@ -61,7 +61,7 @@ export const setUserStatsThunk = createAsyncThunk(
     const querySnapshot = await getDocs(q)
 
     const userStatsRef = querySnapshot.docs[0].ref
-    const userStatsData = querySnapshot.docs[0].data() as UserStatsData
+    const userStatsData = querySnapshot.docs[0].data() as ServerUserStatsData
 
     const { totalDuration, count, firstMeditationDate } =
       userStatsData || INIT_USER_STATS
@@ -69,7 +69,7 @@ export const setUserStatsThunk = createAsyncThunk(
       count: count + 1,
       userId: dayData.userId,
       totalDuration: roundToHundredth(totalDuration + dayData.totalDuration),
-      firstMeditationDate: firstMeditationDate || dayData.timestamp,
+      firstMeditationDate: firstMeditationDate?.toMillis() || dayData.timestamp,
     }
 
     try {
@@ -102,7 +102,6 @@ export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
     }
 
     const userStatsData = createUserStatsData(user.uid, seconds)
-
     const serverDayData = await sendMeditationToServer(firestore, userStatsData)
 
     if (!serverDayData) throw new Error("Request failure")

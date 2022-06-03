@@ -16,8 +16,6 @@ const initialState: MainScreenState = {
   slideIndex: 0,
 }
 
-createAction(`${FEATURE_NAME}/`)
-
 export const mainScreenSlice = createSlice({
   name: FEATURE_NAME,
   initialState,

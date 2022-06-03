@@ -64,11 +64,6 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
     const secondsNow = Math.round(Date.now() / 1000)
     const secondsDiff = secondsNow - startTime
     setTimerDiff(secondsDiff)
-
-    // const isTimerDiffMoreThanMinute = timerDiff === MAX_TIMER_SECONDS
-    // if (isTimerDiffMoreThanMinute) {
-    //   finishTimer(timerDiff)
-    // }
   }, [])
 
   const startTimer = useCallback(() => {
