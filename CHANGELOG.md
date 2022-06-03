@@ -1,11 +1,3 @@
-### [1.18.3]([[repository]]/compare/[[old]]...[[new]])
-- fix: wrong data for firstMeditatonDate value
-- ci: add the bump extensions and config it
-
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 ### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.2) (2022-05-29)
 
 ### Bug Fixes
