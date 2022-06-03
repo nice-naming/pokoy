@@ -1,3 +1,7 @@
+### [1.18.5](https://github.com/m0rtyn/pokoy/releases/tag/1.18.5)
+
+- fix: debug auto version bumping
+
 ### [1.18.4](https://github.com/m0rtyn/pokoy/releases/tag/v1.18.4)
 
 - ci: add the bump extension
