@@ -1,3 +1,9 @@
+### [1.18.4](https://github.com/m0rtyn/pokoy/releases/tag/1.18.4)
+
+- ci: add the bump extensions
+- fix: remove wrong change history
+- chore: update gitignore
+
 ### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.2) (2022-05-29)
 
 ### Bug Fixes
