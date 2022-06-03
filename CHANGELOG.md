@@ -1,6 +1,6 @@
-### [1.18.4](https://github.com/m0rtyn/pokoy/releases/tag/1.18.4)
+### [1.18.4](https://github.com/m0rtyn/pokoy/releases/tag/v1.18.4)
 
-- ci: add the bump extensions
+- ci: add the bump extension
 - fix: remove wrong change history
 - chore: update gitignore
 
