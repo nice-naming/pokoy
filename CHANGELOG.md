@@ -1,3 +1,7 @@
+### [1.18.6](https://github.com/m0rtyn/pokoy/releases/tag/1.18.6)
+
+- fix: version
+
 ### [1.18.5](https://github.com/m0rtyn/pokoy/releases/tag/1.18.5)
 
 - fix: debug auto version bumping
