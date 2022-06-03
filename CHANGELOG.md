@@ -1,3 +1,7 @@
+### [1.18.7](https://github.com/m0rtyn/pokoy/releases/tag/1.18.7)
+
+- fix: remove version from manifest
+
 ### [1.18.6](https://github.com/m0rtyn/pokoy/releases/tag/1.18.6)
 
 - fix: version
