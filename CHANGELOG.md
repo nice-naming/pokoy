@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.3](https://github.com/m0rtyn/pokoy/compare/v1.18.2...v1.18.3) (2022-06-03)
+
+
+### Bug Fixes
+
+* wrong data for firstMeditatonDate value ([f78fecf](https://github.com/m0rtyn/pokoy/commit/f78fecf176f4469071296c6adf6cab05c20e43aa))
+
 ### [1.18.2](https://github.com/m0rtyn/pokoy/compare/v1.18.0...v1.18.2) (2022-05-29)
 
 
