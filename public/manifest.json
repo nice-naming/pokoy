@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "short_name": "Pokoy",
-  "version": "0.0.1",
+  "version": "1.18.5",
   "name": "Pokoy",
   "description": "A meditation app for impulsive minds",
   "author": "Martyn",
