@@ -1,6 +1,6 @@
 {
   "name": "pokoy-app",
-  "version": "1.18.8",
+  "version": "1.18.9",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
