@@ -41,9 +41,9 @@
 
   stroke-width: 0rem;
   opacity: 1;
-  will-change: stroke-dashoffset;
+  will-change: stroke-dashoffset, stroke-width, stroke;
   transition: stroke-dashoffset 1s linear, stroke-width 2s linear,
-    opacity 0.15s ease-out, color 3s ease-in 0.5s;
+    opacity 0.15s ease-out, stroke 1s linear 0.5s;
 }
 .spiralPathStarted {
   stroke-width: 1rem;
