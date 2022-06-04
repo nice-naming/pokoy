@@ -1,3 +1,7 @@
+### [1.18.9](https://github.com/m0rtyn/pokoy/releases/tag/1.18.9)
+
+- fix: return disappeared chart
+
 ### [1.18.8](https://github.com/m0rtyn/pokoy/releases/tag/1.18.8)
 
 - fix: remove redundant dependency

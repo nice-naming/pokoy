@@ -1,10 +1,20 @@
 import { collection } from "@firebase/firestore"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { User } from "firebase/auth"
-import { getDocs, limit, query, setDoc, where } from "firebase/firestore"
-import { INIT_USER_STATS } from "shared/constants"
-import { DayData, ServerUserStatsData, UserStatsData } from "shared/types"
-import { serverDayDataToStore } from "shared/utils/adapters"
+import {
+  getDocs,
+  limit,
+  query,
+  setDoc,
+  Timestamp,
+  where,
+} from "firebase/firestore"
+import { INIT_SERVER_USER_STATS } from "shared/constants"
+import { DayData, ServerUserStatsData } from "shared/types"
+import {
+  serverDayDataToStoreAdapter,
+  serverStatsDataToStoreAdapter,
+} from "shared/utils/adapters"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 import { AppDispatch, RootState } from "store"
 import { firestore } from "../home/firebase-init"
@@ -21,14 +31,17 @@ export const getStatsThunk = createAsyncThunk(
   `${FEATURE_NAME}/getStats` as const,
   // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
-    const statsData = await fetchStats(user)
+    try {
+      const statsData = await fetchStats(user)
+      if (statsData.firstMeditationDate === null) {
+        throw new Error("there is no first meditation date")
+      }
 
-    if (statsData.firstMeditationDate === null) {
-      throw new Error("there is no first meditation date")
+      const setStatsAction = userStatsActions.setStats(statsData)
+      thunkAPI.dispatch(setStatsAction)
+    } catch (error) {
+      console.error(error)
     }
-
-    const setStatsAction = userStatsActions.setStats(statsData)
-    thunkAPI.dispatch(setStatsAction)
   }
 )
 
@@ -64,17 +77,21 @@ export const setUserStatsThunk = createAsyncThunk(
     const userStatsData = querySnapshot.docs[0].data() as ServerUserStatsData
 
     const { totalDuration, count, firstMeditationDate } =
-      userStatsData || INIT_USER_STATS
-    const newUserStats: UserStatsData = {
+      userStatsData || INIT_SERVER_USER_STATS
+
+    const newUserStats: ServerUserStatsData = {
       count: count + 1,
       userId: dayData.userId,
       totalDuration: roundToHundredth(totalDuration + dayData.totalDuration),
-      firstMeditationDate: firstMeditationDate?.toMillis() || dayData.timestamp,
+      firstMeditationDate:
+        firstMeditationDate || Timestamp.fromMillis(dayData.timestamp),
     }
 
     try {
       await setDoc(userStatsRef, newUserStats)
-      thunkAPI.dispatch(userStatsActions.setStats(newUserStats))
+      const newUserStatsState = serverStatsDataToStoreAdapter(newUserStats)
+
+      thunkAPI.dispatch(userStatsActions.setStats(newUserStatsState))
       console.info("SUCCESS")
     } catch (e) {
       console.error("ERROR: ", e)
@@ -106,7 +123,7 @@ export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
 
     if (!serverDayData) throw new Error("Request failure")
 
-    const dayData = serverDayDataToStore(serverDayData)
+    const dayData = serverDayDataToStoreAdapter(serverDayData)
     const index = thunkAPI
       .getState()
       .userStats.daysData.findIndex((d) => d.timestamp === dayData.timestamp)

@@ -52,14 +52,14 @@ export type Milliseconds = Flavor<number, "Miliseconds">
 export type DateString = Flavor<string, "DateString">
 
 export interface UserStatsData {
-  firstMeditationDate: Milliseconds | null
+  firstMeditationDate: Milliseconds
   totalDuration: number
   count: number
   userId: string
 }
 
 export interface ServerUserStatsData {
-  firstMeditationDate: Timestamp | null
+  firstMeditationDate: Timestamp
   totalDuration: number
   count: number
   userId: string
