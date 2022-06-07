@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
 import { User } from "@firebase/auth"
-import { useNoSleep } from "use-no-sleep"
 import { LOCAL_CACHE_FIELD_NAME, SECS_IN_MIN } from "shared/constants"
 import { firestore } from "../../firebase-init"
 import { TimerButton } from "../timer-button/timer-button.component"
@@ -13,6 +12,7 @@ import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 import { setMeditationThunk } from "features/user-stats/user-stats.thunks"
 import { useAppDispatch } from "store"
+import useNoSleep from "shared/hooks/use-no-sleep"
 
 interface Props {
   user: User
@@ -27,8 +27,9 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const [requestStatus, setRequestStatus] = useState<RequestStatus>(
     RequestStatus.NONE
   )
-  useNoSleep(true)
+  useNoSleep(isStarted)
   const dispatch = useAppDispatch()
+
   const minutes = Math.floor(timerDiff / SECS_IN_MIN)
 
   const finishTimer = useCallback(
