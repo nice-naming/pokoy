@@ -1,6 +1,7 @@
 {
   "name": "pokoy-app",
-  "version": "1.18.9",
+  "description": "A meditation app for impulsive minds",
+  "version": "1.19.1",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -18,19 +19,19 @@
     "axios": "^0.21.1",
     "date-fns": "^2.25.0",
     "firebase": "^9.2.0",
+    "nosleep.js": "^0.12.0",
     "rc-progress": "^3.2.2",
     "react": "^17.0.1",
     "react-charts": "^3.0.0-beta.34",
     "react-dom": "^17.0.1",
     "react-firebase-hooks": "^5.0.3",
     "react-redux": "^8.0.1",
-    "react-router-dom": "6",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.1",
     "react-swipeable-views": "^0.14.0",
     "react-swipeable-views-core": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "styled-components": "^5",
-    "use-no-sleep": "^0.3.1",
     "use-sound": "^2.0.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
@@ -79,6 +80,7 @@
     ]
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^5",
+    "react-error-overlay": "6.0.9"
   }
 }

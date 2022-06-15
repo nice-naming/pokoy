@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "store"
 import { mainScreenActions } from "features/home/main-screen.slice"
 
 const { toggleSlideIndex } = mainScreenActions
+
 // TODO: extract to constants
 const SLIDES_COUNT = 2
 const swipeableViewsRootStyles = {
@@ -76,7 +77,11 @@ export const App: React.FC = () => {
 
       {/* TODO: extract to component */}
       <StyledFooter>
-        <ViewsSwitcher />
+        <ViewsSwitcher
+          slideIndex={slideIndex}
+          slidesCount={2}
+          setSlideIndex={dispatchSlideIndex}
+        />
       </StyledFooter>
     </Wrapper>
   )

@@ -4,7 +4,6 @@ import {
   getColorStyleSheetVarName,
 } from "features/home/utils"
 import {
-  PATH_TO_DRAWN,
   START_SPIRAL_OFFSET,
   MAX_SPIRAL_VALUE,
   INIT_STROKE_DASHARRAY,
@@ -12,6 +11,7 @@ import {
 import { getTimerProgress } from "./get-timer-progress"
 import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 import styles from "./fib-spiral.module.css"
+import { PATH_TO_DRAWN, SPIRAL_VIEWBOX } from "shared/constants/spiral"
 
 // TODO: move to constants
 const ALMOST_DONE_PERCENT = 0.995
@@ -39,7 +39,10 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
   const spiralForegroundClassNames = `${styles.spiralPath} ${isStartedClassName} ${isEmptyClassName}`
 
   const isLoadingClassName = authLoading ? styles.spiralBackgroundLoading : null
-  const spiralBackgroundClassNames = `${styles.spiralBackground} ${isLoadingClassName} spiral-trial`
+  const spiralBackgroundStartedClassName = isStarted
+    ? styles.spiralBackgroundStarted
+    : null
+  const spiralBackgroundClassNames = `${styles.spiralBackground} ${isLoadingClassName} ${spiralBackgroundStartedClassName} spiral-trial`
 
   const isSpinningClassName = isStarted ? styles.svgSpinning : null
   const fibSpiralClassNames = `${styles.svg} ${isSpinningClassName}`
@@ -51,7 +54,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
       height="100%"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      viewBox="0 0 760 769"
+      viewBox={SPIRAL_VIEWBOX}
     >
       <path
         className={spiralBackgroundClassNames}

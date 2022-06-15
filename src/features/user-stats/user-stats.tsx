@@ -27,6 +27,7 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
   const userStatistics = useAppSelector(selectUserStats)
   const userDaysData = useAppSelector(selectDaysData)
   const isLoading = useAppSelector(selectIsLoading)
+  const slideIndex = useAppSelector((state) => state.mainScreen.slideIndex)
 
   const dispatch = useAppDispatch()
 
@@ -54,7 +55,9 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
       ) : (
         <>
           <StatsNumbers statsData={userStatistics} />
-          {userChartData && <StatsChart chartData={userChartData} />}
+          {userChartData && slideIndex === 1 && (
+            <StatsChart chartData={userChartData} />
+          )}
         </>
       )}
     </Wrapper>

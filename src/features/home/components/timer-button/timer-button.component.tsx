@@ -1,20 +1,17 @@
 import React from "react"
 import useSound from "use-sound"
+import styles from "./timer-button.module.css"
 import clickSfx from "shared/assets/sounds/finger-snap.mp3"
-import { ButtonWrapper } from "./timer-button.styles"
-import { RequestStatus } from "shared/types"
 
 type Props = {
   handleTimerClick: () => void
   isTimerStarted: boolean
-  requestStatus: RequestStatus
   authLoading: boolean
 }
 
 export const TimerButton: React.FC<Props> = ({
   isTimerStarted = false,
   handleTimerClick,
-  requestStatus,
   children,
   authLoading,
 }) => {
@@ -25,16 +22,20 @@ export const TimerButton: React.FC<Props> = ({
     handleTimerClick()
   }, [handleTimerClick, playClick])
 
+  const classNames = React.useMemo(() => {
+    return `${styles.timerButton} ${
+      isTimerStarted ? styles.timerStarted : null
+    } ${authLoading ? styles.authLoading : null}`
+  }, [authLoading, isTimerStarted])
+
   return (
-    <ButtonWrapper
-      authLoading={authLoading}
+    <button
+      className={classNames}
       onClick={clickWithSound}
-      requestStatus={requestStatus}
-      isStarted={isTimerStarted}
       type="button"
       autoFocus
     >
       {children}
-    </ButtonWrapper>
+    </button>
   )
 }
