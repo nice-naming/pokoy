@@ -108,7 +108,7 @@ textarea {
 
 body {
 	color: var(--c-foreground);
-	background-color: var(--c-background);
+	background-color: var(--c-spiral);
 
 	max-width: 60rem;
 	font-size: large;
@@ -193,14 +193,6 @@ a[href^="http"]::after {
 	pointer-events: none;
 }
 
-a:hover,
-a:focus {
-	outline: none;
-	color: var(--c-brand);
-	background-image: var(--link-bg-focus);
-	transition-duration: 0s;
-}
-
 /* buttons */
 button {
 	position: relative;
@@ -245,7 +237,7 @@ button:focus::before {
 
 button:active {
 	outline: none;
-	transform: scale(0.95);
+	transform: scale(0.98);
 }
 
 button:disabled {
