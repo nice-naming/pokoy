@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { RootState } from "store"
 
 export const FEATURE_NAME = "mainScreen"
 
@@ -31,6 +32,10 @@ export const mainScreenSlice = createSlice({
 
 export const mainScreenActions = {
   ...mainScreenSlice.actions,
+}
+
+export const mainScreenSelectors = {
+  getSlideIndex: (state: RootState) => state[FEATURE_NAME].slideIndex,
 }
 
 export const mainScreenSliceReducer = mainScreenSlice.reducer
