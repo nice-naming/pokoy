@@ -24,10 +24,13 @@
 }
 
 .spiralBackground {
-  stroke: var(--c-spiral);
+  stroke: var(--c-gray);
   stroke-width: 1rem;
   transform: translateX(0);
   transition: all 0.5s ease-out;
+}
+.spiralBackgroundStarted {
+  stroke: var(--c-spiral);
 }
 .spiralBackgroundLoading {
   stroke: white;
