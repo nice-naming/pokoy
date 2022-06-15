@@ -77,7 +77,7 @@ export const Tips: React.FC<Props> = React.memo(
             </StageWrapper>
           </>
         ) : (
-          <StyledTip>Press the circle to start</StyledTip>
+          <StyledTip>Tap the circle to start</StyledTip>
         )}
       </Wrapper>
     )
