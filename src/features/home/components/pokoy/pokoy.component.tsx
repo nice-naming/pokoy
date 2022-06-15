@@ -6,7 +6,7 @@ import { TimerButton } from "../timer-button/timer-button.component"
 import { Countdown } from "../countdown/countdown.component"
 import { Tips } from "../tips"
 import { sendSessionFromLocalStore } from "./writeSessionToServer"
-import { PokoySession, RequestStatus } from "shared/types"
+import { PokoySession } from "shared/types"
 import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
 import { Sound } from "features/home/components/sound.component"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
@@ -24,9 +24,6 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
   const [isStarted, setStartedFlag] = useState(false)
-  const [requestStatus, setRequestStatus] = useState<RequestStatus>(
-    RequestStatus.NONE
-  )
   useNoSleep(isStarted)
   const dispatch = useAppDispatch()
 
@@ -47,14 +44,10 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
       }
 
       try {
-        setRequestStatus(RequestStatus.REQUEST)
         // NOTE: line below for fast debugging
         // dispatch(setMeditationThunk({ user, seconds: 61 }))
         dispatch(setMeditationThunk({ user, seconds: timerDiff }))
-
-        setRequestStatus(RequestStatus.SUCCESS)
       } catch (e) {
-        setRequestStatus(RequestStatus.FAILURE)
         console.error(e)
       }
     },
@@ -70,7 +63,6 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const startTimer = useCallback(() => {
     const startInSeconds = Math.round(Date.now() / 1000)
     setStartedFlag(true)
-    setRequestStatus(RequestStatus.NONE)
 
     const newTimerId = window.setInterval(
       () => handleTimer(startInSeconds),
@@ -114,7 +106,6 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
       <TimerButton
         handleTimerClick={handleClick}
         isTimerStarted={isStarted}
-        requestStatus={requestStatus}
         authLoading={authLoading}
       >
         <Sound progress={timerDiff} />
