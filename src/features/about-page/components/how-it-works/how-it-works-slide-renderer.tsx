@@ -1,6 +1,43 @@
 import { SwipeableView } from "features/home/app.styles"
 import { SlideRenderProps } from "react-swipeable-views-utils"
 
+export const howItWorksSlideRenderer = ({ index, key }: SlideRenderProps) => {
+  switch (index) {
+    case 0:
+      return (
+        <SwipeableView key={key}>
+          <FirstStep />
+        </SwipeableView>
+      )
+    case 1:
+      return (
+        <SwipeableView key={key}>
+          <SecondStep />
+        </SwipeableView>
+      )
+    case 2:
+      return (
+        <SwipeableView key={key}>
+          <ThirdStep />
+        </SwipeableView>
+      )
+    case 3:
+      return (
+        <SwipeableView key={key}>
+          <FourthStep />
+        </SwipeableView>
+      )
+    case 4:
+      return (
+        <SwipeableView key={key}>
+          <FifthStep />
+        </SwipeableView>
+      )
+    default:
+      return null
+  }
+}
+
 const FirstStep = () => {
   return (
     <>
@@ -87,41 +124,4 @@ const SixthStep = () => {
       </ol>
     </>
   )
-}
-
-export const howItWorksSlideRenderer = ({ index, key }: SlideRenderProps) => {
-  switch (index) {
-    case 0:
-      return (
-        <SwipeableView key={key}>
-          <FirstStep />
-        </SwipeableView>
-      )
-    case 1:
-      return (
-        <SwipeableView key={key}>
-          <SecondStep />
-        </SwipeableView>
-      )
-    case 2:
-      return (
-        <SwipeableView key={key}>
-          <ThirdStep />
-        </SwipeableView>
-      )
-    case 3:
-      return (
-        <SwipeableView key={key}>
-          <FourthStep />
-        </SwipeableView>
-      )
-    case 4:
-      return (
-        <SwipeableView key={key}>
-          <FifthStep />
-        </SwipeableView>
-      )
-    default:
-      return null
-  }
 }
