@@ -1,3 +1,24 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.19.0](https://github.com/m0rtyn/pokoy/compare/v1.18.9...v1.19.0) (2022-06-15)
+
+
+### Features
+
+* add about page ([ef39b3f](https://github.com/m0rtyn/pokoy/commit/ef39b3fdd410e16dff23a127f4e99a1c34b08c96))
+* add custom no-sleep hook ([e95014e](https://github.com/m0rtyn/pokoy/commit/e95014eb43ac32a2445013b16bd39850ef5f3770))
+* add HowItWorks subpage ([c23fb44](https://github.com/m0rtyn/pokoy/commit/c23fb4409c36aff384adaf28845c65383d3eb524))
+* add tutorial subpage ([9b8a0a6](https://github.com/m0rtyn/pokoy/commit/9b8a0a6a2160fda608b43ae90ea46cb743601ce4))
+* extract react router as a component and add routing ([89a319b](https://github.com/m0rtyn/pokoy/commit/89a319bb41125682fefc87f4940c7ee2d04150a9))
+
+
+### Bug Fixes
+
+* remove vertical margin of body ([cf15dc3](https://github.com/m0rtyn/pokoy/commit/cf15dc3189816d203072d9bcfc8f2f4831e954ce))
+* return disappeared chart ([c3062df](https://github.com/m0rtyn/pokoy/commit/c3062df48851fa3f453b0d7c45028202126739ad))
+
 ### [1.18.9](https://github.com/m0rtyn/pokoy/releases/tag/1.18.9)
 
 - fix: return disappeared chart
