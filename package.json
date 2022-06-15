@@ -1,5 +1,6 @@
 {
   "name": "pokoy-app",
+  "description": "A meditation app for impulsive minds",
   "version": "1.18.9",
   "private": true,
   "scripts": {
@@ -79,6 +80,7 @@
     ]
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^5",
+    "react-error-overlay": "6.0.9"
   }
 }
