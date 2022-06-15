@@ -39,7 +39,7 @@ export const AppRouter = () => {
         <Route path="how-it-works" element={<HowItWorks />}></Route>
       </Route>
 
-      <Route path="/dev" element={<DevPage />} />
+      {/* <Route path="/dev" element={<DevPage />} /> */}
 
       <Route path="*" element={<NoMatch />} />
     </Routes>
