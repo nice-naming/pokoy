@@ -16,14 +16,15 @@ const VirtualizedSwipeableViews = virtualize(SwipeableViews)
 export const Tutorial = () => {
   const dispatch = useAppDispatch()
   const slideIndex = useAppSelector(aboutPageSelectors.getTutorialSlideIndex)
-  const setSlideIndex = useCallback(() => {
-    const newIndex = slideIndex < SLIDES_COUNT - 1 ? slideIndex + 1 : 0
-    dispatch(aboutPageActions.setTutorialSlideIndex(newIndex))
-  }, [dispatch, slideIndex])
   const [playClick] = useSound(clickSfx)
   const [playBell] = useSound(bellSfx, {
     volume: 0.3,
   })
+
+  const setSlideIndex = useCallback(() => {
+    const newIndex = slideIndex < SLIDES_COUNT - 1 ? slideIndex + 1 : 0
+    dispatch(aboutPageActions.setTutorialSlideIndex(newIndex))
+  }, [dispatch, slideIndex])
 
   useEffect(() => {
     if (slideIndex === 0) {
