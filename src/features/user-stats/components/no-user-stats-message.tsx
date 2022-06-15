@@ -1,11 +1,11 @@
 export const NoUserStatsMessage = () => {
   return (
     <>
-      <p>There are no statistics 🤷‍♂️</p>
+      <p>There are no stats yet 🤷‍♂️</p>
       <p>
-        Try meditating for more than two days
+        Try meditating for two days or more,
         <br />
-        or contact with <a href="https://t.me/m0rtyn">@m0rtyn</a>
+        or contact <a href="https://t.me/m0rtyn">@m0rtyn</a>
       </p>
     </>
   )
