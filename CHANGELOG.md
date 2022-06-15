@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.1](https://github.com/m0rtyn/pokoy/compare/v1.19.0...v1.19.1) (2022-06-15)
+
 ## [1.19.0](https://github.com/m0rtyn/pokoy/compare/v1.18.9...v1.19.0) (2022-06-15)
 
 
