@@ -10,7 +10,8 @@
     "test": "react-scripts test",
     "format": "react-scripts format",
     "build-functions": "cd functions && npm install && npm run build",
-    "release": "standard-version"
+    "release": "standard-version",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
     "@3m1/service-worker-updater": "^2.0.3",
@@ -32,6 +33,7 @@
     "react-swipeable-views-core": "^0.14.0",
     "react-swipeable-views-utils": "^0.14.0",
     "styled-components": "^5",
+    "use-long-press": "^2.0.2",
     "use-sound": "^2.0.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
@@ -53,6 +55,7 @@
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.1",
+    "source-map-explorer": "^2.5.2",
     "standard-version": "^9.3.2",
     "typescript": "^4.1.3",
     "typescript-styled-plugin": "^0.18.2"
