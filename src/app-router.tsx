@@ -1,5 +1,5 @@
 import { App } from "features/home"
-import { DevPage } from "features/dev-page"
+// import { DevPage } from "features/dev-page"
 import { SignInPage } from "features/sign-in-page/sign-in-page"
 import { Link, Route, Routes } from "react-router-dom"
 import { RequireAuth } from "shared/components/require-auth"

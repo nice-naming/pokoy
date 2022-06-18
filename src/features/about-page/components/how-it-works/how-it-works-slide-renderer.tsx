@@ -101,27 +101,3 @@ const FifthStep = () => {
     </>
   )
 }
-
-const SixthStep = () => {
-  return (
-    <>
-      <h2>Examples</h2>
-      <p>
-        At any stage you can end the meditation and stop the timer. After that,
-        the time of the session will be recorded in your statistics as the last
-        step of the timer passed.
-      </p>
-      <ol>
-        <li>
-          If you meditate for 12 minutes, it will be recorded as 8 (1 + 1 + 1 +
-          2 + 3), but you will feel as if only 3 minutes have passed (as last
-          interval).
-        </li>
-        <li>
-          If you meditate for 28 minutes, it will be recorded as 21 (1 + 1 + 1 +
-          2 + 3 + 5 + 8) and so on.
-        </li>
-      </ol>
-    </>
-  )
-}
