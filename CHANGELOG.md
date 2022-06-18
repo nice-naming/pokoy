@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.1](https://github.com/m0rtyn/pokoy/compare/v1.20.0...v1.20.1) (2022-06-18)
+
+
+### Bug Fixes
+
+* appear of progressbar at user statistics page ([5b0150a](https://github.com/m0rtyn/pokoy/commit/5b0150aba6ee4bd5439cf229f1ec8845592897a8))
+
+## [1.20.0](https://github.com/m0rtyn/pokoy/compare/v1.19.0...v1.20.0) (2022-06-18)
+
+
+### Features
+
+* add long click effect to start or finish timer ([8f70440](https://github.com/m0rtyn/pokoy/commit/8f70440877a272d497aee319f0661a46b6c185a9))
+
 ### [1.19.1](https://github.com/m0rtyn/pokoy/compare/v1.19.0...v1.19.1) (2022-06-15)
 
 ## [1.19.0](https://github.com/m0rtyn/pokoy/compare/v1.18.9...v1.19.0) (2022-06-15)

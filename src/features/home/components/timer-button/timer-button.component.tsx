@@ -2,6 +2,7 @@ import React from "react"
 import useSound from "use-sound"
 import styles from "./timer-button.module.css"
 import clickSfx from "shared/assets/sounds/finger-snap.mp3"
+import { LongPressDetectEvents, useLongPress } from "use-long-press"
 
 type Props = {
   handleTimerClick: () => void
@@ -17,6 +18,18 @@ export const TimerButton: React.FC<Props> = ({
 }) => {
   const [playClick] = useSound(clickSfx)
 
+  const bindLongPress = useLongPress(
+    () => {
+      clickWithSound()
+    },
+    {
+      threshold: 1000,
+      captureEvent: true,
+      cancelOnMovement: false,
+      detect: LongPressDetectEvents.BOTH,
+    }
+  )
+
   const clickWithSound = React.useCallback(() => {
     playClick()
     handleTimerClick()
@@ -29,12 +42,8 @@ export const TimerButton: React.FC<Props> = ({
   }, [authLoading, isTimerStarted])
 
   return (
-    <button
-      className={classNames}
-      onClick={clickWithSound}
-      type="button"
-      autoFocus
-    >
+    <button {...bindLongPress()} className={classNames} type="button" autoFocus>
+      <div className={styles.timerButtonPressProgress} />
       {children}
     </button>
   )
