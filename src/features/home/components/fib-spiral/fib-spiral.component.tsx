@@ -56,6 +56,17 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
       fill="none"
       viewBox={SPIRAL_VIEWBOX}
     >
+      <defs>
+        <radialGradient id="Gradient">
+          <stop offset="0%" stopColor="#8b8b8b" />
+          <stop offset="100%" stopColor="white" />
+        </radialGradient>
+
+        <mask id="Mask">
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient)" />
+        </mask>
+      </defs>
+
       <path
         className={spiralBackgroundClassNames}
         d={PATH_TO_DRAWN}
@@ -66,6 +77,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
 
       <path
         className={spiralForegroundClassNames}
+        mask="url(#Mask)"
         stroke={fibColor}
         strokeDasharray={INIT_STROKE_DASHARRAY}
         strokeDashoffset={START_SPIRAL_OFFSET + progress}
