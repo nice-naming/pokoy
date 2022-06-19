@@ -16,10 +16,14 @@ export const AboutPageWrapper = styled(AppWrapper)`
 `
 
 export const StyledImg = styled.img`
-  width: 50%;
+  width: 66%;
   margin: auto;
   pointer-events: none;
   filter: contrast(1.1);
   border-radius: 2rem;
   border: 0.5rem solid var(--c-spiral);
+
+  @media screen and (max-width: ${TABLET_MIN_WIDTH}) {
+    width: 100%;
+  }
 `
