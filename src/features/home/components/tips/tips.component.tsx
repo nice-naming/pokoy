@@ -6,6 +6,7 @@ import {
   StageWrapper,
   StyledDesc,
   StyledTip,
+  StyledTrianle,
   StyledUnits,
   Wrapper,
 } from "./tips.styles"
@@ -66,7 +67,7 @@ export const Tips: React.FC<Props> = React.memo(
               <StyledDesc>is current</StyledDesc>
             </StageWrapper>
 
-            <span>▶</span>
+            <StyledTrianle />
 
             <StageWrapper>
               <StageNumber>{nextStage}</StageNumber>
