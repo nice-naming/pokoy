@@ -27,7 +27,6 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
   const userStatistics = useAppSelector(selectUserStats)
   const userDaysData = useAppSelector(selectDaysData)
   const isLoading = useAppSelector(selectIsLoading)
-  const slideIndex = useAppSelector((state) => state.mainScreen.slideIndex)
 
   const dispatch = useAppDispatch()
 
@@ -44,21 +43,19 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, user])
 
-  const isChartDataEmpty = userChartData?.[0].data.length === 0
+  const isChartDataExist = userChartData?.[0].data.length !== 0
 
   return (
     <Wrapper>
       {authLoading || isLoading ? (
         <StyledSpinner />
-      ) : isChartDataEmpty ? (
-        <NoUserStatsMessage />
-      ) : (
+      ) : isChartDataExist ? (
         <>
           <StatsNumbers statsData={userStatistics} />
-          {userChartData && slideIndex === 1 && (
-            <StatsChart chartData={userChartData} />
-          )}
+          {userChartData && <StatsChart chartData={userChartData} />}
         </>
+      ) : (
+        <NoUserStatsMessage />
       )}
     </Wrapper>
   )

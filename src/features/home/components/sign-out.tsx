@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   color: inherit;
   cursor: pointer;
   height: 100%;
+  margin-right: auto;
 
   @media screen and (hover: none) and (orientation: landscape) {
     display: none;

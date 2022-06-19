@@ -63,7 +63,7 @@
   animation: none;
 }
 
-.timerButtonPressProgress {
+.pressProgress {
   position: absolute;
   z-index: 1;
   border-radius: 50%;
@@ -75,7 +75,7 @@
   transition: transform 1s ease-in, opacity 1s ease-in;
 }
 
-.timerButton:active > .timerButtonPressProgress {
+.timerButtonPressed {
   transform: scale(1);
   opacity: 0.5;
 }

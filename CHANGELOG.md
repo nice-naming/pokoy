@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/m0rtyn/pokoy/compare/v1.20.2...v1.21.0) (2022-06-19)
+
+
+### Features
+
+* add cumulative visual effect for long press on devices ([d383686](https://github.com/m0rtyn/pokoy/commit/d38368625451b03a14d26538bd49220efe2a98b5))
+
+
+### Bug Fixes
+
+* change horizontal align for header items ([66c8680](https://github.com/m0rtyn/pokoy/commit/66c8680ea1d8d41de04000b67c4ce1a589bda922))
+* disable text selection for safari ([3d8c7a0](https://github.com/m0rtyn/pokoy/commit/3d8c7a09a4c63ef64570eb4f2ca189624dfb1d3e))
+* handle error on dev env with env variables ([7c1c9c1](https://github.com/m0rtyn/pokoy/commit/7c1c9c19a2185d51fd81bf5c70c29d549c9f2219))
+* increase images width on devices ([cc29e57](https://github.com/m0rtyn/pokoy/commit/cc29e57e5507cc9e96adb651c51fc945050b634d))
+* remove annoying sound in tutorial ([eebaf09](https://github.com/m0rtyn/pokoy/commit/eebaf09faaa956cb77e16a820d62b31156e5ea54))
+* remove redundant margin ([57adc7e](https://github.com/m0rtyn/pokoy/commit/57adc7e99f4020e0fea0b8f6057d9c6405bfa903))
+* remove text wrap in sign in button ([7b8f764](https://github.com/m0rtyn/pokoy/commit/7b8f764e3f1b52820d2de0232e4812d78115500c))
+* replace triangle symbol with css generated one ([726ab98](https://github.com/m0rtyn/pokoy/commit/726ab9882aee5b960da612bd277d2d12461f024d))
+* turn off text selection on iOS safari ([f20710c](https://github.com/m0rtyn/pokoy/commit/f20710c7529ea4566b12acaa359b743a9c6240ae))
+
 ### [1.20.2](https://github.com/m0rtyn/pokoy/compare/v1.20.0...v1.20.2) (2022-06-19)
 
 

@@ -17,6 +17,7 @@ export const TimerButton: React.FC<Props> = ({
   authLoading,
 }) => {
   const [playClick] = useSound(clickSfx)
+  const [isTimerPressed, setIsTimerPressed] = React.useState(false)
 
   const bindLongPress = useLongPress(
     () => {
@@ -27,6 +28,9 @@ export const TimerButton: React.FC<Props> = ({
       captureEvent: true,
       cancelOnMovement: false,
       detect: LongPressDetectEvents.BOTH,
+      onStart: () => setIsTimerPressed(true),
+      onFinish: () => setIsTimerPressed(false),
+      onCancel: () => setIsTimerPressed(false),
     }
   )
 
@@ -41,9 +45,15 @@ export const TimerButton: React.FC<Props> = ({
     } ${authLoading ? styles.authLoading : null}`
   }, [authLoading, isTimerStarted])
 
+  const pressProgressClassNames = React.useMemo(() => {
+    return `${styles.pressProgress} ${
+      isTimerPressed ? styles.timerButtonPressed : null
+    }`
+  }, [isTimerPressed])
+
   return (
     <button {...bindLongPress()} className={classNames} type="button" autoFocus>
-      <div className={styles.timerButtonPressProgress} />
+      <div className={pressProgressClassNames} />
       {children}
     </button>
   )
