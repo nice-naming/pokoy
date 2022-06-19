@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.20.2](https://github.com/m0rtyn/pokoy/compare/v1.20.0...v1.20.2) (2022-06-19)
+
+
+### Bug Fixes
+
+* appear of progressbar at user statistics page ([5b0150a](https://github.com/m0rtyn/pokoy/commit/5b0150aba6ee4bd5439cf229f1ec8845592897a8))
+
 ### [1.20.1](https://github.com/m0rtyn/pokoy/compare/v1.20.0...v1.20.1) (2022-06-18)
 
 
