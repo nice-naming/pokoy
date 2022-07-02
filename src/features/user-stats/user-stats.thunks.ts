@@ -21,9 +21,9 @@ import { firestore } from "../home/firebase-init"
 import { FEATURE_NAME, userStatsActions } from "./store/user-stats.slice"
 import { fetchDays, fetchStats } from "./get-data"
 import { getFullRange } from "./get-full-range"
-import { sliceDaysDataRange } from "./utils"
+import { cutDaysDataRange } from "./utils"
 import {
-  createUserStatsData,
+  createSessionData,
   sendMeditationToServer,
 } from "features/home/components/pokoy/writeSessionToServer"
 
@@ -58,7 +58,7 @@ export const getChartDataThunk = createAsyncThunk(
     }))
 
     const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
-    const slicedChartData = sliceDaysDataRange(daysDataFullRange)
+    const slicedChartData = cutDaysDataRange(daysDataFullRange)
 
     const setChartDataAction = userStatsActions.setChartData(slicedChartData)
     thunkAPI.dispatch(setChartDataAction)
@@ -82,6 +82,7 @@ export const setUserStatsThunk = createAsyncThunk(
     const newUserStats: ServerUserStatsData = {
       count: count + 1,
       userId: dayData.userId,
+      // TODO: add cloud function to recalculate total duration
       totalDuration: roundToHundredth(totalDuration + dayData.totalDuration),
       firstMeditationDate:
         firstMeditationDate || Timestamp.fromMillis(dayData.timestamp),
@@ -118,8 +119,8 @@ export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
       return
     }
 
-    const userStatsData = createUserStatsData(user.uid, seconds)
-    const serverDayData = await sendMeditationToServer(firestore, userStatsData)
+    const sessionData = createSessionData(user.uid, seconds)
+    const serverDayData = await sendMeditationToServer(firestore, sessionData)
 
     if (!serverDayData) throw new Error("Request failure")
 

@@ -26,7 +26,7 @@ import {
 import { PokoySession, ServerDayData } from "shared/types"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 
-export const createUserStatsData = (
+export const createSessionData = (
   userId: string,
   seconds: number
 ): PokoySession => {
@@ -52,7 +52,7 @@ export const sendSessionFromSeconds = async (
     return
   }
 
-  const pokoyData = createUserStatsData(user.uid, seconds)
+  const pokoyData = createSessionData(user.uid, seconds)
   return await sendMeditationToServer(firestoreDB, pokoyData)
 }
 
