@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/m0rtyn/pokoy/compare/v1.21.0...v2.0.0) (2022-07-02)
+
+
+### Bug Fixes
+
+* add extra rounding in calculation of the average duration ([58f996a](https://github.com/m0rtyn/pokoy/commit/58f996ace5f447cc7f8678a71f52f5657c272bda))
+* change func parameters after refactoring ([8d48834](https://github.com/m0rtyn/pokoy/commit/8d48834e207729d9a7f3092c3f399a51ee07937f))
+
 ## [1.21.0](https://github.com/m0rtyn/pokoy/compare/v1.20.2...v1.21.0) (2022-06-19)
 
 
