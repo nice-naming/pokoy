@@ -8,7 +8,7 @@ import { StyledUpdateButton, StyledAppVersion } from "./app-updater.styles"
 
 const AppUpdater: React.FC<ServiceWorkerUpdaterProps> = (props) => {
   const { newServiceWorkerDetected, onLoadNewServiceWorkerAccept } = props
-  const [currentVersion, setCurrentVersion] = React.useState("1.x.x")
+  const [currentVersion, setCurrentVersion] = React.useState("2.0.0")
 
   useEffect(() => {
     try {
