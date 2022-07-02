@@ -22,7 +22,12 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
     const totalDurationExists = !!statsData?.totalDuration
     if (!totalDurationExists) return
 
-    setAverage(getAverageMeditationPerDay(statsData))
+    setAverage(
+      getAverageMeditationPerDay(
+        statsData.firstMeditationDate,
+        statsData.totalDuration
+      )
+    )
     setTotalInHours(getTotalInHours(statsData.totalDuration))
   }, [statsData])
 
@@ -43,7 +48,7 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
       {average && (
         <StyledStat>
           <StyledStatNumber>{average}</StyledStatNumber>
-          <span> minutes in average</span>
+          <span> average mins / day </span>
         </StyledStat>
       )}
     </Wrapper>

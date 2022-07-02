@@ -19,11 +19,11 @@ const AppUpdater: React.FC<ServiceWorkerUpdaterProps> = (props) => {
     } catch (error) {
       console.error(error)
     }
-  }, [window, window?.process, window?.process?.env])
+  }, [])
 
   const handleRefresh = useCallback((): void => {
-    window.location.reload()
-  }, [window?.process])
+    window?.location.reload()
+  }, [])
 
   return (
     <>

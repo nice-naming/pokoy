@@ -23,6 +23,7 @@ interface Props {
 export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
+  // TODO: extract to store
   const [isStarted, setStartedFlag] = useState(false)
   useNoSleep(isStarted)
   const dispatch = useAppDispatch()

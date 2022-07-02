@@ -24,7 +24,7 @@ export const TimerButton: React.FC<Props> = ({
       clickWithSound()
     },
     {
-      threshold: 1000,
+      threshold: 600,
       captureEvent: true,
       cancelOnMovement: false,
       detect: LongPressDetectEvents.BOTH,
