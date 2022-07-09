@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/m0rtyn/pokoy/compare/v2.0.0...v2.0.2) (2022-07-09)
+
+
+### Bug Fixes
+
+* change fallback for version error cases ([f99828d](https://github.com/m0rtyn/pokoy/commit/f99828dd0b64966cddc05bd4fc57bf462706eb38))
+
 ### [2.0.1](https://github.com/m0rtyn/pokoy/compare/v1.21.0...v2.0.1) (2022-07-02)
 
 
