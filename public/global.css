@@ -70,48 +70,41 @@ textarea {
 :root {
   /* NOTE: Custom colors scheme */
   /* NOTE: the conrast of the colors gradualy increases relatively to base color */
-  --c-base: #333; /* constrast 0 */
-  /* TODO: make this color base */
-  --c-spiral: #2b2b2b; /* constrast -1.12 */
-  --c-extra-gray: #656565; /* constrast 2.17 */
-  --c-gray: #7f7f7f; /* constrast 3.16 */
-  --c-red: #ff7c7c; /* constrast 5.07 */
-  --c-orange: #ff8002; /* constrast 5.05 */
-  --c-yellow: #aaaa00; /* constrast 5.09 */
-  --c-green: #00ce00; /* constrast 5.91 */
-  --c-cyan: #00d7d7; /* constrast 7.04 */
-  --c-blue: #a6d2ff; /* constrast 7.99 */
-  --c-magenta: #ffddee; /* constrast 10.13 */
-  --c-white: #fafafa; /* constrast 12.10 */
+  --c-background: #2b2b2b; /* constrast 0 */
+  --c-darken-gray: #333; /* constrast 1.12 */
+  --c-dark-gray: #656565; /* constrast 2.43 */
+  --c-gray: #7f7f7f; /* constrast 3.54 */
 
-  --c-background: var(--c-base);
+  --c-red: #ff8686; /* constrast 6.07 */
+  --c-orange: #ff8b16; /* constrast 6.04 */
+  --c-yellow: #afaf00; /* constrast 6.04 */
+
+  --c-green: #00d800; /* constrast 7.30 */
+  --c-cyan: #00dcdc; /* constrast 8.27 */
+  --c-blue: #abd5ff; /* constrast 9.23 */
+  --c-magenta: #ffcee6; /* constrast 10.26 */
+  --c-white: #f5f5f5; /* constrast 12.99 */
+
   --c-foreground: var(--c-white);
 
   /* NOTE: layout variables */
   --header-height: 60px;
-}
 
-:root {
+
   --c-brand: var(--c-blue);
-	--c-brand-focus: var(--c-magenta);
+	--c-brand-focus: var(--c-cyan);
 	--c-marker: var(--c-gray);
   
   --link-bg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(249, 248, 246, .5)'/%3E%3C/svg%3E");
   --link-bg-focus: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect x='0' y='.5' width='1' height='.5' fill='rgba(255, 78, 35 , .5)'/%3E%3C/svg%3E");
   
-	/* button text, text when background is not --c-background */
-	--c-foreground-contrast: rgb(255, 255, 255);
-  
-	/* alternative background for callouts and other prominent elements */
-	--c-background--accent: rgba(148, 140, 107, .1);
-	--c-background--inline-code: rgba(148, 140, 107, .15);
-
+	--c-foreground-contrast: #fff;
   --font-mono: "Courier Prime", "Courier New", "Liberation Mono", monospace;
 }
 
 body {
 	color: var(--c-foreground);
-	background-color: var(--c-spiral);
+	background-color: var(--c-background);
 
 	max-width: 60rem;
 	font-size: large;
@@ -138,25 +131,6 @@ li + li {
 
 p {
 	margin-bottom: 1.5rem;
-}
-
-code {
-	display: block;
-	background-color: var(--c-background--accent);
-	padding: 2rem;
-	margin: 2rem -2rem;
-	white-space: pre-wrap;
-	-moz-tab-size: 3;
-	tab-size: 3;
-}
-
-p code {
-	display: inline;
-	margin: 0;
-	background-color: var(--c-background--inline-code);
-	padding: .25rem .5rem;
-	border-radius: 4px;
-	box-decoration-break: clone;
 }
 
 blockquote {
@@ -326,26 +300,6 @@ td {
 	box-sizing: initial;
 }
 
-td + td,
-th + th {
-	padding-left: 1rem;
-}
-
-thead tr:nth-of-type(2n + 1),
-tbody tr:nth-of-type(2n) {
-	background-color: var(--c-background--accent);
-}
-
-th:first-child,
-td:first-child {
-	padding-left: 2rem;
-}
-
-th:last-child,
-td:last-child {
-	padding-right: 2rem;
-}
-
 /* nav menu (a special element) */
 nav ul {
 	padding: 0;
@@ -427,7 +381,7 @@ input[type="tel"],
 select,
 textarea {
 	display: inline-block;
-	background-color: var(--c-background--inline-code);
+	background-color: var(--c-darken-gray);
 	border: none;
 	border-radius: 5px;
 	padding: .5rem 1rem;
@@ -491,7 +445,7 @@ input[type="checkbox"] {
 }
 
 fieldset {
-	background-color: var(--c-background--inline-code);
+	background-color: var(--c-darken-gray);
 	border: none;
 	border-radius: 5px;
 	margin-inline-start: 0;

@@ -10,8 +10,8 @@
 }
 
 .timerButton {
-  color: var(--c-extra-gray);
-  background-color: var(--c-background);
+  color: var(--c-dark-gray);
+  background-color: var(--c-darken-gray);
   grid-area: spiral;
   padding: 0px;
   display: block;
@@ -20,7 +20,7 @@
   z-index: 1;
   transform: scale(0.9);
 
-  /* box-shadow: 0 0 0 0.5rem var(--c-gray), 0 0 0.5rem 1rem var(--c-spiral); */
+  /* box-shadow: 0 0 0 0.5rem var(--c-gray), 0 0 0.5rem 1rem var(--c-background); */
   will-change: background-color, box-shadow, opacity, transform;
   transition: background-color 0.3s ease-in, box-shadow 0.3s ease-in,
     transform 0.3s ease-in;
@@ -48,7 +48,7 @@
 
 .authLoading {
   box-shadow: none;
-  background-color: var(--c-spiral);
+  background-color: var(--c-background);
 }
 .authLoading:focus:after {
   animation: none;
@@ -56,7 +56,7 @@
 
 .timerStarted {
   box-shadow: 0 0 0 0.5rem currentcolor;
-  background-color: var(--c-background);
+  background-color: var(--c-darken-gray);
   transform: scale(1);
 }
 .timerStarted:focus:after {
@@ -67,7 +67,7 @@
   position: absolute;
   z-index: 1;
   border-radius: 50%;
-  background-color: var(--c-extra-gray);
+  background-color: var(--c-dark-gray);
   width: 100%;
   height: 100%;
   transform: scale(0);

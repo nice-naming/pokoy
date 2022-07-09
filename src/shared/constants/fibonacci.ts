@@ -11,9 +11,9 @@ export const FIB_STYLE_SHEET_COLORS_NAMES = [
   "--c-cyan",
   "--c-blue",
   "--c-magenta",
-  "--c-white",
-  "--c-white",
-  "--c-white",
+  "--c-foreground",
+  "--c-foreground",
+  "--c-foreground",
 ]
 export const fibNumToStyleSheetVarMap = {
   [FIB_NUMS_FOR_TIMER[0]]: FIB_STYLE_SHEET_COLORS_NAMES[0],

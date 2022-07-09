@@ -4,7 +4,7 @@ import styled from "styled-components/macro"
 
 // TODO: extract
 const StyledButton = styled.button`
-  background-color: var(--c-background);
+  background-color: var(--c-darken-gray);
   font-size: inherit;
   color: inherit;
   cursor: pointer;

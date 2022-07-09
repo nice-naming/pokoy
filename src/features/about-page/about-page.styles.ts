@@ -21,7 +21,7 @@ export const StyledImg = styled.img`
   pointer-events: none;
   filter: contrast(1.1);
   border-radius: 2rem;
-  border: 0.5rem solid var(--c-spiral);
+  border: 0.5rem solid var(--c-background);
 
   @media screen and (max-width: ${TABLET_MIN_WIDTH}) {
     width: 100%;

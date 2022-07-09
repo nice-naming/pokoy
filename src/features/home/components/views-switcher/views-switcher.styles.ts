@@ -5,7 +5,7 @@ export const SwipeButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  color: var(--c-extra-gray);
+  color: var(--c-dark-gray);
   transition: none;
   transition: transform ease-out 0.1s;
   padding: 2rem;
@@ -38,7 +38,7 @@ export const Circle = styled.span<Props>`
   border-radius: 50%;
   margin: 1rem;
   display: block;
-  border: 0.25rem solid var(--c-extra-gray);
+  border: 0.25rem solid var(--c-dark-gray);
   background-color: ${({ isActive }) =>
     isActive ? "var(--c-foreground)" : "transparent"};
 `

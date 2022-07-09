@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components"
 
 const spinner = keyframes`
-  0% { transform: rotate(0); border-bottom-color: var(--c-white); opacity: 0; }
+  0% { transform: rotate(0); border-bottom-color: var(--c-foreground); opacity: 0; }
   5% { opacity: 1; }
   100% { transform: rotate(3600deg);}
 `
@@ -28,6 +28,6 @@ export const StyledSpinner = styled.div`
     border-style: solid;
     border-width: 0.75rem;
     border-radius: 50%;
-    border-color: var(--c-spiral);
+    border-color: var(--c-background);
   }
 `
