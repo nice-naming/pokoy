@@ -3,11 +3,11 @@ import { AxisOptions, TooltipOptions } from "react-charts"
 import { CSS_COLOR_VARIABLES } from "shared/constants"
 import { PokoyChartData } from "shared/types"
 
-const { CYAN, EXTRA_GRAY } = CSS_COLOR_VARIABLES
+const { CYAN, DARK_GRAY } = CSS_COLOR_VARIABLES
 
 export const CHART_COLORS = [
   getColorFromCSSVar(CYAN),
-  getColorFromCSSVar(EXTRA_GRAY),
+  getColorFromCSSVar(DARK_GRAY),
 ]
 
 export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {

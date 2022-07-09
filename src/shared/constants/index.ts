@@ -6,9 +6,9 @@ export * from "./fibonacci"
 export * from "./data"
 
 export enum CSS_COLOR_VARIABLES {
-  SPIRAL = "--c-spiral",
-  BASE = "--c-base",
-  EXTRA_GRAY = "--c-extra-gray",
+  BACKGROUND = "--c-background",
+  DARKEN_GRAY = "--c-darken-gray",
+  DARK_GRAY = "--c-dark-gray",
   GRAY = "--c-gray",
   RED = "--c-red",
   ORANGE = "--c-orange",
@@ -17,7 +17,7 @@ export enum CSS_COLOR_VARIABLES {
   CYAN = "--c-cyan",
   BLUE = "--c-blue",
   MAGENTA = "--c-magenta",
-  WHITE = "--c-white",
+  FOREGROUND = "--c-foreground",
 }
 
 export const LOCAL_CACHE_FIELD_NAME = "pokoy-last-session"

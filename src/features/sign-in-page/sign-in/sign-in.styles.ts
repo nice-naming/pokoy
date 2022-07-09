@@ -13,7 +13,7 @@ export const SignInButton = styled.button`
   padding: 1rem 4rem;
   align-items: center;
   justify-content: center;
-  background-color: var(--c-background);
+  background-color: var(--c-darken-gray);
   border: 0.5rem solid var(--c-gray);
   width: 60%;
   color: var(--c-foreground);

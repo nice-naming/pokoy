@@ -30,7 +30,7 @@
   transition: all 0.5s ease-out;
 }
 .spiralBackgroundStarted {
-  stroke: var(--c-spiral);
+  stroke: var(--c-background);
 }
 .spiralBackgroundLoading {
   stroke: white;

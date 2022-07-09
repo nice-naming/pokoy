@@ -47,7 +47,7 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
       {nextHoursMilestone && nextMilestoneDate ? (
         <>
           <StyledStat>
-            <StyledTooltip content={dateOfNextMilestone}>
+            <StyledTooltip content={dateOfNextMilestone} positionSide="right">
               <StyledStatNumber>{daysUntilNextMilestone}*</StyledStatNumber>
             </StyledTooltip>
 
@@ -62,7 +62,7 @@ export const Foresight: React.FC<Props> = ({ totalHours, average }) => {
             <LineProgress
               className="progress-bar"
               percent={milestoneProgress}
-              trailColor={"var(--c-extra-gray)"}
+              trailColor={"var(--c-dark-gray)"}
               strokeColor={"var(--c-cyan)"}
             />
           </ProgressWrapper>
