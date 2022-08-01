@@ -1,6 +1,6 @@
 import { useOnline } from "@saulpalv/useonline"
 import { useLocation } from "react-router-dom"
-import { AppUpdater } from "../app-updater"
+import AppUpdater from "../app-updater/app-updater.component"
 import { OfflineStatus } from "../offline-status"
 import { SignOut } from "../sign-out"
 import { StyledLink, Wrapper } from "./header.styles"
