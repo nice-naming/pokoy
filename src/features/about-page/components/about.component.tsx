@@ -28,8 +28,8 @@ export const About = () => {
       </small>
 
       <p style={{ marginBottom: "0" }}>
-        This app manipulates your "inner monkey" to increase the length of your
-        daily meditation.
+        It manipulates your "inner monkey" to help you meditate longer every
+        day.
       </p>
 
       <StyledList>

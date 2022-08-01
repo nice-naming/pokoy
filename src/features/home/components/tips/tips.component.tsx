@@ -20,9 +20,7 @@ interface Props {
 export const Tips: React.FC<Props> = React.memo(
   ({ minutes, isTimerStarted }) => {
     const [currentStage, setCurrentStage] = React.useState(0)
-
     const getNextStage = useCallback(getNextFibonacciStage, [])
-
     const nextStage = getNextStage(currentStage, minutes)
 
     // TODO: extract function
@@ -78,7 +76,7 @@ export const Tips: React.FC<Props> = React.memo(
             </StageWrapper>
           </>
         ) : (
-          <StyledTip>Tap the circle to start</StyledTip>
+          <StyledTip>Press the circle to start</StyledTip>
         )}
       </Wrapper>
     )

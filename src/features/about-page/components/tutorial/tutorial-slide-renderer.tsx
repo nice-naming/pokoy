@@ -20,7 +20,7 @@ export const tutorialSlideRenderer = ({ index, key }: SlideRenderProps) => {
     case 4:
       return <TutorialFifthStep key={key} />
     default:
-      return <p>Этот шаг ещё не существует 🤷‍♂️</p>
+      return <p>This step doesn't yet exist 🤷‍♂️</p>
   }
 }
 
@@ -72,6 +72,7 @@ const TutorialFourthStep: React.FC = () => {
         After the second click, your session is over. The session time will be
         recorded in the statistics.
       </p>
+      <StyledImg src={firstStepImg} alt="fifth step" />
     </SwipeableView>
   )
 }
