@@ -1,13 +1,14 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useCallback } from "react"
 import { User } from "@firebase/auth"
 import { useAppDispatch, useAppSelector } from "store"
+import useNoSleep from "shared/hooks/use-no-sleep"
 import { mainScreenActions } from "../../store/main-screen.slice"
 import { setMeditationThunk } from "../../store/main-screen.thunks"
 import { TimerButton } from "../timer-button/timer-button.component"
 import { Countdown } from "../countdown/countdown.component"
+import { Sound } from "../sound.component"
 import { Tips } from "../tips"
-import { sendSessionFromLocalStore } from "./writeSessionToServer"
-import { PokoySession } from "shared/types"
+import { FibSpiral } from "../fib-spiral/fib-spiral.component"
 import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
 import { SECS_IN_MIN } from "shared/constants"
 
@@ -20,8 +21,10 @@ interface Props {
 export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
+
   const isTimerStarted =
     useAppSelector((state) => state.mainScreen.timerStatus) === "started"
+  useNoSleep(isTimerStarted)
   const dispatch = useAppDispatch()
 
   const minutes = Math.floor(timerDiff / SECS_IN_MIN)
@@ -72,28 +75,12 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const handleClick = useCallback(() => {
     setTimerDiff(0)
 
-    if (isStarted) {
+    if (isTimerStarted) {
       return finishTimer(timerDiff)
     } else {
       return startTimer()
     }
-  }, [finishTimer, isStarted, startTimer, timerDiff])
-
-  // TODO: extract function in useEffect from component or extract custom hook
-  useEffect(() => {
-    const storedAfterFailurePokoySession = window?.localStorage.getItem(
-      LOCAL_CACHE_FIELD_NAME
-    )
-
-    if (storedAfterFailurePokoySession) {
-      const lastSession = JSON.parse(
-        storedAfterFailurePokoySession
-      ) as PokoySession
-
-      sendSessionFromLocalStore(firestore, user, lastSession)
-      window?.localStorage.removeItem(LOCAL_CACHE_FIELD_NAME)
-    }
-  }, [user])
+  }, [finishTimer, isTimerStarted, startTimer, timerDiff])
 
   return (
     <Wrapper>
@@ -103,7 +90,7 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
 
       <TimerButton
         handleTimerClick={handleClick}
-        isTimerStarted={isStarted}
+        isTimerStarted={isTimerStarted}
         authLoading={authLoading}
       >
         <Sound progress={timerDiff} />
@@ -111,7 +98,9 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
       </TimerButton>
 
       <BottomTextWrapper>
-        {!authLoading && <Tips minutes={minutes} isTimerStarted={isStarted} />}
+        {!authLoading && (
+          <Tips minutes={minutes} isTimerStarted={isTimerStarted} />
+        )}
       </BottomTextWrapper>
     </Wrapper>
   )

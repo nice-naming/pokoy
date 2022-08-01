@@ -2,6 +2,7 @@ import { formatISO, parse } from "date-fns"
 import { doc, Firestore, setDoc } from "firebase/firestore"
 import { v4 } from "uuid"
 
+// NOTE: This is a temporary solution to migrate data from local data to Firestore.
 export const importDataToFirestore = async (firestore: Firestore) => {
   const data = [{ timestamp: "", duration: 0 }]
 
