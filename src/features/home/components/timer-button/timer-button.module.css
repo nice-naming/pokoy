@@ -1,8 +1,9 @@
 @keyframes pulse-animation {
-  13% {
+  0% {
     box-shadow: 0 0 0 0 var(--c-gray);
     opacity: 1;
   }
+  50%,
   100% {
     box-shadow: 0 0 0 3rem var(--c-gray);
     opacity: 0;
@@ -40,7 +41,7 @@
   border-radius: 50%;
 }
 .timerButton:focus:after {
-  animation: pulse-animation 6.66s ease-out infinite;
+  animation: 4s pulse-animation cubic-bezier(0.13, 0.4, 0.4, 1) infinite;
 }
 .timerButton::before {
   display: none;

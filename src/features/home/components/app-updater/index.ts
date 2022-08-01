@@ -1,1 +1,1 @@
-export { default as AppUpdater } from "./app-updater"
+export { default as AppUpdater } from "./app-updater.component"

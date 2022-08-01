@@ -1,14 +1,14 @@
+import { Line as LineProgress } from "rc-progress"
+import { add, format } from "date-fns"
+import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 import {
   getFloorProgressionDiscrete,
   getNextStageInProgression,
 } from "shared/utils/getNextFibonacciStage"
-import { StyledStat, StyledStatNumber } from "../../user-stats.styles"
-import { ProgressWrapper, Wrapper } from "./foresight.styles"
-import { Line as LineProgress } from "rc-progress"
-import { add, format } from "date-fns"
-import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
-import { PRACTICE_HOURS_PROGRESSION } from "features/user-stats/constants"
 import { StyledTooltip } from "shared/components/styled-tooltip.styles"
+import { StyledStat, StyledStatNumber } from "../../user-stats.styles"
+import { PRACTICE_HOURS_PROGRESSION } from "../../user-stats.constants"
+import { ProgressWrapper, Wrapper } from "./foresight.styles"
 
 interface Props {
   totalHours: number

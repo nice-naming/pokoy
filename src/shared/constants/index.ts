@@ -20,7 +20,7 @@ export enum CSS_COLOR_VARIABLES {
   FOREGROUND = "--c-foreground",
 }
 
-export const LOCAL_CACHE_FIELD_NAME = "pokoy-last-session"
+export const LOCAL_CACHE_FIELD_NAME = "pokoy-local-sessions"
 
 export const REQUEST_STATUS_TO_COLOR_MAP = new Map<RequestStatus, string>([
   [RequestStatus.NONE, "var(--c-gray)"],

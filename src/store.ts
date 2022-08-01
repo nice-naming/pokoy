@@ -1,6 +1,6 @@
 import { AnyAction, configureStore, ThunkAction } from "@reduxjs/toolkit"
 import { aboutPageSliceReducer } from "features/about-page/about-page.slice"
-import { mainScreenSliceReducer } from "features/home/main-screen.slice"
+import { mainScreenSliceReducer } from "features/home/store/main-screen.slice"
 import { userStatsSliceReducer } from "features/user-stats/store/user-stats.slice"
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
 

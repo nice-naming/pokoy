@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/m0rtyn/pokoy/compare/v2.0.2...v2.1.0) (2022-08-01)
+
+
+### Features
+
+* add marker of the successful request after meditation ([80b23f0](https://github.com/m0rtyn/pokoy/commit/80b23f07418bd716298c477932417555be8a2e99))
+* add persitance for Firebase cache / remove writing to local storage ([a4f550d](https://github.com/m0rtyn/pokoy/commit/a4f550d10bc4b66519ada099e53938cfd42d2ce6))
+
+
+### Bug Fixes
+
+* app version rendering ([9feb10e](https://github.com/m0rtyn/pokoy/commit/9feb10e387a788aa6667abe0ed75fa8115e75dcd))
+* expand swipeable area of tutorial ([26538ff](https://github.com/m0rtyn/pokoy/commit/26538ff519edde49f8249750668ba01f3ca485a4))
+
 ### [2.0.2](https://github.com/m0rtyn/pokoy/compare/v2.0.0...v2.0.2) (2022-07-09)
 
 

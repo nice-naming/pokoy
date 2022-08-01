@@ -18,11 +18,7 @@ import {
   Timestamp,
   where,
 } from "firebase/firestore"
-import {
-  INIT_DAY_DATA,
-  LOCAL_CACHE_FIELD_NAME,
-  SECS_IN_MIN,
-} from "shared/constants"
+import { INIT_DAY_DATA, SECS_IN_MIN } from "shared/constants"
 import { PokoySession, ServerDayData } from "shared/types"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 
@@ -40,9 +36,7 @@ export const createSessionData = (
   }
 }
 
-// TODO: solve linter issues
-// eslint-disable-next-line max-statements
-export const sendSessionFromSeconds = async (
+export const sendSessionFromApp = async (
   firestoreDB: Firestore,
   user: User | null | undefined,
   seconds: number
@@ -54,22 +48,6 @@ export const sendSessionFromSeconds = async (
 
   const pokoyData = createSessionData(user.uid, seconds)
   return await sendMeditationToServer(firestoreDB, pokoyData)
-}
-
-// TODO: add working with several session not just last
-export const sendSessionFromLocalStore = async (
-  firestoreDB: Firestore,
-  user: User | null | undefined,
-  LocalPokoyData: PokoySession
-) => {
-  const isSessionLongerThanMinute =
-    Number(LocalPokoyData.duration) > SECS_IN_MIN
-
-  if (!isSessionLongerThanMinute || !user) {
-    return
-  }
-
-  return await sendMeditationToServer(firestoreDB, LocalPokoyData)
 }
 
 /* eslint-disable-next-line max-statements */
@@ -99,7 +77,6 @@ export const sendMeditationToServer = async (
     }
   } catch (e) {
     console.error("⛔️", e)
-    writeToLocalStore(pokoyData)
   }
 }
 
@@ -173,13 +150,5 @@ const setDay = async (
     await setDoc(dayRef, newDayData)
   } catch (e) {
     console.error("⛔️", e)
-    writeToLocalStore(pokoyData)
   }
-}
-
-function writeToLocalStore(pokoyData: PokoySession) {
-  window?.localStorage.setItem(
-    LOCAL_CACHE_FIELD_NAME,
-    JSON.stringify(pokoyData)
-  )
 }

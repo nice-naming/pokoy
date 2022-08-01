@@ -1,0 +1,75 @@
+.checkmark {
+  display: inline-block;
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+
+  stroke: var(--c-background);
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  margin: 1rem;
+  box-shadow: inset 0px 0px 0px var(--c-green);
+
+  animation-name: bgFilling, bgScaling, disappearing;
+  animation-duration: 0.4s, 0.3s, 1s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.4s, 0.9s, 3s;
+  animation-fill-mode: forwards;
+}
+
+.checkmarkBg {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: var(--c-green);
+  fill: none;
+
+  animation-name: strokeDrawing;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.45, 1);
+  animation-fill-mode: forwards;
+}
+
+.checkmarkIcon {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation-name: strokeDrawing;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.45, 1);
+  animation-delay: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes strokeDrawing {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bgScaling {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes bgFilling {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px var(--c-green);
+  }
+}
+
+@keyframes disappearing {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,16 +1,16 @@
 import React, { useCallback } from "react"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { auth } from "features/home/firebase-init"
-import { Pokoy } from "features/home/components/pokoy/pokoy.component"
-import { Wrapper, SwipeableView, StyledFooter } from "./app.styles"
 import SwipeableViews from "react-swipeable-views"
 import { UserStats } from "features/user-stats/user-stats"
 import { User } from "firebase/auth"
-import { Header } from "./components/header/header.component"
-import { ViewsSwitcher } from "./components/views-switcher/views-switcher.component"
 import { SlideRenderProps, virtualize } from "react-swipeable-views-utils"
 import { useAppDispatch, useAppSelector } from "store"
-import { mainScreenActions } from "features/home/main-screen.slice"
+import { mainScreenActions } from "./store/main-screen.slice"
+import { Header } from "./components/header/header.component"
+import { Pokoy } from "./components/pokoy/pokoy.component"
+import { ViewsSwitcher } from "./components/views-switcher/views-switcher.component"
+import { auth } from "./firebase-init"
+import { Wrapper, SwipeableView, StyledFooter } from "./app.styles"
 
 const { toggleSlideIndex } = mainScreenActions
 

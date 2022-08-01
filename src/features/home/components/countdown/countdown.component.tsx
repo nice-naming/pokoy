@@ -1,7 +1,9 @@
 import React from "react"
+import { CheckMark } from "shared/components/check-mark/check-mark.component"
 import { StyledTooltip } from "shared/components/styled-tooltip.styles"
 import { FIBONACCI_NUMS, SECS_IN_MIN } from "shared/constants"
 import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
+import { useAppSelector } from "store"
 import { StyledCountdown } from "./countdown.styles"
 import { remainTimeToDigitClock } from "./remainTimeToDigitClock"
 
@@ -13,11 +15,13 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
   const [secondsRemain, setSecondsRemain] = React.useState(0)
   const [minutesRemain, setMinutesRemain] = React.useState(0)
   const [timeRemain, setTimeRemain] = React.useState("00:00")
+  const status = useAppSelector((state) => state.mainScreen.status)
 
   const timerProgressToCountdown = React.useCallback((seconds: number) => {
     const minutes = Math.floor(seconds / SECS_IN_MIN)
     const closestDiscreteStage = getFibonacciDiscrete(minutes)
 
+    // TODO: extract functionality to an external function
     for (const num of FIBONACCI_NUMS) {
       if (closestDiscreteStage === num) {
         const nextStageIndex = FIBONACCI_NUMS.indexOf(closestDiscreteStage) + 1
@@ -59,6 +63,7 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
       content={"Time left until the next stage"}
     >
       <StyledCountdown>{timeRemain}</StyledCountdown>
+      {status === "loaded" && <CheckMark />}
     </StyledTooltip>
   )
 }

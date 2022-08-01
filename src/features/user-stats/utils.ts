@@ -22,7 +22,7 @@ import {
   SECONDARY_AXIS_LABEL,
   TERTIARY_AXIS_LABEL,
   THIRD_PART,
-} from "./constants"
+} from "./user-stats.constants"
 import { getForesightDaysData } from "./get-data"
 
 export const getTotalInHours = (minutes: number): number => {
