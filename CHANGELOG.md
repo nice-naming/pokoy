@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/m0rtyn/pokoy/compare/v2.1.0...v2.1.1) (2022-08-01)
+
+
+### Bug Fixes
+
+* import path to component ([8c8c38f](https://github.com/m0rtyn/pokoy/commit/8c8c38ffec18a583162223ba23826170b00e9890))
+
 ## [2.1.0](https://github.com/m0rtyn/pokoy/compare/v2.0.2...v2.1.0) (2022-08-01)
 
 
