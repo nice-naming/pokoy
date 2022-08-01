@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react"
 import { User } from "@firebase/auth"
-import { LOCAL_CACHE_FIELD_NAME, SECS_IN_MIN } from "shared/constants"
-import { firestore } from "../../firebase-init"
+import { useAppDispatch, useAppSelector } from "store"
+import { mainScreenActions } from "../../store/main-screen.slice"
+import { setMeditationThunk } from "../../store/main-screen.thunks"
 import { TimerButton } from "../timer-button/timer-button.component"
 import { Countdown } from "../countdown/countdown.component"
 import { Tips } from "../tips"
@@ -23,9 +24,8 @@ interface Props {
 export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
-  // TODO: extract to store
-  const [isStarted, setStartedFlag] = useState(false)
-  useNoSleep(isStarted)
+  const isTimerStarted =
+    useAppSelector((state) => state.mainScreen.timerStatus) === "started"
   const dispatch = useAppDispatch()
 
   const minutes = Math.floor(timerDiff / SECS_IN_MIN)
@@ -36,7 +36,8 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
       if (!isCurrentTimerIdExist) throw Error("currentTimerId is not exist")
 
       window.clearInterval(currentTimerId)
-      setStartedFlag(false)
+
+      dispatch(mainScreenActions.setTimerStatus(false))
       setTimerDiff(0)
 
       const isSessionLongerThanMinute = timerDiff > SECS_IN_MIN
@@ -63,14 +64,14 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
 
   const startTimer = useCallback(() => {
     const startInSeconds = Math.round(Date.now() / 1000)
-    setStartedFlag(true)
+    dispatch(mainScreenActions.setTimerStatus(true))
 
     const newTimerId = window.setInterval(
       () => handleTimer(startInSeconds),
       100
     )
     setCurrentTimerId(newTimerId)
-  }, [handleTimer])
+  }, [dispatch, handleTimer])
 
   const handleClick = useCallback(() => {
     setTimerDiff(0)

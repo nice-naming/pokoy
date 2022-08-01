@@ -1,8 +1,4 @@
 import { User } from "@firebase/auth"
-import {
-  getChartDataThunk,
-  getStatsThunk,
-} from "features/user-stats/user-stats.thunks"
 import { useEffect, useMemo } from "react"
 import { useAppDispatch, useAppSelector } from "store"
 import { StatsChart } from "./components/stats-chart/stats-chart.component"
@@ -16,6 +12,7 @@ import {
   selectIsLoading,
   selectUserStats,
 } from "./store/user-stats.selectors"
+import { getChartDataThunk, getStatsThunk } from "./store/user-stats.thunks"
 
 interface Props {
   authLoading: boolean

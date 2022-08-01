@@ -11,21 +11,14 @@ import {
 } from "firebase/firestore"
 import { INIT_SERVER_USER_STATS } from "shared/constants"
 import { DayData, ServerUserStatsData } from "shared/types"
-import {
-  serverDayDataToStoreAdapter,
-  serverStatsDataToStoreAdapter,
-} from "shared/utils/adapters"
+import { serverStatsDataToStoreAdapter } from "shared/utils/adapters"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
-import { AppDispatch, RootState } from "store"
-import { firestore } from "../home/firebase-init"
-import { FEATURE_NAME, userStatsActions } from "./store/user-stats.slice"
-import { fetchDays, fetchStats } from "./get-data"
-import { getFullRange } from "./get-full-range"
-import { cutDaysDataRange } from "./utils"
-import {
-  createSessionData,
-  sendMeditationToServer,
-} from "features/home/components/pokoy/writeSessionToServer"
+import { firestore } from "../../home/firebase-init"
+import { userStatsActions } from "./user-stats.slice"
+import { fetchDays, fetchStats } from "../get-data"
+import { getFullRange } from "../get-full-range"
+import { cutDaysDataRange } from "../utils"
+import { FEATURE_NAME } from "../user-stats.constants"
 
 export const getStatsThunk = createAsyncThunk(
   `${FEATURE_NAME}/getStats` as const,
@@ -97,44 +90,5 @@ export const setUserStatsThunk = createAsyncThunk(
     } catch (e) {
       console.error("ERROR: ", e)
     }
-  }
-)
-
-type Payload = {
-  user: User
-  seconds: number
-}
-
-type ThunkAPI = {
-  state: RootState
-  dispatch: AppDispatch
-}
-
-export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
-  `${FEATURE_NAME}/setMeditation` as const,
-  // eslint-disable-next-line max-statements
-  async ({ user, seconds }, thunkAPI): Promise<void> => {
-    if (!user) {
-      console.error("User is not defined. Request not sended.", "user: ", user)
-      return
-    }
-
-    const sessionData = createSessionData(user.uid, seconds)
-    const serverDayData = await sendMeditationToServer(firestore, sessionData)
-
-    if (!serverDayData) throw new Error("Request failure")
-
-    const dayData = serverDayDataToStoreAdapter(serverDayData)
-    const index = thunkAPI
-      .getState()
-      .userStats.daysData.findIndex((d) => d.timestamp === dayData.timestamp)
-
-    if (index === -1) {
-      thunkAPI.dispatch(userStatsActions.addDay(dayData))
-    } else {
-      thunkAPI.dispatch(userStatsActions.updateDay({ dayData, index }))
-    }
-
-    thunkAPI.dispatch(setUserStatsThunk({ dayData, user }))
   }
 )

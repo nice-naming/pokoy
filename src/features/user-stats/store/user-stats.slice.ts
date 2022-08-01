@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { DayData, UserStatsData } from "shared/types"
-import {
-  getChartDataThunk,
-  setMeditationThunk,
-  getStatsThunk,
-} from "../user-stats.thunks"
-
-export const FEATURE_NAME = "user-stats"
+import { FEATURE_NAME } from "../user-stats.constants"
+import { getChartDataThunk, getStatsThunk } from "./user-stats.thunks"
 
 export interface UserStatsState {
   daysData: DayData[]
@@ -61,9 +56,6 @@ export const userStatsSlice = createSlice({
       })
       .addCase(getChartDataThunk.rejected, (state, action) => {
         state.status = "error"
-      })
-      .addCase(setMeditationThunk.fulfilled, (state, action) => {
-        state.status = "loaded"
       })
   },
 })
