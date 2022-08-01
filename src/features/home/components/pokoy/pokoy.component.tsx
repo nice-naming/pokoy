@@ -9,11 +9,7 @@ import { Tips } from "../tips"
 import { sendSessionFromLocalStore } from "./writeSessionToServer"
 import { PokoySession } from "shared/types"
 import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
-import { Sound } from "features/home/components/sound.component"
-import { FibSpiral } from "../fib-spiral/fib-spiral.component"
-import { setMeditationThunk } from "features/user-stats/user-stats.thunks"
-import { useAppDispatch } from "store"
-import useNoSleep from "shared/hooks/use-no-sleep"
+import { SECS_IN_MIN } from "shared/constants"
 
 interface Props {
   user: User

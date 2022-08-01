@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "store"
-
-export const FEATURE_NAME = "aboutPage"
+import { FEATURE_NAME } from "./about-page.constants"
 
 export interface AboutPageState {
   isLoading: boolean

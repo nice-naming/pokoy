@@ -18,11 +18,7 @@ import {
   Timestamp,
   where,
 } from "firebase/firestore"
-import {
-  INIT_DAY_DATA,
-  LOCAL_CACHE_FIELD_NAME,
-  SECS_IN_MIN,
-} from "shared/constants"
+import { INIT_DAY_DATA, SECS_IN_MIN } from "shared/constants"
 import { PokoySession, ServerDayData } from "shared/types"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 

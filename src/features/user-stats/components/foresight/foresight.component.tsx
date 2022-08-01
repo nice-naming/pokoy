@@ -1,8 +1,10 @@
+import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 import {
   getFloorProgressionDiscrete,
   getNextStageInProgression,
 } from "shared/utils/getNextFibonacciStage"
 import { StyledStat, StyledStatNumber } from "../../user-stats.styles"
+import { PRACTICE_HOURS_PROGRESSION } from "../../user-stats.constants"
 import { ProgressWrapper, Wrapper } from "./foresight.styles"
 import { Line as LineProgress } from "rc-progress"
 import { add, format } from "date-fns"
