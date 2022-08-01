@@ -1,5 +1,9 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+import {
+  getFirestore,
+  enableIndexedDbPersistence,
+  CACHE_SIZE_UNLIMITED,
+} from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import "firebase/firestore"
 import { createUserStats } from "./createUserStats"
@@ -11,6 +15,7 @@ const firebaseConfig = {
   storageBucket: "pokoy-1bf7f.appspot.com",
   messagingSenderId: "550756523308",
   appId: "1:550756523308:web:adfbe8e9b9157844f2a089",
+  cacheSizeBytes: CACHE_SIZE_UNLIMITED,
 }
 
 const firebaseApp = initializeApp(firebaseConfig)
@@ -18,3 +23,17 @@ export const auth = getAuth(firebaseApp)
 export const firestore = getFirestore(firebaseApp)
 
 onAuthStateChanged(auth, createUserStats)
+
+enableIndexedDbPersistence(firestore).catch((err) => {
+  if (err.code === "failed-precondition") {
+    console.error(
+      "Multiple tabs open, persistence can only be enabled in one tab at a a time."
+    )
+  } else if (err.code === "unimplemented") {
+    console.error(
+      "The current browser does not support all of the features required to enable persistence"
+    )
+  }
+
+  throw new Error("Unexpected Firebase error: ", err)
+})
