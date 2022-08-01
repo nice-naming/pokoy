@@ -1,3 +1,5 @@
+import "firebase/firestore"
+import { getAnalytics } from "firebase/analytics"
 import { initializeApp } from "firebase/app"
 import {
   getFirestore,
@@ -5,11 +7,10 @@ import {
   CACHE_SIZE_UNLIMITED,
 } from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-import "firebase/firestore"
 import { createUserStats } from "./createUserStats"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCi-EqHSZokQvSvemUnyQ_gFV6Aq3u44Ig",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "pokoy-1bf7f.firebaseapp.com",
   projectId: "pokoy-1bf7f",
   storageBucket: "pokoy-1bf7f.appspot.com",
@@ -19,6 +20,7 @@ const firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig)
+const analytics = getAnalytics(firebaseApp)
 export const auth = getAuth(firebaseApp)
 export const firestore = getFirestore(firebaseApp)
 
