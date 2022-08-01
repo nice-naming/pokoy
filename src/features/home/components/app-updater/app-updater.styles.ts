@@ -1,6 +1,7 @@
 import styled from "styled-components/macro"
 
 export const StyledUpdateButton = styled.button`
+  font-size: 1rem;
   background-color: var(--c-darken-gray);
   color: var(--c-foreground);
   border: 0.25rem solid var(--c-dark-gray);
