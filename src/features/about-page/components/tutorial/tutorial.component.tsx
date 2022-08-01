@@ -23,6 +23,7 @@ export const Tutorial = () => {
     <AboutPageWrapper>
       <VirtualizedSwipeableViews
         slideRenderer={tutorialSlideRenderer}
+        style={{ height: "100%" }}
         onChangeIndex={setSlideIndex}
         index={slideIndex}
         slideCount={SLIDES_COUNT}
