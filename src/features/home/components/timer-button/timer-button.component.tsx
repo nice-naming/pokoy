@@ -19,6 +19,20 @@ export const TimerButton: React.FC<Props> = ({
   const [playClick] = useSound(clickSfx)
   const [isTimerPressed, setIsTimerPressed] = React.useState(false)
 
+  const clickWithSound = React.useCallback(() => {
+    playClick()
+    handleTimerClick()
+  }, [handleTimerClick, playClick])
+
+  const handleKeyDown = React.useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === "Space" || e.key === "Enter") {
+        clickWithSound()
+      }
+    },
+    [clickWithSound]
+  )
+
   const bindLongPress = useLongPress(
     () => {
       clickWithSound()
@@ -34,11 +48,6 @@ export const TimerButton: React.FC<Props> = ({
     }
   )
 
-  const clickWithSound = React.useCallback(() => {
-    playClick()
-    handleTimerClick()
-  }, [handleTimerClick, playClick])
-
   const classNames = React.useMemo(() => {
     return `${styles.timerButton} ${
       isTimerStarted ? styles.timerStarted : null
@@ -52,7 +61,13 @@ export const TimerButton: React.FC<Props> = ({
   }, [isTimerPressed])
 
   return (
-    <button {...bindLongPress()} className={classNames} type="button" autoFocus>
+    <button
+      {...bindLongPress()}
+      onKeyDown={handleKeyDown}
+      className={classNames}
+      type="button"
+      autoFocus
+    >
       <div className={pressProgressClassNames} />
       {children}
     </button>
