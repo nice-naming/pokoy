@@ -6,8 +6,10 @@ import {
 } from "@3m1/service-worker-updater"
 import { StyledUpdateButton, StyledAppVersion } from "./app-updater.styles"
 
-const AppUpdater: React.FC<ServiceWorkerUpdaterProps> = (props) => {
-  const { newServiceWorkerDetected, onLoadNewServiceWorkerAccept } = props
+const AppUpdater: React.FC<ServiceWorkerUpdaterProps> = ({
+  newServiceWorkerDetected,
+  onLoadNewServiceWorkerAccept,
+}) => {
   const appVersion = useRef("")
 
   useEffect(() => {
