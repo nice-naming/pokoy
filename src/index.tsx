@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom"
 import { store } from "./store"
 import { Provider } from "react-redux"
 import { ErrorBoundary } from "error-boundary"
+import "./global.css"
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(
