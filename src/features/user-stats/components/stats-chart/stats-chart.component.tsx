@@ -12,13 +12,17 @@ import {
 import { THIRD_PART } from "../../user-stats.constants"
 
 interface Props {
-  chartData: UserSerie<PokoyChartData>[]
+  chartData: UserSerie<PokoyChartData>[] | null
+}
+
+const CHART_DATA_EMPTY: UserSerie<PokoyChartData> = {
+  data: [],
 }
 
 export const StatsChart: React.FC<Props> = ({ chartData }) => {
   const getDatumStyle = useCallback(
     (datum: Datum<PokoyChartData>): DatumStyles => {
-      const dataLength = chartData[0].data.length
+      const dataLength = chartData?.[0].data.length || 0
       const startPositionOfForesight = Math.round(dataLength / (1 + THIRD_PART))
 
       return datum.index + 1 > startPositionOfForesight ? { opacity: 0.5 } : {}
@@ -28,7 +32,7 @@ export const StatsChart: React.FC<Props> = ({ chartData }) => {
 
   const chartOptions = useMemo(
     () => ({
-      data: chartData,
+      data: chartData || [CHART_DATA_EMPTY],
       getDatumStyle,
       //
       dark: true,

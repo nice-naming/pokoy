@@ -39,7 +39,7 @@ export const getStatsThunk = createAsyncThunk(
 )
 
 export const getChartDataThunk = createAsyncThunk(
-  `${FEATURE_NAME}/getDays` as const,
+  `${FEATURE_NAME}/getChartData` as const,
   // TODO: refactor this method
   // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
