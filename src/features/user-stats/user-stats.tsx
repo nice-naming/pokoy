@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "store"
 import { StatsChart } from "./components/stats-chart/stats-chart.component"
 import { StatsNumbers } from "./components/stats-numbers/stats-numbers.component"
 import { Wrapper } from "./user-stats.styles"
-import { transformDayDataToChartData } from "./utils"
+import { getUserChartData } from "./utils"
 import { StyledSpinner } from "shared/components/styled-spinner.styles"
 import { NoUserStatsMessage } from "./components/no-user-stats-message"
 import {
@@ -29,7 +29,7 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
 
   const userChartData = useMemo(() => {
     if (!userStatistics) return null
-    return transformDayDataToChartData(userDaysData, userStatistics)
+    return getUserChartData(userDaysData, userStatistics)
   }, [userDaysData, userStatistics])
 
   useEffect(() => {

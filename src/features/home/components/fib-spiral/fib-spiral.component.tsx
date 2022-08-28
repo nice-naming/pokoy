@@ -58,14 +58,25 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
     >
       <defs>
         <radialGradient id="Gradient">
-          <stop offset="0%" stopColor="#8b8b8b" />
-          <stop offset="100%" stopColor="white" />
-        </radialGradient>
+          <stop offset="0%" stopColor="#777" />
 
-        <mask id="Mask">
-          <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient)" />
-        </mask>
+          <stop offset="0%" stopColor="white">
+            <animate
+              attributeName="offset"
+              from="0%"
+              to="100%"
+              dur="60s"
+              repeatCount="indefinite"
+            />
+          </stop>
+
+          <stop offset="100%" stopColor="white"></stop>
+        </radialGradient>
       </defs>
+
+      <mask id="Mask">
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient)" />
+      </mask>
 
       <path
         className={spiralBackgroundClassNames}

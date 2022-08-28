@@ -1,9 +1,5 @@
 import { UserSerie } from "react-charts"
-import {
-  INITIAL_MEDITATION_DURATION,
-  MILLIS_IN_DAY,
-  MINS_IN_HOUR,
-} from "shared/constants"
+import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 import {
   roundToTenth,
   roundToHundredth,
@@ -17,8 +13,8 @@ import {
   UserStatsData,
 } from "shared/types"
 import {
+  INIT_TOTAL_DURATION,
   MAX_DAYS_DATA_LENGTH,
-  MAX_DAYS_DATA_LENGTH_WITH_FORESIGHT,
   SECONDARY_AXIS_LABEL,
   TERTIARY_AXIS_LABEL,
   THIRD_PART,
@@ -46,71 +42,52 @@ export const getAverageMeditationPerDay = (
 }
 
 // eslint-disable-next-line max-statements
-export const transformDayDataToChartData = (
-  daysData: DayData[],
-  statsData: UserStatsData
+const transformDayDataToChartData = (
+  daysData: MockDayData[]
 ): UserSerie<PokoyChartData>[] => {
-  const daysDataWithForesight = getDataWithForesight(daysData, statsData)
+  const daysWithMeditationsAxisData: PokoyChartData[] = daysData.map((d) => ({
+    primary: new Date(d.timestamp),
+    secondary: d.totalDuration,
+  }))
+  const totalDurationsAxisData: PokoyChartData[] =
+    daysWithMeditationsAxisData.reduce(
+      (acc, el, i) => getTotalDurationsAsAxisData(acc, el, i),
+      [] as PokoyChartData[]
+    )
 
-  const daysWithMeditationsAsAxis: PokoyChartData[] = daysDataWithForesight.map(
-    (d) => ({
-      primary: new Date(d.timestamp),
-      secondary: d.totalDuration,
-    })
-  )
-
-  const totalDurationsAxisData: PokoyChartData[] = getTotalDurationsAsAxisData(
-    daysWithMeditationsAsAxis
-  )
-
-  const secondaryAxisData = {
+  const secondaryAxisData: UserSerie<PokoyChartData> = {
     label: SECONDARY_AXIS_LABEL,
-    data: daysWithMeditationsAsAxis,
+    data: daysWithMeditationsAxisData,
     id: "2",
     secondaryAxisId: "2",
   }
-  const tertiaryAxisData = {
+  const tertiaryAxisData: UserSerie<PokoyChartData> = {
     label: TERTIARY_AXIS_LABEL,
     data: totalDurationsAxisData,
     id: "1",
-    // secondaryAxisId: "1"
   }
 
   const chartData = [secondaryAxisData, tertiaryAxisData]
   return chartData
 }
 
-function getTotalDurationsAsAxisData(
-  chartData: PokoyChartData[]
-): PokoyChartData[] {
-  const totalDurationAsAxisData = chartData.reduce((acc, d, i, arr) => {
-    const prevTotal = acc[i - 1]?.secondary
-    const total = roundToHundredth(
-      d.secondary / 60 + (prevTotal || INITIAL_MEDITATION_DURATION)
-    )
-    const isFirstElementOfSlicedChartData =
-      arr.length === MAX_DAYS_DATA_LENGTH_WITH_FORESIGHT && i === 0
+export function getTotalDurationsAsAxisData(
+  acc: PokoyChartData[],
+  dayData: PokoyChartData,
+  index: number
+) {
+  const prevTotal = acc[index - 1]?.secondary || INIT_TOTAL_DURATION
+  const newTotal = dayData.secondary / 60 + prevTotal
+  const newData = {
+    primary: dayData.primary,
+    secondary: roundToHundredth(newTotal),
+  }
 
-    return [
-      ...acc,
-      {
-        primary: d.primary,
-        secondary: isFirstElementOfSlicedChartData
-          ? getTotalFromSlicedChartData(arr)
-          : total,
-      },
-    ]
-  }, [] as PokoyChartData[])
-
-  return totalDurationAsAxisData
+  return [...acc, newData]
 }
 
-function getTotalFromSlicedChartData(chartData: PokoyChartData[]) {
-  const firstElement = chartData[0]
-  return firstElement.secondary
-}
-
-export const cutDaysDataRange = (daysData: DayData[]) => {
+// TODO: add generic type for parameters
+const cutDataRange = (daysData: (MockDayData | DayData | PokoyChartData)[]) => {
   const dataLength = daysData.length
 
   if (dataLength <= MAX_DAYS_DATA_LENGTH) {
@@ -139,4 +116,17 @@ function getDataWithForesight(daysData: DayData[], statsData: UserStatsData) {
   )
   const daysDataWithForesight = [...daysData, ...additionalDaysData]
   return daysDataWithForesight
+}
+
+export const getUserChartData = (
+  userDaysData: DayData[],
+  userStatistics: UserStatsData
+) => {
+  const cuttedChartData = cutDataRange(userDaysData) as DayData[]
+  const chartDataWithForesight = getDataWithForesight(
+    cuttedChartData,
+    userStatistics
+  )
+  const chartData = transformDayDataToChartData(chartDataWithForesight)
+  return chartData
 }
