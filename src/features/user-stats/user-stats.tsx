@@ -49,7 +49,7 @@ export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
       ) : isChartDataExist ? (
         <>
           <StatsNumbers statsData={userStatistics} />
-          {userChartData && <StatsChart chartData={userChartData} />}
+          <StatsChart chartData={userChartData} />
         </>
       ) : (
         <NoUserStatsMessage />

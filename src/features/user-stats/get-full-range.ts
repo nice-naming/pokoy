@@ -3,7 +3,7 @@ import { DayData, Milliseconds } from "shared/types"
 
 // NOTE: return array of every meditation for every day from first meditation date
 // TODO: refactor function
-// TODO: add test
+// TODO: add tests
 // eslint-disable-next-line max-statements
 export const getFullRange = (daysWithMeditations: DayData[]) => {
   if (daysWithMeditations.length === 0) return []
@@ -91,9 +91,9 @@ function getDateDiffInDays(
 
   if (diffInDays < 0) {
     const errorMsg = `
-      Отрицательная разница между датами
-      currDate: ${new Date(dayTimestamp).toString()}
-      exptDate: ${new Date(expectedDate).toString()}
+      Negative difference between dates: 
+      current: ${new Date(dayTimestamp).toString()} 
+      expected: ${new Date(expectedDate).toString()} 
       diffDays: ${diffInDays}
     `
     throw new Error(errorMsg)

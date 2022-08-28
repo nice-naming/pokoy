@@ -7,12 +7,14 @@ export interface UserStatsState {
   daysData: DayData[]
   stats: UserStatsData | null
   status: "idle" | "loading" | "error" | "loaded"
+  errorMessage: string | null
 }
 
 const initialState: UserStatsState = {
   daysData: [],
   stats: null,
   status: "idle",
+  errorMessage: null,
 }
 
 export const userStatsSlice = createSlice({
@@ -55,7 +57,9 @@ export const userStatsSlice = createSlice({
         state.status = "loaded"
       })
       .addCase(getChartDataThunk.rejected, (state, action) => {
+        console.error(action.error)
         state.status = "error"
+        state.errorMessage = action.error.message ?? null
       })
   },
 })
