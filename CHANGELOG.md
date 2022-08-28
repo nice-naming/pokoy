@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.5](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.5) (2022-08-28)
+
+
+### Bug Fixes
+
+* move and import global styles correctly ([898def6](https://github.com/m0rtyn/pokoy/commit/898def6d6fc39ced8deff8347f677f1bd60cd72d))
+
 ### [2.1.4](https://github.com/m0rtyn/pokoy/compare/v2.1.3...v2.1.4) (2022-08-28)
 
 ### [2.1.3](https://github.com/m0rtyn/pokoy/compare/v2.1.2...v2.1.3) (2022-08-28)
