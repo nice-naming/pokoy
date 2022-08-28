@@ -17,7 +17,6 @@ import { firestore } from "../../home/firebase-init"
 import { userStatsActions } from "./user-stats.slice"
 import { fetchDays, fetchStats } from "../get-data"
 import { getFullRange } from "../get-full-range"
-import { cutDaysDataRange } from "../utils"
 import { FEATURE_NAME } from "../user-stats.constants"
 
 export const getStatsThunk = createAsyncThunk(
@@ -51,9 +50,8 @@ export const getChartDataThunk = createAsyncThunk(
     }))
 
     const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
-    const slicedChartData = cutDaysDataRange(daysDataFullRange)
 
-    const setChartDataAction = userStatsActions.setChartData(slicedChartData)
+    const setChartDataAction = userStatsActions.setChartData(daysDataFullRange)
     thunkAPI.dispatch(setChartDataAction)
   }
 )

@@ -23,9 +23,8 @@ export function getForesightDaysData(
     stats.firstMeditationDate,
     stats.totalDuration
   )
-  const daysToNextMilestone = additionalDataLength
 
-  const additionalDaysData: MockDayData[] = new Array(daysToNextMilestone)
+  const additionalDaysData: MockDayData[] = new Array(additionalDataLength)
     .fill(null)
     .map((_, i) =>
       getPseudoDayData(i, lastData.timestamp, averageMeditationDuration)

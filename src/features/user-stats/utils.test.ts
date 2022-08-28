@@ -1,6 +1,10 @@
 /* eslint-disable max-nested-callbacks */
 import { MILLIS_IN_DAY } from "shared/constants"
-import { getAverageMeditationPerDay } from "./utils"
+import { PokoyChartData } from "shared/types"
+import {
+  getAverageMeditationPerDay,
+  getTotalDurationsAsAxisData,
+} from "./utils"
 
 describe("getAverageMeditationPerDay", () => {
   it("should return the correct average duration per day", () => {
@@ -31,5 +35,29 @@ describe("getAverageMeditationPerDay", () => {
     expect(getAverageMeditationPerDay(firstMeditationDate, totalDuration)).toBe(
       Infinity
     )
+  })
+})
+
+describe("getTotalDurationsAsAxisData", () => {
+  it("should return the correct total duration as axis data", () => {
+    const daysWithMeditationsAsAxis: PokoyChartData[] = [
+      { primary: new Date(Date.now()), secondary: 100 },
+      { primary: new Date(Date.now()), secondary: 1000 },
+      { primary: new Date(Date.now()), secondary: 10000 },
+      { primary: new Date(Date.now()), secondary: 36500 },
+    ]
+    const expectedTotalDurationsAxisData: PokoyChartData[] = [
+      { primary: new Date(Date.now()), secondary: 100 },
+      { primary: new Date(Date.now()), secondary: 1000 },
+      { primary: new Date(Date.now()), secondary: 10000 },
+      { primary: new Date(Date.now()), secondary: 36500 },
+    ]
+
+    const result = daysWithMeditationsAsAxis.reduce(
+      (acc, data, i) => getTotalDurationsAsAxisData(acc, data, i),
+      [] as PokoyChartData[]
+    )
+
+    expect(result).toEqual(expectedTotalDurationsAxisData)
   })
 })

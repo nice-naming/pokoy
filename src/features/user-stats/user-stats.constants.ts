@@ -1,5 +1,6 @@
 export const FEATURE_NAME = "userStats"
 
+export const INIT_TOTAL_DURATION = 0
 export const SECONDARY_AXIS_LABEL = "Daily duration"
 export const TERTIARY_AXIS_LABEL = "Total duration"
 export const THIRD_PART = 0.3
