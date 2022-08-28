@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/m0rtyn/pokoy/compare/v2.1.1...v2.1.2) (2022-08-28)
+
+
+### Bug Fixes
+
+* **user-stats:** chart data preloader ([eb7cdde](https://github.com/m0rtyn/pokoy/commit/eb7cdde110cfde3ca27f6df52c305ebc7f66fd21))
+
 ### [2.1.1](https://github.com/m0rtyn/pokoy/compare/v2.1.0...v2.1.1) (2022-08-01)
 
 
