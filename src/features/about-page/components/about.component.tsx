@@ -46,6 +46,9 @@ export const About = () => {
             rel="noopener noreferrer"
           >
             Changelog
+            {/* TODO: rework with it
+              fetch("https://raw.githubusercontent.com/m0rtyn/pokoy/master/CHANGELOG.md").then(res => res.text()).then(console.log) 
+            */}
           </a>
         </li>
       </StyledList>

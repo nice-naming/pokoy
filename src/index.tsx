@@ -1,6 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import reportWebVitals from "./reportWebVitals"
+import LogRocket from "logrocket"
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration"
 import { showAppVersion } from "shared/utils/show-app-version"
 import { onServiceWorkerUpdate } from "@3m1/service-worker-updater"
@@ -10,6 +10,8 @@ import { store } from "./store"
 import { Provider } from "react-redux"
 import { ErrorBoundary } from "error-boundary"
 import "./global.css"
+
+LogRocket.init("xtg0yi/pokoy")
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(
@@ -38,4 +40,4 @@ serviceWorkerRegistration.register({
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
+// reportWebVitals()
