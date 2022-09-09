@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.6](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.6) (2022-09-09)
+
+* add logRocket analytics ([1b24d04](https://github.com/m0rtyn/pokoy/commit/1b24d0426cfe8739b5d39c0904b188cff49b63e3))
+
 ### [2.1.5](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.5) (2022-08-28)
 
 
