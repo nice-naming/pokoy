@@ -4,15 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [2.1.6](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.6) (2022-09-09)
 
-
-### Features
-
 * add logRocket analytics ([1b24d04](https://github.com/m0rtyn/pokoy/commit/1b24d0426cfe8739b5d39c0904b188cff49b63e3))
-
-
-### Bug Fixes
-
-* move and import global styles correctly ([898def6](https://github.com/m0rtyn/pokoy/commit/898def6d6fc39ced8deff8347f677f1bd60cd72d))
 
 ### [2.1.5](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.5) (2022-08-28)
 
