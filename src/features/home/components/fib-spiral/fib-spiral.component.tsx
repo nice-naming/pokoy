@@ -1,14 +1,14 @@
 import React, { useMemo } from "react"
 import {
   getColorFromCSSVar,
-  getColorStyleSheetVarName,
+  getColorStyleSheetVarName
 } from "features/home/utils"
 import {
   START_SPIRAL_OFFSET,
   MAX_SPIRAL_VALUE,
-  INIT_STROKE_DASHARRAY,
+  INIT_STROKE_DASHARRAY
 } from "./fib-spiral.constants"
-import { getTimerProgress } from "./get-timer-progress"
+import { getSpiralProgress } from "./utils"
 import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 import styles from "./fib-spiral.module.css"
 import { PATH_TO_DRAWN, SPIRAL_VIEWBOX } from "shared/constants/spiral"
@@ -23,8 +23,9 @@ interface Props {
 }
 
 export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
-  const progress = getTimerProgress(seconds)
   const minutes = Math.floor(seconds / 60)
+
+  const progress = getSpiralProgress(seconds)
   const isEmpty = progress > ALMOST_DONE_VALUE || progress < 1
 
   const fibColor = useMemo(() => {
@@ -34,18 +35,29 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
   }, [minutes])
 
   const isStarted = progress > START_SPIRAL_OFFSET
-  const isStartedClassName = isStarted ? styles.spiralPathStarted : null
-  const isEmptyClassName = isEmpty ? styles.spiralPathEmpty : null
-  const spiralForegroundClassNames = `${styles.spiralPath} ${isStartedClassName} ${isEmptyClassName}`
 
-  const isLoadingClassName = authLoading ? styles.spiralBackgroundLoading : null
-  const spiralBackgroundStartedClassName = isStarted
-    ? styles.spiralBackgroundStarted
-    : null
-  const spiralBackgroundClassNames = `${styles.spiralBackground} ${isLoadingClassName} ${spiralBackgroundStartedClassName} spiral-trial`
+  const fibSpiralClassNames = useMemo(() => {
+    const isSpinningClassName = isStarted ? styles.svgSpinning : null
+    return `${styles.svg} ${isSpinningClassName}`
+  }, [isStarted])
 
-  const isSpinningClassName = isStarted ? styles.svgSpinning : null
-  const fibSpiralClassNames = `${styles.svg} ${isSpinningClassName}`
+  const backgroundClassNames = useMemo(() => {
+    const isLoadingClassName = authLoading
+      ? styles.spiralBackgroundLoading
+      : null
+    const spiralBackgroundStartedClassName = isStarted
+      ? styles.spiralBackgroundStarted
+      : null
+    return `${styles.spiralBackground} ${isLoadingClassName} ${spiralBackgroundStartedClassName} spiral-trial`
+  }, [authLoading, isStarted])
+
+  const foregroundClassNames = useMemo(() => {
+    const spiralForegroundStartedClassName = isStarted
+      ? styles.spiralPathStarted
+      : null
+    const isEmptyClassName = isEmpty ? styles.spiralPathEmpty : null
+    return `${styles.spiralPath} ${spiralForegroundStartedClassName} ${isEmptyClassName}`
+  }, [isEmpty, isStarted])
 
   return (
     <svg
@@ -58,9 +70,15 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
     >
       <defs>
         <radialGradient id="Gradient">
-          <stop offset="0%" stopColor="#777" />
+          <stop
+            offset="0%"
+            stopColor="#777"
+          />
 
-          <stop offset="0%" stopColor="white">
+          <stop
+            offset="0%"
+            stopColor="white"
+          >
             <animate
               attributeName="offset"
               from="0%"
@@ -70,16 +88,25 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
             />
           </stop>
 
-          <stop offset="100%" stopColor="white"></stop>
+          <stop
+            offset="100%"
+            stopColor="white"
+          ></stop>
         </radialGradient>
       </defs>
 
       <mask id="Mask">
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient)" />
+        <rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          fill="url(#Gradient)"
+        />
       </mask>
 
       <path
-        className={spiralBackgroundClassNames}
+        className={backgroundClassNames}
         d={PATH_TO_DRAWN}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -87,7 +114,7 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
       />
 
       <path
-        className={spiralForegroundClassNames}
+        className={foregroundClassNames}
         mask="url(#Mask)"
         stroke={fibColor}
         strokeDasharray={INIT_STROKE_DASHARRAY}
