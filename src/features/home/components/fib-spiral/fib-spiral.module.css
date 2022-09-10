@@ -1,23 +1,14 @@
-@keyframes spinning {
-  0% {
-    transporm: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .svg {
   animation-name: none;
   animation-duration: 60s;
-  /* animation-timing-function: cubic-bezier(.4,.4,.5,.8); */
-  animation-timing-function: linear;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   transform-origin: 50% 50%;
   width: 100%;
   aspect-ratio: 1;
   display: block;
+  /* animation-timing-function: cubic-bezier(.4,.4,.5,.8); */
+  animation-timing-function: linear;
 }
 .svgSpinning {
   animation-name: spinning;
@@ -42,7 +33,6 @@
 .spiralPath {
   filter: drop-shadow(0 0 8px currentColor);
   color: currentColor;
-
   stroke-width: 0rem;
   opacity: 1;
   will-change: stroke-dashoffset, stroke-width, stroke;
@@ -54,4 +44,13 @@
 }
 .spiralPathEmpty {
   opacity: 0;
+}
+
+@keyframes spinning {
+  0% {
+    transporm: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
