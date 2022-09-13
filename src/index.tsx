@@ -9,21 +9,24 @@ import { BrowserRouter } from "react-router-dom"
 import { store } from "./store"
 import { Provider } from "react-redux"
 import { ErrorBoundary } from "error-boundary"
-import "./global.css"
+import { GlobalStyles } from "global-styles"
 
 LogRocket.init("xtg0yi/pokoy")
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(
-  <ErrorBoundary>
-    <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>
-  </ErrorBoundary>,
+  <>
+    <GlobalStyles />
+    <ErrorBoundary>
+      <React.StrictMode>
+        <Provider store={store}>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </Provider>
+      </React.StrictMode>
+    </ErrorBoundary>
+  </>,
   rootElement
 )
 
@@ -34,7 +37,7 @@ showAppVersion()
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register({
   // NOTE: from https://github.com/emibcn/service-worker-updater#usage
-  onUpdate: onServiceWorkerUpdate,
+  onUpdate: onServiceWorkerUpdate
 })
 
 // If you want to start measuring performance in your app, pass a function
