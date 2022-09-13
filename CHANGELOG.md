@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.1) (2022-09-13)
+
+
+### Bug Fixes
+
+* css colors ([9aa55e9](https://github.com/m0rtyn/pokoy/commit/9aa55e970011017001304d80bc123788d40742ba))
+* fib-spiral colors ([83e35bc](https://github.com/m0rtyn/pokoy/commit/83e35bc2c780ce3aa0c852bb092008f6ae581e5f))
+
 ## [2.2.0](https://github.com/m0rtyn/pokoy/compare/v2.1.6...v2.2.0) (2022-09-13)
 
 
