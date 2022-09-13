@@ -22,7 +22,8 @@ const CSSCustomProperties = css`
     --c-green: #00d800; /* constrast 7.30 */
     --c-cyan: #00dcdc; /* constrast 8.27 */
     --c-blue: #abd5ff; /* constrast 9.23 */
-    --c-magenta: #ffcee6; /* constrast 10.26 */
+    --c-purple: #ffc7ff; /* constrast 10.02 */
+    --c-magenta: #ffd8eb; /* constrast 10.97 */
     --c-ultrared: #ffe8e8; /* constrast 12.11 */
     --c-foreground: ${FOREGROUND}; /* constrast 12.99 */
 

@@ -65,15 +65,16 @@ textarea {
   --c-gray: #7f7f7f; /* constrast 3.54 */
 
   --c-red: #ff8686; /* constrast 6.07 */
-  --c-orange: #ff8b16; /* constrast 6.04 */
+  /* --c-orange: #ff8b16; constrast 6.00 */
   --c-yellow: #afaf00; /* constrast 6.04 */
 
   --c-green: #00d800; /* constrast 7.30 */
   --c-cyan: #00dcdc; /* constrast 8.27 */
   --c-blue: #abd5ff; /* constrast 9.23 */
-  --c-magenta: #ffcee6; /* constrast 10.26 */
-  --c-white: #f5f5f5; /* constrast 12.99 */
+  --c-purple: #ffc7ff; /* constrast 10.02 */
+  --c-magenta: #ffd8eb; /* constrast 10.97 */
 
+  --c-white: #f5f5f5; /* constrast 12.99 */
   --c-foreground: var(--c-white);
 
   /* NOTE: layout variables */
