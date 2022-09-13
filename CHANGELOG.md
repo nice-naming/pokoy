@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/m0rtyn/pokoy/compare/v2.1.6...v2.2.0) (2022-09-13)
+
+
+### Features
+
+* rework timer stages calculation ([adb162e](https://github.com/m0rtyn/pokoy/commit/adb162e754b2ad4f5aed54907152d3a576338fec))
+
+
+### Bug Fixes
+
+* change global constants for meditation stages ([8ef26ee](https://github.com/m0rtyn/pokoy/commit/8ef26ee81446560bbd2b313493190d0883fe6192))
+
 ### [2.1.6](https://github.com/m0rtyn/pokoy/compare/v2.1.4...v2.1.6) (2022-09-09)
 
 * add logRocket analytics ([1b24d04](https://github.com/m0rtyn/pokoy/commit/1b24d0426cfe8739b5d39c0904b188cff49b63e3))
