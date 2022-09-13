@@ -4,5 +4,6 @@
   "semi": false,
   "proseWrap": "always",
   "singleAttributePerLine": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "editorconfig": true
 }
