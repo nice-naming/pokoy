@@ -10,8 +10,7 @@ const CSSCustomProperties = css`
       Custom colors scheme
       the conrast of the colors gradualy increases relatively to base color
     */
-    /* --c-background: #2b2b2b; constrast 0 */
-    --c-background: ${BACKGROUND};
+    --c-background: ${BACKGROUND}; /* constrast 0 */
     --c-darken-gray: #333; /* constrast 1.12 */
     --c-dark-gray: #656565; /* constrast 2.43 */
     --c-gray: #7f7f7f; /* constrast 3.54 */
@@ -24,6 +23,7 @@ const CSSCustomProperties = css`
     --c-cyan: #00dcdc; /* constrast 8.27 */
     --c-blue: #abd5ff; /* constrast 9.23 */
     --c-magenta: #ffcee6; /* constrast 10.26 */
+    --c-ultrared: #ffe8e8; /* constrast 12.11 */
     --c-foreground: ${FOREGROUND}; /* constrast 12.99 */
 
     /* NOTE: layout variables */

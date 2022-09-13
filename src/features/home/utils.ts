@@ -7,7 +7,8 @@ export const getColorStyleSheetVarName = (fibNum: number): ColorHex => {
 }
 
 export const getColorFromCSSVar = (colorCSSVarName: string): ColorHex => {
-  return getComputedStyle(document?.documentElement)?.getPropertyValue(
-    colorCSSVarName
-  )
+  const computedStyle = getComputedStyle(
+    document?.documentElement
+  )?.getPropertyValue(colorCSSVarName)
+  return computedStyle
 }

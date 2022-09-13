@@ -12,6 +12,7 @@ import { getSpiralProgress } from "./utils"
 import { getFloorFibonacciDiscrete } from "shared/utils/getFloorFibonacciDiscrete"
 import styles from "./fib-spiral.module.css"
 import { PATH_TO_DRAWN, SPIRAL_VIEWBOX } from "shared/constants/spiral"
+import { CSS_COLOR_VALUES } from "shared/constants"
 
 // TODO: move to constants
 const ALMOST_DONE_PERCENT = 0.995
@@ -31,6 +32,8 @@ export const FibSpiral: React.FC<Props> = ({ seconds, authLoading }) => {
   const fibColor = useMemo(() => {
     const fibStage = getFloorFibonacciDiscrete(minutes)
     const colorCSSVarName = getColorStyleSheetVarName(fibStage)
+
+    if (minutes === 0) return CSS_COLOR_VALUES.RED
     return getColorFromCSSVar(colorCSSVarName)
   }, [minutes])
 
