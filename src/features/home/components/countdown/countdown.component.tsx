@@ -1,7 +1,7 @@
 import React from "react"
 import { CheckMark } from "shared/components/check-mark/check-mark.component"
 import { StyledTooltip } from "shared/components/styled-tooltip.styles"
-import { FIBONACCI_NUMS, SECS_IN_MIN } from "shared/constants"
+import { STAGES, SECS_IN_MIN } from "shared/constants"
 import { getFibonacciDiscrete } from "shared/utils/getNextFibonacciStage"
 import { useAppSelector } from "store"
 import { StyledCountdown } from "./countdown.styles"
@@ -22,13 +22,13 @@ export const Countdown: React.FC<Props> = ({ seconds }) => {
     const closestDiscreteStage = getFibonacciDiscrete(minutes)
 
     // TODO: extract functionality to an external function
-    for (const num of FIBONACCI_NUMS) {
+    for (const num of STAGES) {
       if (closestDiscreteStage === num) {
-        const nextStageIndex = FIBONACCI_NUMS.indexOf(closestDiscreteStage) + 1
+        const nextStageIndex = STAGES.indexOf(closestDiscreteStage) + 1
         const nextStage =
           minutes < closestDiscreteStage
             ? closestDiscreteStage
-            : FIBONACCI_NUMS[nextStageIndex]
+            : STAGES[nextStageIndex]
         const secondsToNextStage = nextStage * SECS_IN_MIN - seconds
 
         const minutesRemain = Math.floor(secondsToNextStage / SECS_IN_MIN)

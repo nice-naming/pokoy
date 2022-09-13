@@ -1,14 +1,8 @@
-import { getColorFromCSSVar } from "features/home/utils"
 import { AxisOptions, TooltipOptions } from "react-charts"
-import { CSS_COLOR_VARIABLES } from "shared/constants"
+import { CSS_COLOR_VALUES } from "shared/constants"
 import { PokoyChartData } from "shared/types"
 
-const { CYAN, DARK_GRAY } = CSS_COLOR_VARIABLES
-
-export const CHART_COLORS = [
-  getColorFromCSSVar(CYAN),
-  getColorFromCSSVar(DARK_GRAY),
-]
+export const CHART_COLORS = [CSS_COLOR_VALUES.CYAN, CSS_COLOR_VALUES.DARK_GRAY]
 
 export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
   // TODO: add max value as next milestone
@@ -20,8 +14,8 @@ export const TOTAL_CHART_CONFIG: AxisOptions<PokoyChartData> = {
   getValue: (datum) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} hours`,
-    scale: (value: number) => `${value}h`,
-  },
+    scale: (value: number) => `${value}h`
+  }
 }
 
 export const DAY_MEDITATIONS_CHART_CONFIG: AxisOptions<PokoyChartData> = {
@@ -33,8 +27,8 @@ export const DAY_MEDITATIONS_CHART_CONFIG: AxisOptions<PokoyChartData> = {
   getValue: (datum: PokoyChartData) => datum.secondary,
   formatters: {
     tooltip: (value: number) => `${value} minutes`,
-    scale: (value: number) => `${value}m`,
-  },
+    scale: (value: number) => `${value}m`
+  }
 }
 
 export const PRIMARY_AXIS_CONFIG: AxisOptions<PokoyChartData> = {
@@ -46,21 +40,21 @@ export const PRIMARY_AXIS_CONFIG: AxisOptions<PokoyChartData> = {
     primary.setUTCSeconds(0)
     primary.setUTCMilliseconds(0)
     return primary
-  },
+  }
 }
 
 export const SECONDARY_AXES_CONFIG: AxisOptions<PokoyChartData>[] = [
   TOTAL_CHART_CONFIG,
-  DAY_MEDITATIONS_CHART_CONFIG,
+  DAY_MEDITATIONS_CHART_CONFIG
 ]
 
 export const CHART_TOOLTIP_CONFIG: TooltipOptions<PokoyChartData> = {
   groupingMode: "single",
-  show: true,
+  show: true
 }
 
 export const SECONDARY_CURSOR_CONFIG = {
   show: true,
   showLine: true,
-  showLabel: true,
+  showLabel: true
 }

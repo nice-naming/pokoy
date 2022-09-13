@@ -1,7 +1,7 @@
-import { FIBONACCI_NUMS } from "shared/constants"
+import { STAGES } from "shared/constants"
 
 export const getFibonacciDiscrete = (minute: number) => {
-  const fibDiscrete = FIBONACCI_NUMS.reduce((acc, fibNum) => {
+  const fibDiscrete = STAGES.reduce((acc, fibNum) => {
     const curDiff = Math.abs(fibNum - minute)
     const prevDiff = Math.abs(acc - minute)
     const isCloserToDiscrete = curDiff < prevDiff
@@ -31,9 +31,9 @@ export const getNextFibonacciStage = (
   currentStage: number,
   minutes: number
 ) => {
-  const nextStageIndex = FIBONACCI_NUMS.indexOf(currentStage) + 1
+  const nextStageIndex = STAGES.indexOf(currentStage) + 1
   const nextStage =
-    currentStage > minutes ? currentStage : FIBONACCI_NUMS[nextStageIndex]
+    currentStage > minutes ? currentStage : STAGES[nextStageIndex]
   return nextStage
 }
 

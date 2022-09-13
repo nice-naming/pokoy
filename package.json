@@ -1,7 +1,7 @@
 {
   "name": "pokoy-app",
   "description": "A meditation app for impulsive minds",
-  "version": "2.1.6",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
