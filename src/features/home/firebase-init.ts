@@ -1,28 +1,31 @@
 import "firebase/firestore"
 import { getAnalytics } from "firebase/analytics"
-import { initializeApp } from "firebase/app"
+import { FirebaseOptions, initializeApp } from "firebase/app"
 import {
   getFirestore,
   enableIndexedDbPersistence,
   CACHE_SIZE_UNLIMITED,
+  initializeFirestore
 } from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { createUserStats } from "./createUserStats"
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "pokoy-1bf7f.firebaseapp.com",
   projectId: "pokoy-1bf7f",
   storageBucket: "pokoy-1bf7f.appspot.com",
   messagingSenderId: "550756523308",
-  appId: "1:550756523308:web:adfbe8e9b9157844f2a089",
-  cacheSizeBytes: CACHE_SIZE_UNLIMITED,
+  appId: "1:550756523308:web:adfbe8e9b9157844f2a089"
 }
 
-const firebaseApp = initializeApp(firebaseConfig)
-const analytics = getAnalytics(firebaseApp)
+const firebaseApp = initializeApp(firebaseConfig, "Pokoy")
+const firestoreDb = initializeFirestore(firebaseApp, {
+  cacheSizeBytes: CACHE_SIZE_UNLIMITED
+})
 export const auth = getAuth(firebaseApp)
 export const firestore = getFirestore(firebaseApp)
+getAnalytics(firebaseApp)
 
 onAuthStateChanged(auth, createUserStats)
 
