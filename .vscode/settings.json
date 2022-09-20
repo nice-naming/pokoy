@@ -1,5 +1,0 @@
-{
-  "typescript.suggest.autoImports": true,
-  "javascript.suggest.autoImports": false,
-  "typescript.tsdk": "node_modules/typescript/lib",
-}

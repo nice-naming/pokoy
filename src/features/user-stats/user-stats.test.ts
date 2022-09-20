@@ -3,8 +3,8 @@ import { MILLIS_IN_DAY } from "shared/constants"
 import { PokoyChartData } from "shared/types"
 import {
   getAverageMeditationPerDay,
-  getTotalDurationsAsAxisData,
-} from "./utils"
+  getTotalDurationsAsAxisData
+} from "./user-stats.utils"
 
 describe("getAverageMeditationPerDay", () => {
   it("should return the correct average duration per day", () => {
@@ -13,7 +13,7 @@ describe("getAverageMeditationPerDay", () => {
       todayDate - MILLIS_IN_DAY,
       todayDate - MILLIS_IN_DAY * 10,
       todayDate - MILLIS_IN_DAY * 100,
-      todayDate - MILLIS_IN_DAY * 365,
+      todayDate - MILLIS_IN_DAY * 365
     ]
     const totalDurationList = [100, 1000, 10000, 36500]
     const expectedAverage = 100
@@ -44,13 +44,13 @@ describe("getTotalDurationsAsAxisData", () => {
       { primary: new Date(Date.now()), secondary: 100 },
       { primary: new Date(Date.now()), secondary: 1000 },
       { primary: new Date(Date.now()), secondary: 10000 },
-      { primary: new Date(Date.now()), secondary: 36500 },
+      { primary: new Date(Date.now()), secondary: 36500 }
     ]
     const expectedTotalDurationsAxisData: PokoyChartData[] = [
       { primary: new Date(Date.now()), secondary: 100 },
       { primary: new Date(Date.now()), secondary: 1000 },
       { primary: new Date(Date.now()), secondary: 10000 },
-      { primary: new Date(Date.now()), secondary: 36500 },
+      { primary: new Date(Date.now()), secondary: 36500 }
     ]
 
     const result = daysWithMeditationsAsAxis.reduce(

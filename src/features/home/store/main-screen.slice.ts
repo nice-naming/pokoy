@@ -14,7 +14,7 @@ const initialState: MainScreenState = {
   errorMessage: "",
   slideIndex: 0,
   status: "idle",
-  timerStatus: "idle",
+  timerStatus: "idle"
 }
 
 export const mainScreenSlice = createSlice({
@@ -30,7 +30,7 @@ export const mainScreenSlice = createSlice({
     // TODO: move state to timer slice
     setTimerStatus: (state, action: PayloadAction<boolean>) => {
       state.timerStatus = action.payload ? "started" : "idle"
-    },
+    }
   },
 
   extraReducers: (builder) => {
@@ -44,16 +44,20 @@ export const mainScreenSlice = createSlice({
       })
       .addCase(setMeditationThunk.rejected, (state, action) => {
         state.status = "error"
+        state.errorMessage =
+          action.error?.message ||
+          "Something went wrong, but we don't know what"
       })
-  },
+  }
 })
 
 export const mainScreenActions = {
-  ...mainScreenSlice.actions,
+  ...mainScreenSlice.actions
 }
 
 export const mainScreenSelectors = {
   getSlideIndex: (state: RootState) => state[FEATURE_NAME].slideIndex,
+  getErrorMessage: (state: RootState) => state[FEATURE_NAME].errorMessage
 }
 
 export const mainScreenSliceReducer = mainScreenSlice.reducer

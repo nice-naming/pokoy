@@ -7,7 +7,7 @@ import { SlideRenderProps, virtualize } from "react-swipeable-views-utils"
 import { useAppDispatch, useAppSelector } from "store"
 import { mainScreenActions } from "./store/main-screen.slice"
 import { Header } from "./components/header/header.component"
-import { Pokoy } from "./components/pokoy/pokoy.component"
+import { Timer } from "./components/timer/timer.component"
 import { ViewsSwitcher } from "./components/views-switcher/views-switcher.component"
 import { auth } from "./firebase-init"
 import { Wrapper, SwipeableView, StyledFooter } from "./app.styles"
@@ -21,23 +21,23 @@ const swipeableViewsRootStyles = {
   width: "100%",
   display: "flex",
   alignItems: "center",
-  overflow: "hidden",
+  overflow: "hidden"
 }
 const swipeableViewsContainerStyles = {
   maxWidth: "100%",
   maxHeight: "100%",
-  height: "100%",
+  height: "100%"
 }
 
 const VirtualizedSwipeableViews = virtualize(SwipeableViews)
 
 export const App: React.FC = () => {
-  const [user, loading] = useAuthState(auth)
-  const slideIndex = useAppSelector((state) => state.mainScreen.slideIndex)
+  const [user, loading, error] = useAuthState(auth)
+
   const dispatch = useAppDispatch()
-  const dispatchSlideIndex = useCallback(() => {
-    return dispatch(toggleSlideIndex())
-  }, [dispatch])
+  const slideIndex = useAppSelector((state) => state.mainScreen.slideIndex)
+  const dispatchSlideIndex = () => dispatch(toggleSlideIndex())
+  const isUserExist = !user?.isAnonymous
 
   const slideRenderer = useCallback(
     ({ index, key }: SlideRenderProps) => {
@@ -45,14 +45,20 @@ export const App: React.FC = () => {
         case 0:
           return (
             <SwipeableView key={key}>
-              <Pokoy user={user as User} authLoading={loading} />
+              <Timer
+                user={user as User}
+                authLoading={loading}
+              />
             </SwipeableView>
           )
 
         case 1:
           return (
             <SwipeableView key={key}>
-              <UserStats user={user} authLoading={loading} />
+              <UserStats
+                user={user}
+                authLoading={loading}
+              />
             </SwipeableView>
           )
       }
@@ -64,24 +70,33 @@ export const App: React.FC = () => {
     <Wrapper>
       <Header />
 
-      <VirtualizedSwipeableViews
-        style={swipeableViewsRootStyles}
-        containerStyle={swipeableViewsContainerStyles}
-        index={slideIndex}
-        onChangeIndex={dispatchSlideIndex}
-        slideRenderer={slideRenderer}
-        slideCount={SLIDES_COUNT}
-        enableMouseEvents
-        resistance
-      />
+      {isUserExist ? (
+        <VirtualizedSwipeableViews
+          style={swipeableViewsRootStyles}
+          containerStyle={swipeableViewsContainerStyles}
+          index={slideIndex}
+          onChangeIndex={dispatchSlideIndex}
+          slideRenderer={slideRenderer}
+          slideCount={SLIDES_COUNT}
+          enableMouseEvents
+          resistance
+        />
+      ) : (
+        <Timer
+          user={user as User}
+          authLoading={loading}
+        />
+      )}
 
       {/* TODO: extract to component */}
       <StyledFooter>
-        <ViewsSwitcher
-          slideIndex={slideIndex}
-          slidesCount={2}
-          setSlideIndex={dispatchSlideIndex}
-        />
+        {isUserExist ? (
+          <ViewsSwitcher
+            slideIndex={slideIndex}
+            slidesCount={2}
+            setSlideIndex={dispatchSlideIndex}
+          />
+        ) : null}
       </StyledFooter>
     </Wrapper>
   )

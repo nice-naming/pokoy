@@ -20,7 +20,7 @@ const firebaseConfig: FirebaseOptions = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig, "Pokoy")
-const firestoreDb = initializeFirestore(firebaseApp, {
+initializeFirestore(firebaseApp, {
   cacheSizeBytes: CACHE_SIZE_UNLIMITED
 })
 export const auth = getAuth(firebaseApp)

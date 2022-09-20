@@ -15,7 +15,7 @@ export const importDataToFirestore = async (firestore: Firestore) => {
       await setDoc(pokoyDoc, {
         user: "/users/rnuYUc9vigMVMkYqs70cSDBTgSm2",
         duration: record.duration,
-        timestamp,
+        timestamp
       })
     } catch (e) {
       console.error(e, record)

@@ -6,8 +6,8 @@ import { serverDayDataToStoreAdapter } from "shared/utils/adapters"
 import { AppDispatch, RootState } from "store"
 import {
   createSessionData,
-  sendMeditationToServer,
-} from "../components/pokoy/writeSessionToServer"
+  sendMeditationToServer
+} from "../components/timer/writeSessionToServer"
 import { firestore } from "../firebase-init"
 import { FEATURE_NAME } from "../main-screen.constants"
 

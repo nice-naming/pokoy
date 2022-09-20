@@ -9,7 +9,7 @@ import {
   query,
   QueryDocumentSnapshot,
   setDoc,
-  where,
+  where
 } from "firebase/firestore"
 import { DayData } from "shared/types"
 
@@ -45,7 +45,7 @@ export const getStatsForUser = async () => {
     count,
     userId,
     firstMeditationDate,
-    totalDuration: total,
+    totalDuration: total
   }
 
   setDoc(userStatsRef, newUserStatsData)

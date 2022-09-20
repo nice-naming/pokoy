@@ -4,13 +4,13 @@ import { useAppDispatch, useAppSelector } from "store"
 import { StatsChart } from "./components/stats-chart/stats-chart.component"
 import { StatsNumbers } from "./components/stats-numbers/stats-numbers.component"
 import { Wrapper } from "./user-stats.styles"
-import { getUserChartData } from "./utils"
+import { getUserChartData } from "./user-stats.utils"
 import { StyledSpinner } from "shared/components/styled-spinner.styles"
 import { NoUserStatsMessage } from "./components/no-user-stats-message"
 import {
   selectDaysData,
   selectIsLoading,
-  selectUserStats,
+  selectUserStats
 } from "./store/user-stats.selectors"
 import { getChartDataThunk, getStatsThunk } from "./store/user-stats.thunks"
 
@@ -21,23 +21,21 @@ interface Props {
 
 // TODO: rename to StatisticsPage
 export const UserStats: React.FC<Props> = ({ user, authLoading }) => {
+  const dispatch = useAppDispatch()
   const userStatistics = useAppSelector(selectUserStats)
   const userDaysData = useAppSelector(selectDaysData)
   const isLoading = useAppSelector(selectIsLoading)
 
-  const dispatch = useAppDispatch()
-
   const userChartData = useMemo(() => {
-    if (!userStatistics) return null
+    if (!userStatistics || !userDaysData) return null
     return getUserChartData(userDaysData, userStatistics)
   }, [userDaysData, userStatistics])
 
   useEffect(() => {
-    if (user) {
-      dispatch(getStatsThunk(user))
-      dispatch(getChartDataThunk(user))
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!user || user.isAnonymous) return
+
+    dispatch(getStatsThunk(user))
+    dispatch(getChartDataThunk(user))
   }, [dispatch, user])
 
   const isChartDataExist = userChartData?.[0].data.length !== 0

@@ -1,11 +1,11 @@
 import {
   StyledStatNumber,
-  StyledStat,
+  StyledStat
 } from "features/user-stats/user-stats.styles"
 import {
   getAverageMeditationPerDay,
-  getTotalInHours,
-} from "features/user-stats/utils"
+  getTotalInHours
+} from "features/user-stats/user-stats.utils"
 import { useEffect, useState } from "react"
 import { UserStatsData } from "shared/types"
 import { Foresight } from "../foresight/foresight.component"
@@ -19,15 +19,14 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
   const [totalInHours, setTotalInHours] = useState<number | null>(null)
 
   useEffect(() => {
-    const totalDurationExists = !!statsData?.totalDuration
-    if (!totalDurationExists) return
+    if (!statsData) return
 
-    setAverage(
-      getAverageMeditationPerDay(
-        statsData.firstMeditationDate,
-        statsData.totalDuration
-      )
+    const averageMeditationPerDay = getAverageMeditationPerDay(
+      statsData.firstMeditationDate,
+      statsData.totalDuration
     )
+
+    setAverage(averageMeditationPerDay)
     setTotalInHours(getTotalInHours(statsData.totalDuration))
   }, [statsData])
 
@@ -36,7 +35,10 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
   return (
     <Wrapper>
       {totalInHoursExist && average && (
-        <Foresight totalHours={totalInHours} average={average} />
+        <Foresight
+          totalHours={totalInHours}
+          average={average}
+        />
       )}
 
       {totalInHoursExist && (

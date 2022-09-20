@@ -7,10 +7,11 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "jsx": "react"
+    "jsx": "react",
   },
   "compileOnSave": true,
-  "include": [
-    "src"
+  "exclude": [
+    "node_modules",
+    "lib"
   ]
 }

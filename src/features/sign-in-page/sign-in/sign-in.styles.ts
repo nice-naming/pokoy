@@ -31,19 +31,7 @@ export const SignInButton = styled.button`
   }
 `
 
-export const Info = styled.p`
-  position: absolute;
-  left: 100%;
-  height: 3rem;
-  padding: 0.5rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  margin: 0 2rem;
-  padding: 0;
-  display: flex;
-  border-radius: 50%;
-  border: 1px solid var(--c-gray);
-  justify-content: center;
-  align-content: baseline;
-  font-family: var(--font-mono);
+export const StyledInfo = styled.span`
+  margin: 0 0.5rem;
+  color: var(--c-gray);
 `

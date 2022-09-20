@@ -1,4 +1,3 @@
-import { useCallback } from "react"
 import { auth } from "features/home/firebase-init"
 import styled from "styled-components/macro"
 
@@ -9,7 +8,6 @@ const StyledButton = styled.button`
   color: inherit;
   cursor: pointer;
   height: 100%;
-  margin-right: auto;
 
   @media screen and (hover: none) and (orientation: landscape) {
     display: none;
@@ -17,11 +15,14 @@ const StyledButton = styled.button`
 `
 
 export const SignOut = () => {
-  const signOut = useCallback(() => auth.signOut(), [])
+  const signOut = () => auth.signOut()
 
   return (
     auth.currentUser && (
-      <StyledButton type="button" onClick={signOut}>
+      <StyledButton
+        type="button"
+        onClick={signOut}
+      >
         Sign out
       </StyledButton>
     )

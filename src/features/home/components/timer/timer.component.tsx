@@ -9,7 +9,7 @@ import { Countdown } from "../countdown/countdown.component"
 import { Sound } from "../sound.component"
 import { Tips } from "../tips"
 import { FibSpiral } from "../fib-spiral/fib-spiral.component"
-import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./pokoy.styles"
+import { BottomTextWrapper, TopTextWrapper, Wrapper } from "./timer.styles"
 import { SECS_IN_MIN } from "shared/constants"
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 }
 
 // TODO: refactor component
-export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
+export const Timer: React.FC<Props> = ({ user, authLoading }) => {
   const [currentTimerId, setCurrentTimerId] = useState<number | null>(null)
   const [timerDiff, setTimerDiff] = useState<number>(0)
 
@@ -94,12 +94,18 @@ export const Pokoy: React.FC<Props> = ({ user, authLoading }) => {
         authLoading={authLoading}
       >
         <Sound progress={timerDiff} />
-        <FibSpiral seconds={timerDiff} authLoading={authLoading} />
+        <FibSpiral
+          seconds={timerDiff}
+          authLoading={authLoading}
+        />
       </TimerButton>
 
       <BottomTextWrapper>
         {!authLoading && (
-          <Tips minutes={minutes} isTimerStarted={isTimerStarted} />
+          <Tips
+            minutes={minutes}
+            isTimerStarted={isTimerStarted}
+          />
         )}
       </BottomTextWrapper>
     </Wrapper>

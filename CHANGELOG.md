@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.3](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.3) (2022-09-20)
+
+
+### Bug Fixes
+
+* app fail on anonymous stats request ([c13178c](https://github.com/m0rtyn/pokoy/commit/c13178c3c603f3a6f60faffb3744c27dbf79deab))
+* change API key and set properly option for the firestore ([d445891](https://github.com/m0rtyn/pokoy/commit/d445891be8d28cfdaaa06b9e9c8f800c5d30d78f))
+* missing version release ([0e0b481](https://github.com/m0rtyn/pokoy/commit/0e0b481bfa3bc33805f1aadac5e12dbd95edcf79))
+* remove local vscode config ([503e4ab](https://github.com/m0rtyn/pokoy/commit/503e4ab9a6410b729ff228463600327fd50b8f07))
+
 ### [2.2.2](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.2) (2022-09-15)
 
 ### [2.2.1](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.1) (2022-09-13)

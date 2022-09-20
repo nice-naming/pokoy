@@ -1,15 +1,17 @@
 import {
   GoogleAuthProvider,
   signInAnonymously,
-  signInWithPopup,
+  signInWithPopup
 } from "firebase/auth"
 import { auth } from "features/home/firebase-init"
 import { useLocation, useNavigate } from "react-router-dom"
 import { ReactComponent as GoogleLogo } from "./google-logo.svg"
-import { Info, SignInButton, Wrapper } from "./sign-in.styles"
-import { StyledTooltip } from "shared/components/styled-tooltip.styles"
+import { SignInButton, Wrapper } from "./sign-in.styles"
+import { useAppSelector } from "store"
+import { mainScreenSelectors } from "features/home/store/main-screen.slice"
 
 export const SignIn = () => {
+  const errorMessage = useAppSelector(mainScreenSelectors.getErrorMessage)
   const navigate = useNavigate()
   const locationState = useLocation().state as { from: { pathname: string } }
   const from = locationState?.from?.pathname || "/"
@@ -18,8 +20,8 @@ export const SignIn = () => {
     try {
       await signInAnonymously(auth)
       navigate(from, { replace: true })
-    } catch (error) {
-      console.error(error)
+    } catch (error: any) {
+      throw new Error(error?.message)
     }
   }
 
@@ -29,28 +31,29 @@ export const SignIn = () => {
     try {
       await signInWithPopup(auth, provider)
       navigate(from, { replace: true })
-    } catch (e) {
-      console.error(e)
+    } catch (e: any) {
+      throw new Error(e?.message)
     }
   }
 
   return (
     <Wrapper>
-      <SignInButton type="button" onClick={signInWithGoogle}>
+      <SignInButton
+        type="button"
+        onClick={signInWithGoogle}
+      >
         Sign in with
         <GoogleLogo />
       </SignInButton>
-      <SignInButton type="button" onClick={signInAsAnon}>
+
+      <SignInButton
+        type="button"
+        onClick={signInAsAnon}
+      >
         Sign in anonymously
-        <Info>
-          <StyledTooltip
-            wrapContent
-            content="⚠️ Anonymous users can use timer, but do not have statistics."
-          >
-            ?
-          </StyledTooltip>
-        </Info>
       </SignInButton>
+
+      {errorMessage && <p>{errorMessage}</p>}
     </Wrapper>
   )
 }

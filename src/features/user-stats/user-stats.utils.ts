@@ -2,7 +2,7 @@ import { UserSerie } from "react-charts"
 import { MILLIS_IN_DAY, MINS_IN_HOUR } from "shared/constants"
 import {
   roundToTenth,
-  roundToHundredth,
+  roundToHundredth
 } from "shared/utils/roundToSecondDecimalPlace"
 import {
   DayData,
@@ -10,14 +10,14 @@ import {
   Minutes,
   MockDayData,
   PokoyChartData,
-  UserStatsData,
+  UserStatsData
 } from "shared/types"
 import {
   INIT_TOTAL_DURATION,
   MAX_DAYS_DATA_LENGTH,
   SECONDARY_AXIS_LABEL,
   TERTIARY_AXIS_LABEL,
-  THIRD_PART,
+  THIRD_PART
 } from "./user-stats.constants"
 import { getForesightDaysData } from "./get-data"
 
@@ -47,7 +47,7 @@ const transformDayDataToChartData = (
 ): UserSerie<PokoyChartData>[] => {
   const daysWithMeditationsAxisData: PokoyChartData[] = daysData.map((d) => ({
     primary: new Date(d.timestamp),
-    secondary: d.totalDuration,
+    secondary: d.totalDuration
   }))
   const totalDurationsAxisData: PokoyChartData[] =
     daysWithMeditationsAxisData.reduce(
@@ -59,12 +59,12 @@ const transformDayDataToChartData = (
     label: SECONDARY_AXIS_LABEL,
     data: daysWithMeditationsAxisData,
     id: "2",
-    secondaryAxisId: "2",
+    secondaryAxisId: "2"
   }
   const tertiaryAxisData: UserSerie<PokoyChartData> = {
     label: TERTIARY_AXIS_LABEL,
     data: totalDurationsAxisData,
-    id: "1",
+    id: "1"
   }
 
   const chartData = [secondaryAxisData, tertiaryAxisData]
@@ -80,7 +80,7 @@ export function getTotalDurationsAsAxisData(
   const newTotal = dayData.secondary / 60 + prevTotal
   const newData = {
     primary: dayData.primary,
-    secondary: roundToHundredth(newTotal),
+    secondary: roundToHundredth(newTotal)
   }
 
   return [...acc, newData]
@@ -104,7 +104,7 @@ export const getPseudoDayData = (
   averageMeditationDuration: number
 ): MockDayData => ({
   timestamp: lastTimestampMillis + (index + 1) * MILLIS_IN_DAY,
-  totalDuration: averageMeditationDuration,
+  totalDuration: averageMeditationDuration
 })
 
 function getDataWithForesight(daysData: DayData[], statsData: UserStatsData) {

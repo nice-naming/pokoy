@@ -1,14 +1,24 @@
 import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
+import {
+  collection,
+  CollectionReference,
+  getDocs,
+  orderBy,
+  query,
+  where
+} from "firebase/firestore"
 import {
   DayData,
   ServerDayData,
   ServerUserStatsData,
   MockDayData,
-  UserStatsData,
+  UserStatsData
 } from "shared/types"
-import { getAverageMeditationPerDay, getPseudoDayData } from "./utils"
+import {
+  getAverageMeditationPerDay,
+  getPseudoDayData
+} from "./user-stats.utils"
 
 // TODO: refactor this method
 // eslint-disable-next-line max-statements
@@ -33,15 +43,24 @@ export function getForesightDaysData(
   return additionalDaysData
 }
 
-export async function fetchStats(user: User): Promise<UserStatsData> {
-  const statsColRef = collection(firestore, "stats")
+// eslint-disable-next-line max-statements
+export async function fetchStats(user: User): Promise<UserStatsData | null> {
+  const statsColRef = collection(
+    firestore,
+    "stats"
+  ) as CollectionReference<ServerUserStatsData>
+
   const statsQuery = query(statsColRef, where("userId", "==", user.uid))
   const daysColSnapshot = await getDocs(statsQuery)
-  const statsData = daysColSnapshot?.docs[0]?.data() as ServerUserStatsData
+  const statsData = daysColSnapshot?.docs[0]?.data()
+
+  if (!statsData) {
+    return null
+  }
 
   const userStatsData: UserStatsData = {
     ...statsData,
-    firstMeditationDate: statsData?.firstMeditationDate?.toMillis() || 0,
+    firstMeditationDate: statsData?.firstMeditationDate?.toMillis() || 0
   }
 
   return userStatsData

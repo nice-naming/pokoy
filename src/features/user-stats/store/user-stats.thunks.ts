@@ -7,7 +7,7 @@ import {
   query,
   setDoc,
   Timestamp,
-  where,
+  where
 } from "firebase/firestore"
 import { INIT_SERVER_USER_STATS } from "shared/constants"
 import { DayData, ServerUserStatsData } from "shared/types"
@@ -25,8 +25,8 @@ export const getStatsThunk = createAsyncThunk(
   async (user: User, thunkAPI) => {
     try {
       const statsData = await fetchStats(user)
-      if (statsData.firstMeditationDate === null) {
-        throw new Error("there is no first meditation date")
+      if (!statsData) {
+        return thunkAPI.rejectWithValue(null)
       }
 
       const setStatsAction = userStatsActions.setStats(statsData)
@@ -46,7 +46,7 @@ export const getChartDataThunk = createAsyncThunk(
     const shallowDaysWithMeditations = daysWithMeditations.map((d) => ({
       ...d,
       timestamp: d.timestamp.toMillis(),
-      statsRef: d.statsRef?.path,
+      statsRef: d.statsRef?.path
     }))
 
     const daysDataFullRange = getFullRange(shallowDaysWithMeditations)
@@ -65,7 +65,7 @@ export const setUserStatsThunk = createAsyncThunk(
     const querySnapshot = await getDocs(q)
 
     const userStatsRef = querySnapshot.docs[0].ref
-    const userStatsData = querySnapshot.docs[0].data() as ServerUserStatsData
+    const userStatsData = querySnapshot.docs[0].data()
 
     const { totalDuration, count, firstMeditationDate } =
       userStatsData || INIT_SERVER_USER_STATS
@@ -76,7 +76,7 @@ export const setUserStatsThunk = createAsyncThunk(
       // TODO: add cloud function to recalculate total duration
       totalDuration: roundToHundredth(totalDuration + dayData.totalDuration),
       firstMeditationDate:
-        firstMeditationDate || Timestamp.fromMillis(dayData.timestamp),
+        firstMeditationDate || Timestamp.fromMillis(dayData.timestamp)
     }
 
     try {
@@ -84,9 +84,8 @@ export const setUserStatsThunk = createAsyncThunk(
       const newUserStatsState = serverStatsDataToStoreAdapter(newUserStats)
 
       thunkAPI.dispatch(userStatsActions.setStats(newUserStatsState))
-      console.info("SUCCESS")
     } catch (e) {
-      console.error("ERROR: ", e)
+      return thunkAPI.rejectWithValue(e)
     }
   }
 )

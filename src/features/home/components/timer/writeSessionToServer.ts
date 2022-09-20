@@ -16,7 +16,7 @@ import {
   QuerySnapshot,
   setDoc,
   Timestamp,
-  where,
+  where
 } from "firebase/firestore"
 import { INIT_DAY_DATA, SECS_IN_MIN } from "shared/constants"
 import { PokoySession, ServerDayData } from "shared/types"
@@ -32,7 +32,7 @@ export const createSessionData = (
   return {
     userId,
     timestamp,
-    duration,
+    duration
   }
 }
 
@@ -110,7 +110,7 @@ const createNewDay = async (
     totalDuration: roundToHundredth(dayData.totalDuration + pokoyData.duration),
     meditations: [...dayData.meditations, pokoyData],
     statsRef: userStatsRef,
-    userId,
+    userId
   }
 
   await setDay(newDayRef, newDayData, pokoyData)
@@ -134,7 +134,7 @@ const updateExistingDay = async (
     ...dayData,
     count: dayData?.count + 1,
     totalDuration: roundToHundredth(totalDuration + pokoyData.duration),
-    meditations: [...meditations, pokoyData],
+    meditations: [...meditations, pokoyData]
   }
 
   await setDay(dayDocRef, newDayData, pokoyData)
