@@ -16,9 +16,9 @@ export const IncognitoStatusIcon = ({ color = "gray" }: Props): JSX.Element => {
       />
       <path
         stroke={color || "currentColor"}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M3 11h2m16.5 0H19m0 0V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v5m14 0H5"
       />
       <circle
@@ -27,9 +27,9 @@ export const IncognitoStatusIcon = ({ color = "gray" }: Props): JSX.Element => {
         r="3"
         fill={color || "currentColor"}
         stroke={color || "currentColor"}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
       />
       <circle
         cx="17"
@@ -37,15 +37,15 @@ export const IncognitoStatusIcon = ({ color = "gray" }: Props): JSX.Element => {
         r="3"
         fill={color || "currentColor"}
         stroke={color || "currentColor"}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
       />
       <path
         stroke={color || "currentColor"}
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M10 16h4"
       />
     </svg>

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.4](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.4) (2022-10-22)
+
+
+### Bug Fixes
+
+* change API key and set properly option for the firestore ([d445891](https://github.com/m0rtyn/pokoy/commit/d445891be8d28cfdaaa06b9e9c8f800c5d30d78f))
+* change way to calculate progress bar ([f060109](https://github.com/m0rtyn/pokoy/commit/f0601099edaa2b75a82114d58798b2839d467aff))
+* missing version release ([0e0b481](https://github.com/m0rtyn/pokoy/commit/0e0b481bfa3bc33805f1aadac5e12dbd95edcf79))
+
 ### [2.2.3](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.3) (2022-09-20)
 
 
