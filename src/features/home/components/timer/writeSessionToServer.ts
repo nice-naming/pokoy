@@ -1,6 +1,3 @@
-// TODO: solve linter issue
-/* eslint-disable max-lines */
-import { User } from "@firebase/auth"
 import { firestore } from "features/home/firebase-init"
 import {
   collection,
@@ -18,7 +15,7 @@ import {
   Timestamp,
   where
 } from "firebase/firestore"
-import { INIT_DAY_DATA, SECS_IN_MIN } from "shared/constants"
+import { SECS_IN_MIN } from "shared/constants"
 import { PokoySession, ServerDayData } from "shared/types"
 import { roundToHundredth } from "shared/utils/roundToSecondDecimalPlace"
 
@@ -36,24 +33,11 @@ export const createSessionData = (
   }
 }
 
-export const sendSessionFromApp = async (
-  firestoreDB: Firestore,
-  user: User | null | undefined,
-  seconds: number
-) => {
-  if (!user) {
-    console.error("User is not defined. Request not sended.", "user: ", user)
-    return
-  }
-
-  const pokoyData = createSessionData(user.uid, seconds)
-  return await sendMeditationToServer(firestoreDB, pokoyData)
-}
-
 /* eslint-disable-next-line max-statements */
 export const sendMeditationToServer = async (
   firestoreDB: Firestore,
-  pokoyData: PokoySession
+  pokoyData: PokoySession,
+  isDayDataExists: boolean
 ) => {
   const userId = pokoyData.userId
   const daysColRef = collection(firestoreDB, "days")
@@ -63,17 +47,17 @@ export const sendMeditationToServer = async (
 
   const daysQuery = query(
     daysColRef,
-    where("userId", "==", userId),
-    where("timestamp", "==", dayTimestamp)
+    where("timestamp", "==", dayTimestamp),
+    where("userId", "==", userId)
   )
 
   try {
     const daysQuerySnapshot = await getDocs(daysQuery)
 
-    if (daysQuerySnapshot.empty) {
-      return await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
-    } else {
+    if (isDayDataExists) {
       return await updateExistingDay(daysQuerySnapshot, pokoyData)
+    } else {
+      return await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
     }
   } catch (e) {
     console.error("⛔️", e)
@@ -89,7 +73,6 @@ const createNewDay = async (
   userId: string
 ) => {
   const newDayRef = doc(daysColRef)
-  const dayData = INIT_DAY_DATA
 
   const statsQuery = query(
     collection(firestore, "stats"),
@@ -105,12 +88,12 @@ const createNewDay = async (
   const userStatsRef = userStatsQuerySnapshot.docs[0].ref
 
   const newDayData: ServerDayData = {
+    totalDuration: roundToHundredth(pokoyData.duration),
+    meditations: [pokoyData],
     timestamp: dayTimestamp,
-    count: dayData.count + 1,
-    totalDuration: roundToHundredth(dayData.totalDuration + pokoyData.duration),
-    meditations: [...dayData.meditations, pokoyData],
     statsRef: userStatsRef,
-    userId
+    userId,
+    count: 1
   }
 
   await setDay(newDayRef, newDayData, pokoyData)
