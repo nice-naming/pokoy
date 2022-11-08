@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.5](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.5) (2022-11-08)
+
+
+### Bug Fixes
+
+* change API key and set properly option for the firestore ([d445891](https://github.com/m0rtyn/pokoy/commit/d445891be8d28cfdaaa06b9e9c8f800c5d30d78f))
+* missing version release ([0e0b481](https://github.com/m0rtyn/pokoy/commit/0e0b481bfa3bc33805f1aadac5e12dbd95edcf79))
+* replace checking for unique document from server-side way to the client-side one ([b26f00c](https://github.com/m0rtyn/pokoy/commit/b26f00cbfb3249ba65a9a17e426090c2b439729a))
+
 ### [2.2.4](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.4) (2022-10-22)
 
 
