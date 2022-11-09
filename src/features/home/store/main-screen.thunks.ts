@@ -10,7 +10,6 @@ import {
 } from "../components/timer/writeSessionToServer"
 import { firestore } from "../firebase-init"
 import { FEATURE_NAME } from "../main-screen.constants"
-import { Milliseconds } from "shared/types"
 
 type Payload = {
   user: User
@@ -33,13 +32,16 @@ export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
 
     const sessionData = createSessionData(user.uid, seconds)
 
-    const todayTimestamp = new Date().setHours(0, 0, 0, 0) as Milliseconds
+    // NOTE: to cut off the time
+    const todayDateStringUTC = new Date().toUTCString().slice(0, 16)
     const isDayDataExists =
-      thunkAPI
-        .getState()
-        .userStats.daysData.findIndex(
-          (day) => day.timestamp === todayTimestamp
-        ) !== -1
+      thunkAPI.getState().userStats.daysData.findIndex((day) => {
+        // NOTE: to cut off the time
+        const dayDateStringUTC = new Date(day.timestamp)
+          .toUTCString()
+          .slice(0, 16)
+        return dayDateStringUTC === todayDateStringUTC
+      }) !== -1
 
     const serverDayData = await sendMeditationToServer(
       firestore,
