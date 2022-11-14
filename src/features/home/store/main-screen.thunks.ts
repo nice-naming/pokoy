@@ -31,23 +31,7 @@ export const setMeditationThunk = createAsyncThunk<void, Payload, ThunkAPI>(
     }
 
     const sessionData = createSessionData(user.uid, seconds)
-
-    // NOTE: to cut off the time
-    const todayDateStringUTC = new Date().toUTCString().slice(0, 16)
-    const isDayDataExists =
-      thunkAPI.getState().userStats.daysData.findIndex((day) => {
-        // NOTE: to cut off the time
-        const dayDateStringUTC = new Date(day.timestamp)
-          .toUTCString()
-          .slice(0, 16)
-        return dayDateStringUTC === todayDateStringUTC
-      }) !== -1
-
-    const serverDayData = await sendMeditationToServer(
-      firestore,
-      sessionData,
-      isDayDataExists
-    )
+    const serverDayData = await sendMeditationToServer(firestore, sessionData)
 
     if (!serverDayData) throw new Error("Request failure")
 

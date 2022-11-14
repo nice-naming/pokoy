@@ -36,28 +36,28 @@ export const createSessionData = (
 /* eslint-disable-next-line max-statements */
 export const sendMeditationToServer = async (
   firestoreDB: Firestore,
-  pokoyData: PokoySession,
-  isDayDataExists: boolean
+  pokoyData: PokoySession
 ) => {
   const userId = pokoyData.userId
   const daysColRef = collection(firestoreDB, "days")
   const dayTimestamp = Timestamp.fromMillis(
+    // WARN: possible bug with forgetting timezone
     new Date(pokoyData.timestamp).setHours(0, 0, 0, 0)
   )
 
   const daysQuery = query(
     daysColRef,
-    where("timestamp", "==", dayTimestamp),
-    where("userId", "==", userId)
+    where("userId", "==", userId),
+    where("timestamp", "==", dayTimestamp)
   )
 
   try {
     const daysQuerySnapshot = await getDocs(daysQuery)
 
-    if (isDayDataExists) {
-      return await updateExistingDay(daysQuerySnapshot, pokoyData)
-    } else {
+    if (daysQuerySnapshot.empty) {
       return await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
+    } else {
+      return await updateExistingDay(daysQuerySnapshot, pokoyData)
     }
   } catch (e) {
     console.error("⛔️", e)
