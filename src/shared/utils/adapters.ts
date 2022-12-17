@@ -2,7 +2,7 @@ import {
   DayData,
   ServerDayData,
   ServerUserStatsData,
-  UserStatsData,
+  UserStatsData
 } from "shared/types"
 
 export const serverDayDataToStoreAdapter = (
@@ -11,7 +11,7 @@ export const serverDayDataToStoreAdapter = (
   return {
     ...dayData,
     timestamp: dayData.timestamp.toMillis(),
-    statsRef: dayData.statsRef?.path,
+    statsRef: dayData.statsRef?.path
   }
 }
 
@@ -21,6 +21,6 @@ export const serverStatsDataToStoreAdapter = (
   return {
     ...statsData,
     // TODO: remove from server all nullable firstMeditationDate values
-    firstMeditationDate: statsData.firstMeditationDate?.toMillis(),
+    firstMeditationDate: statsData.firstMeditationDate?.toMillis()
   }
 }

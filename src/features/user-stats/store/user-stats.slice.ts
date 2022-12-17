@@ -6,6 +6,7 @@ import { getChartDataThunk, getStatsThunk } from "./user-stats.thunks"
 export interface UserStatsState {
   daysData: DayData[]
   stats: UserStatsData | null
+  dateRange: "all" | "quarter"
   status: "idle" | "loading" | "error" | "loaded"
   errorMessage: string | null
 }
@@ -14,7 +15,8 @@ const initialState: UserStatsState = {
   daysData: [],
   stats: null,
   status: "idle",
-  errorMessage: null,
+  dateRange: "all",
+  errorMessage: null
 }
 
 export const userStatsSlice = createSlice({
@@ -37,6 +39,10 @@ export const userStatsSlice = createSlice({
     setChartData: (state, action: PayloadAction<DayData[]>) => {
       state.daysData = action.payload
     },
+    toggleDateRange: (state, action: PayloadAction<void>) => {
+      const newDateRange = state.dateRange === "all" ? "quarter" : "all"
+      state.dateRange = newDateRange
+    }
   },
 
   extraReducers: (builder) => {
@@ -61,12 +67,12 @@ export const userStatsSlice = createSlice({
         state.status = "error"
         state.errorMessage = action.error.message ?? null
       })
-  },
+  }
 })
 
 // Action creators are generated for each case reducer function
 export const userStatsActions = {
-  ...userStatsSlice.actions,
+  ...userStatsSlice.actions
 }
 
 export const userStatsSliceReducer = userStatsSlice.reducer

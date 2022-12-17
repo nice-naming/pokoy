@@ -25,6 +25,10 @@ export const getTotalInHours = (minutes: number): number => {
   return Math.floor(minutes / MINS_IN_HOUR)
 }
 
+export const getStreak = () => {
+  return 0
+}
+
 // eslint-disable-next-line max-statements
 export const getAverageMeditationPerDay = (
   firstMeditationDate: Milliseconds,
@@ -122,11 +126,39 @@ export const getUserChartData = (
   userDaysData: DayData[],
   userStatistics: UserStatsData
 ) => {
-  const cuttedChartData = cutDataRange(userDaysData) as DayData[]
+  // const cuttedChartData = cutDataRange(userDaysData) as DayData[]
   const chartDataWithForesight = getDataWithForesight(
-    cuttedChartData,
+    userDaysData,
     userStatistics
   )
   const chartData = transformDayDataToChartData(chartDataWithForesight)
   return chartData
+}
+
+export const countStats = (
+  userDaysData: DayData[],
+  userStatistics: UserStatsData
+) => {
+  // console.debug("🚀 ~ userDaysData", userDaysData)
+
+  if (!userDaysData) return null
+
+  let count = 0
+
+  const totalMeditationTime = userDaysData.reduce((acc, day) => {
+    const totalDayDuration = day.meditations.reduce((acc, med) => {
+      count += 1
+      return acc + med.duration
+    }, 0)
+    return acc + totalDayDuration
+  }, 0)
+
+  console.debug(
+    "‼️ ",
+    totalMeditationTime + " / " + userStatistics?.totalDuration,
+    count + " / " + userStatistics?.count,
+    "\n",
+    "average session: " + totalMeditationTime / count,
+    "average day duration: " + totalMeditationTime / userDaysData.length
+  )
 }

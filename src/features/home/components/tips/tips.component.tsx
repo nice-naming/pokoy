@@ -8,7 +8,7 @@ import {
   StyledTip,
   StyledTrianle,
   StyledUnits,
-  Wrapper,
+  Wrapper
 } from "./tips.styles"
 
 interface Props {
@@ -76,7 +76,7 @@ export const Tips: React.FC<Props> = React.memo(
             </StageWrapper>
           </>
         ) : (
-          <StyledTip>Press the circle to start</StyledTip>
+          <StyledTip>Hold the circle to start</StyledTip>
         )}
       </Wrapper>
     )

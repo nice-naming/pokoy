@@ -8,23 +8,30 @@ import { DayData, Milliseconds } from "shared/types"
 export const getFullRange = (daysWithMeditations: DayData[]) => {
   if (daysWithMeditations.length === 0) return []
 
-  const statisticsWithMissedDays = daysWithMeditations
+  const dayDataWithMissedDays = daysWithMeditations
     .reverse()
     .reduce(addMissedDays, [] as DayData[])
 
   const todayTimestamp = new Date(Date.now()).setHours(0, 0, 0, 0)
-  const lastDayInRange =
-    statisticsWithMissedDays[statisticsWithMissedDays.length - 1]
+  const lastDayInRange = dayDataWithMissedDays[dayDataWithMissedDays.length - 1]
 
   const lastDayEqualToToday = lastDayInRange.timestamp === todayTimestamp
   if (lastDayEqualToToday) {
-    return statisticsWithMissedDays
+    return dayDataWithMissedDays
   }
 
   const dateDiff = getDateDiffInDays(todayTimestamp, lastDayInRange.timestamp)
-  const missedDays = createMissedDays(dateDiff, todayTimestamp, lastDayInRange)
-  const fullRange = statisticsWithMissedDays.concat(missedDays)
+  if (dateDiff <= 0) {
+    return dayDataWithMissedDays
+  }
 
+  const lastMissedDays = createMissedDays(
+    dateDiff,
+    todayTimestamp,
+    lastDayInRange
+  )
+
+  const fullRange = dayDataWithMissedDays.concat(lastMissedDays)
   return fullRange
 }
 
@@ -77,7 +84,7 @@ function createMissedDays(
         ...day,
         meditations: [],
         totalDuration: 0,
-        timestamp: newTimestamp,
+        timestamp: newTimestamp
       }
       return emptyDay
     })
@@ -89,15 +96,15 @@ function getDateDiffInDays(
 ) {
   const diffInDays = Math.ceil((dayTimestamp - expectedDate) / MILLIS_IN_DAY)
 
-  if (diffInDays < 0) {
-    const errorMsg = `
-      Negative difference between dates: 
-      current: ${new Date(dayTimestamp).toString()} 
-      expected: ${new Date(expectedDate).toString()} 
-      diffDays: ${diffInDays}
-    `
-    throw new Error(errorMsg)
-  }
+  // if (diffInDays < 0) {
+  //   const errorMsg = `
+  //     Negative difference between dates:
+  //     current: ${new Date(dayTimestamp).toString()}
+  //     expected: ${new Date(expectedDate).toString()}
+  //     diffDays: ${diffInDays}
+  //   `
+  //   throw new Error(errorMsg)
+  // }
 
   return diffInDays
 }

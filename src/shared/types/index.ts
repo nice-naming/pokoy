@@ -52,25 +52,26 @@ export type Minutes = Flavor<number, "Minutes">
 
 export type DateString = Flavor<string, "DateString">
 
-export interface UserStatsData {
-  firstMeditationDate: Milliseconds
-  totalDuration: Minutes
+interface BasicUserStatsData {
+  streak: number
   count: number
   userId: string
+  totalDuration: Minutes
 }
 
-export interface ServerUserStatsData {
+export interface UserStatsData extends BasicUserStatsData {
+  firstMeditationDate: Milliseconds
+}
+
+export interface ServerUserStatsData extends BasicUserStatsData {
   firstMeditationDate: Timestamp
-  totalDuration: number
-  count: number
-  userId: string
 }
 
 export enum RequestStatus {
   NONE,
   REQUEST,
   SUCCESS,
-  FAILURE,
+  FAILURE
 }
 
 export interface PseudoDayData {

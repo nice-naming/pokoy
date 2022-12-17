@@ -28,7 +28,10 @@ const TutorialFirstStep: React.FC = () => {
   return (
     <SwipeableView>
       <h2>Start of the App</h2>
-      <StyledImg src={firstStepImg} alt="first step" />
+      <StyledImg
+        src={firstStepImg}
+        alt="first step"
+      />
       <p>You start the application and see a circle with a spiral.</p>
     </SwipeableView>
   )
@@ -38,10 +41,13 @@ const TutorialSecondStep: React.FC = () => {
   return (
     <SwipeableView>
       <h2>The Timer</h2>
-      <StyledImg src={secondStepImg} alt="second step" />
+      <StyledImg
+        src={secondStepImg}
+        alt="second step"
+      />
       <p>
-        You click on the circle and the session begins. A one-minute countdown
-        timer will appear.
+        You press and hold the circle and the session begins. A one-minute
+        countdown timer will appear.
       </p>
     </SwipeableView>
   )
@@ -51,7 +57,10 @@ const TutorialThirdStep: React.FC = () => {
   return (
     <SwipeableView>
       <h2>Increasing Stages</h2>
-      <StyledImg src={fourthStepImg} alt="fourt step" />
+      <StyledImg
+        src={fourthStepImg}
+        alt="fourt step"
+      />
       <p>
         The first three stages last a minute each, and then the duration grows,
         about one and a half times (1.618).
@@ -72,7 +81,10 @@ const TutorialFourthStep: React.FC = () => {
         After the second click, your session is over. The session time will be
         recorded in the statistics.
       </p>
-      <StyledImg src={firstStepImg} alt="fifth step" />
+      <StyledImg
+        src={firstStepImg}
+        alt="fifth step"
+      />
     </SwipeableView>
   )
 }
@@ -81,7 +93,10 @@ const TutorialFifthStep: React.FC = () => {
   return (
     <SwipeableView>
       <h2>Statistics</h2>
-      <StyledImg src={fifthStepImg} alt="fifth step" />
+      <StyledImg
+        src={fifthStepImg}
+        alt="fifth step"
+      />
       <p>
         If you swipe to the right or press the screen switcher (••), you will be
         taken to your statistics screen.

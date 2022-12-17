@@ -1,3 +1,4 @@
+import { StyledButton } from "shared/styles/app.styles"
 import styled from "styled-components/macro"
 
 export const Wrapper = styled.div`
@@ -34,5 +35,19 @@ export const StyledStatNumber = styled.span`
 
   @media screen and (hover: hover) {
     font-size: 5rem;
+  }
+`
+
+export const StyledDateRangeButton = styled(StyledButton)`
+  font-size: 2rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+  width: 50%;
+  color: var(--c-foreground);
+  border: 0.25rem solid var(--c-dark-gray);
+
+  &::after {
+    display: none;
   }
 `

@@ -7,7 +7,7 @@ import {
   CHART_TOOLTIP_CONFIG,
   PRIMARY_AXIS_CONFIG,
   SECONDARY_AXES_CONFIG,
-  SECONDARY_CURSOR_CONFIG,
+  SECONDARY_CURSOR_CONFIG
 } from "./constants"
 import { THIRD_PART } from "../../user-stats.constants"
 
@@ -16,16 +16,18 @@ interface Props {
 }
 
 const CHART_DATA_EMPTY: UserSerie<PokoyChartData> = {
-  data: [],
+  data: []
 }
 
 export const StatsChart: React.FC<Props> = ({ chartData }) => {
-  const getDatumStyle = useCallback(
+  const getDatumOpacity = useCallback(
     (datum: Datum<PokoyChartData>): DatumStyles => {
       const dataLength = chartData?.[0].data.length || 0
       const startPositionOfForesight = Math.round(dataLength / (1 + THIRD_PART))
 
-      return datum.index + 1 > startPositionOfForesight ? { opacity: 0.5 } : {}
+      return datum.index + 1 > startPositionOfForesight
+        ? { opacity: "30%" }
+        : {}
     },
     [chartData]
   )
@@ -33,7 +35,7 @@ export const StatsChart: React.FC<Props> = ({ chartData }) => {
   const chartOptions = useMemo(
     () => ({
       data: chartData || [CHART_DATA_EMPTY],
-      getDatumStyle,
+      getDatumStyle: getDatumOpacity,
       //
       dark: true,
       primaryCursor: true,
@@ -41,9 +43,9 @@ export const StatsChart: React.FC<Props> = ({ chartData }) => {
       tooltip: CHART_TOOLTIP_CONFIG,
       primaryAxis: PRIMARY_AXIS_CONFIG,
       secondaryAxes: SECONDARY_AXES_CONFIG,
-      secondaryCursor: SECONDARY_CURSOR_CONFIG,
+      secondaryCursor: SECONDARY_CURSOR_CONFIG
     }),
-    [getDatumStyle, chartData]
+    [getDatumOpacity, chartData]
   )
 
   return (

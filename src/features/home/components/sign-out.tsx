@@ -1,12 +1,9 @@
 import { auth } from "features/home/firebase-init"
+import { StyledButton } from "shared/styles/app.styles"
 import styled from "styled-components/macro"
 
 // TODO: extract
-const StyledButton = styled.button`
-  background-color: var(--c-darken-gray);
-  font-size: inherit;
-  color: inherit;
-  cursor: pointer;
+const StyledSignOutButton = styled(StyledButton)`
   height: 100%;
 
   @media screen and (hover: none) and (orientation: landscape) {
@@ -19,12 +16,12 @@ export const SignOut = () => {
 
   return (
     auth.currentUser && (
-      <StyledButton
+      <StyledSignOutButton
         type="button"
         onClick={signOut}
       >
         Sign out
-      </StyledButton>
+      </StyledSignOutButton>
     )
   )
 }

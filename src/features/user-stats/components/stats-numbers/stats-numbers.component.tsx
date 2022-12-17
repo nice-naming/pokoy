@@ -4,6 +4,7 @@ import {
 } from "features/user-stats/user-stats.styles"
 import {
   getAverageMeditationPerDay,
+  getStreak,
   getTotalInHours
 } from "features/user-stats/user-stats.utils"
 import { useEffect, useState } from "react"
@@ -17,6 +18,7 @@ interface Props {
 export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
   const [average, setAverage] = useState<number | null>(null)
   const [totalInHours, setTotalInHours] = useState<number | null>(null)
+  const [streak, setStreak] = useState<number | null>(null)
 
   useEffect(() => {
     if (!statsData) return
@@ -28,6 +30,7 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
 
     setAverage(averageMeditationPerDay)
     setTotalInHours(getTotalInHours(statsData.totalDuration))
+    setStreak(getStreak())
   }, [statsData])
 
   const totalInHoursExist = totalInHours !== null
@@ -51,6 +54,13 @@ export const StatsNumbers: React.FC<Props> = ({ statsData }) => {
         <StyledStat>
           <StyledStatNumber>{average}</StyledStatNumber>
           <span> average mins / day </span>
+        </StyledStat>
+      )}
+
+      {streak && (
+        <StyledStat>
+          <StyledStatNumber>{streak}</StyledStatNumber>
+          <span> days in a row </span>
         </StyledStat>
       )}
     </Wrapper>
