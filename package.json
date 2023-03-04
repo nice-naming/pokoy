@@ -1,7 +1,7 @@
 {
   "name": "pokoy-app",
   "description": "A meditation app for impulsive minds",
-  "version": "2.2.7",
+  "version": "2.3.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -11,6 +11,7 @@
     "format": "react-scripts format",
     "build-functions": "cd functions && npm install && npm run build",
     "release": "standard-version",
+    "bump": "yarn release",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {

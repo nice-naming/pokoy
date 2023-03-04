@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.3.0) (2023-03-04)
+
+
+### Features
+
+* add average session in stats view ([c1ced32](https://github.com/m0rtyn/pokoy/commit/c1ced32837557cf6cc51044820ce7dcf083749fe))
+
+
+### Bug Fixes
+
+* change API key and set properly option for the firestore ([d445891](https://github.com/m0rtyn/pokoy/commit/d445891be8d28cfdaaa06b9e9c8f800c5d30d78f))
+* dates comparizon of the new meditation day ([#117](https://github.com/m0rtyn/pokoy/issues/117)) ([0a88b3a](https://github.com/m0rtyn/pokoy/commit/0a88b3ac3732988f4d5368cd0447f3fa510ef7fd))
+* days duplication in firestore ([#115](https://github.com/m0rtyn/pokoy/issues/115)) ([b1d85f8](https://github.com/m0rtyn/pokoy/commit/b1d85f860f142f3637a617cac408a7aa7e565b56))
+* missing version release ([0e0b481](https://github.com/m0rtyn/pokoy/commit/0e0b481bfa3bc33805f1aadac5e12dbd95edcf79))
+
 ### [2.2.7](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.2.7) (2022-11-14)
 
 
