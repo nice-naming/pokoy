@@ -75,6 +75,7 @@ export const setUserStatsThunk = createAsyncThunk(
       userId: dayData.userId,
       // TODO: add cloud function to recalculate total duration
       totalDuration: roundToHundredth(totalDuration + dayData.totalDuration),
+      streak: 0,
       firstMeditationDate:
         firstMeditationDate || Timestamp.fromMillis(dayData.timestamp)
     }

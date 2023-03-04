@@ -6,6 +6,7 @@ export const INIT_SERVER_USER_STATS: ServerUserStatsData = {
   totalDuration: 0,
   count: 0,
   userId: "",
+  streak: 0,
 }
 
 export const INIT_DAY_DATA: PseudoDayData = {
