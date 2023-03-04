@@ -33,6 +33,6 @@ export const StyledStatNumber = styled.span`
   color: var(--c-foreground);
 
   @media screen and (hover: hover) {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 `

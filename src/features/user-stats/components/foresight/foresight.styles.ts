@@ -3,7 +3,7 @@ import styled from "styled-components/macro"
 
 export const Wrapper = styled.div`
   width: 100%;
-  grid-area: date;
+  grid-area: foresight;
   display: grid;
   grid-gap: 1rem;
 `

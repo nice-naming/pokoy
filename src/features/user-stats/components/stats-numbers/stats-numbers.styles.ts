@@ -4,8 +4,8 @@ export const Wrapper = styled.div`
   display: grid;
   font-size: 2rem;
   grid-template-areas:
-    "date date"
-    "average total";
+    "foresight foresight foresight"
+    "average total count";
   grid-gap: 2rem;
   justify-items: flex-start;
 

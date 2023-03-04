@@ -41,6 +41,14 @@ export const getAverageMeditationPerDay = (
   return average
 }
 
+export const getAverageCountPerDay = (userDaysData: DayData[]) => {
+  const averageMeditationCount = userDaysData.reduce(
+    (acc, el) => acc + el.meditations.length / userDaysData.length,
+    0
+  )
+  return roundToTenth(averageMeditationCount)
+}
+
 // eslint-disable-next-line max-statements
 const transformDayDataToChartData = (
   daysData: MockDayData[]
