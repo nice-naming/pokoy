@@ -1,4 +1,3 @@
-import { firestore } from "features/home/firebase-init"
 import {
   collection,
   CollectionReference,
@@ -55,7 +54,13 @@ export const sendMeditationToServer = async (
     const daysQuerySnapshot = await getDocs(daysQuery)
 
     if (daysQuerySnapshot.empty) {
-      return await createNewDay(daysColRef, dayTimestamp, pokoyData, userId)
+      return await createNewDay(
+        daysColRef,
+        dayTimestamp,
+        pokoyData,
+        userId,
+        firestoreDB
+      )
     } else {
       return await updateExistingDay(daysQuerySnapshot, pokoyData)
     }
@@ -70,12 +75,14 @@ const createNewDay = async (
   daysColRef: CollectionReference<DocumentData>,
   dayTimestamp: Timestamp,
   pokoyData: PokoySession,
-  userId: string
+  userId: string,
+  firestoreDB: Firestore
+  // eslint-disable-next-line max-params
 ) => {
   const newDayRef = doc(daysColRef)
 
   const statsQuery = query(
-    collection(firestore, "stats"),
+    collection(firestoreDB, "stats"),
     where("userId", "==", userId),
     limit(1)
   )

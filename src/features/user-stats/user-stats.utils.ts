@@ -41,11 +41,12 @@ export const getAverageMeditationPerDay = (
   return average
 }
 
-export const getAverageCountPerDay = (userDaysData: DayData[]) => {
-  const averageMeditationCount = userDaysData.reduce(
-    (acc, el) => acc + el.meditations.length / userDaysData.length,
-    0
-  )
+export const getAverageCountPerDay = (dayDataList: DayData[]) => {
+  const meditationCount = dayDataList
+    .map((dayData) => dayData.meditations.length)
+    .reduce((acc, meditationCount) => meditationCount + acc, 0)
+  const averageMeditationCount = meditationCount / dayDataList.length
+
   return roundToTenth(averageMeditationCount)
 }
 

@@ -1,5 +1,7 @@
 export const FIB_NUMS = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] // durations of each stage in minutes
-export const STAGES = [0, 1, 3, 6, 11, 19, 32, 53, 87, 142, 231] // total durations of the stages in minutes
+// export const OLD_STAGES = [0, 1, 3, 6, 11, 19, 32, 53, 87, 142, 231] // total durations of the stages in minutes with fibonacci diffs
+
+export const STAGES = [0, 1, 2, 4, 8, 15, 20, 30, 60, 90, 120] // total durations of the stages in minutes with custom diffs
 
 /* NOTE: deprecated:
   export const fibonacciPercents = [1, 2, 3, 6, 9, 15, 24, 38, 62, 100]

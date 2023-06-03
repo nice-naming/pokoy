@@ -1,8 +1,8 @@
-import { firestore } from "features/home/firebase-init"
 import {
   collection,
   doc,
   DocumentData,
+  Firestore,
   getDocs,
   limit,
   orderBy,
@@ -14,10 +14,10 @@ import {
 import { DayData } from "shared/types"
 
 // eslint-disable-next-line max-statements
-export const getStatsForUser = async () => {
+export const getStatsForUser = async (firestoreDB: Firestore) => {
   const userId = "" // NOTE: for manual pasting
   const daysQ = query(
-    collection(firestore, "days"),
+    collection(firestoreDB, "days"),
     where("userId", "==", userId),
     orderBy("timestamp", "asc")
   )
@@ -31,13 +31,13 @@ export const getStatsForUser = async () => {
     (daysDocs?.[0]?.data() as DayData)?.timestamp || null
 
   const statsQ = query(
-    collection(firestore, "stats"),
+    collection(firestoreDB, "stats"),
     where("userId", "==", userId),
     limit(1)
   )
   const statsQuerySnapshot = await getDocs(statsQ)
 
-  const userStatsColRef = collection(firestore, "stats")
+  const userStatsColRef = collection(firestoreDB, "stats")
   const userStatsRef = statsQuerySnapshot.empty
     ? doc(userStatsColRef)
     : statsQuerySnapshot.docs[0].ref
@@ -50,6 +50,7 @@ export const getStatsForUser = async () => {
 
   setDoc(userStatsRef, newUserStatsData)
 }
+
 function getTotalDurationFromDays(
   daysDocs: QueryDocumentSnapshot<DocumentData>[]
 ) {

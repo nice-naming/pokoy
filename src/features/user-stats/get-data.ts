@@ -1,8 +1,8 @@
-import { firestore } from "features/home/firebase-init"
 import { User } from "firebase/auth"
 import {
   collection,
   CollectionReference,
+  Firestore,
   getDocs,
   orderBy,
   query,
@@ -44,9 +44,12 @@ export function getForesightDaysData(
 }
 
 // eslint-disable-next-line max-statements
-export async function fetchStats(user: User): Promise<UserStatsData | null> {
+export async function fetchStats(
+  user: User,
+  firestoreDB: Firestore
+): Promise<UserStatsData | null> {
   const statsColRef = collection(
-    firestore,
+    firestoreDB,
     "stats"
   ) as CollectionReference<ServerUserStatsData>
 
@@ -66,8 +69,11 @@ export async function fetchStats(user: User): Promise<UserStatsData | null> {
   return userStatsData
 }
 
-export async function fetchDays(user: User): Promise<ServerDayData[]> {
-  const daysColRef = collection(firestore, "days")
+export async function fetchDays(
+  user: User,
+  firestoreDB: Firestore
+): Promise<ServerDayData[]> {
+  const daysColRef = collection(firestoreDB, "days")
   const daysQuery = query(
     daysColRef,
     where("userId", "==", user.uid),

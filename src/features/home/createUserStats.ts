@@ -6,7 +6,7 @@ import {
   limit,
   query,
   setDoc,
-  where,
+  where
 } from "firebase/firestore"
 import { INIT_SERVER_USER_STATS } from "shared/constants"
 import { firestore } from "./firebase-init"
@@ -28,7 +28,7 @@ export const createUserStats = async (
     const userStatsRef = doc(statsColRef)
     const newUserStats = {
       ...INIT_SERVER_USER_STATS,
-      userId: user.uid,
+      userId: user.uid
     }
     setDoc(userStatsRef, newUserStats)
   }

@@ -24,7 +24,7 @@ export const getStatsThunk = createAsyncThunk(
   // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
     try {
-      const statsData = await fetchStats(user)
+      const statsData = await fetchStats(user, firestore)
       if (!statsData) {
         return thunkAPI.rejectWithValue(null)
       }
@@ -42,7 +42,7 @@ export const getChartDataThunk = createAsyncThunk(
   // TODO: refactor this method
   // eslint-disable-next-line max-statements
   async (user: User, thunkAPI) => {
-    const daysWithMeditations = await fetchDays(user)
+    const daysWithMeditations = await fetchDays(user, firestore)
     const shallowDaysWithMeditations = daysWithMeditations.map((d) => ({
       ...d,
       timestamp: d.timestamp.toMillis(),
