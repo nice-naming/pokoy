@@ -3,17 +3,18 @@ import {
   deleteDoc,
   DocumentData,
   QueryDocumentSnapshot,
-  setDoc,
+  setDoc
 } from "@firebase/firestore"
 import { firestore } from "features/home/firebase-init"
 import {
   doc,
+  Firestore,
   getDoc,
   getDocs,
   orderBy,
   query,
   Timestamp,
-  where,
+  where
 } from "firebase/firestore"
 import { PokoySession, PseudoServerDayData } from "shared/types"
 
@@ -25,13 +26,14 @@ const INIT_DAY_DATA: PseudoServerDayData = {
   count: 0,
   totalDuration: 0,
   meditations: [],
-  userId: "",
+  userId: ""
 }
 
 // eslint-disable-next-line max-statements, complexity, max-statements
 export const migratePokoyToDay = async (
   pokoySnapshot: QueryDocumentSnapshot<DocumentData>,
-  index: number
+  index: number,
+  firestoreDB: Firestore
 ) => {
   const timeout = index * 1000
 
@@ -45,7 +47,7 @@ export const migratePokoyToDay = async (
           ? (pokoyData.user as string).replace("users/", "")
           : pokoyData.user?.id || "user-id-not-found" // NOTE: check and replace hardcode
 
-      const daysColRef = collection(firestore, "days")
+      const daysColRef = collection(firestoreDB, "days")
       const dayDateString = new Date(pokoyData.timestamp).toDateString()
       const dayTimestamp = Timestamp.fromDate(new Date(dayDateString))
       const daysQuery = query(
@@ -69,7 +71,7 @@ export const migratePokoyToDay = async (
           count: dayData?.count + 1,
           totalDuration: dayData?.totalDuration + pokoyData.duration,
           meditations: [...dayData?.meditations, pokoyData],
-          userId,
+          userId
         }
 
         await setDoc(dayDocRef, newDayData)
@@ -90,7 +92,7 @@ export const migratePokoyToDay = async (
           count: dayData.count + 1,
           totalDuration: dayData.totalDuration + pokoyData.duration,
           meditations: [...dayData.meditations, pokoyData],
-          userId,
+          userId
         }
 
         await setDoc(newDayRef, newDayData)
@@ -116,6 +118,6 @@ export const migratePokoysToDays = async () => {
 
   const pokoysDocs = querySnapshot.docs.slice(0, 100)
   pokoysDocs.forEach((snapshot, i) => {
-    migratePokoyToDay(snapshot, i)
+    migratePokoyToDay(snapshot, i, firestore)
   })
 }
