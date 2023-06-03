@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/m0rtyn/pokoy/compare/v2.4.0...v2.5.0) (2023-06-03)
+
+
+### Features
+
+* add new milestones for timer and statistics ([77aa032](https://github.com/m0rtyn/pokoy/commit/77aa0328dfd507ecd9738cec59dd848358a8d584))
+
 ## [2.4.0](https://github.com/m0rtyn/pokoy/compare/v2.2.0...v2.4.0) (2023-06-03)
 
 

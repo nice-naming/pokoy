@@ -21,24 +21,29 @@ export type FirestoreRefPath = Flavor<string, "FirestoreRefPath">
 
 export interface DayData {
   timestamp: Milliseconds
-  totalDuration: number
-  count: number
   meditations: PokoySession[]
   userId: string
   statsRef?: FirestoreRefPath
+  /** @deprecated */
+  totalDuration: number
+  /** @deprecated */
+  count: number
 }
 
 export interface ServerDayData {
   timestamp: Timestamp
-  totalDuration: number
-  count: number
   meditations: PokoySession[]
   userId: string
   statsRef: DocumentReference<DocumentData>
+  /** @deprecated */
+  totalDuration: number
+  /** @deprecated */
+  count: number
 }
 
 export interface MockDayData {
   timestamp: Milliseconds
+  /** @deprecated */
   totalDuration: number
 }
 
@@ -70,15 +75,17 @@ export enum RequestStatus {
   NONE,
   REQUEST,
   SUCCESS,
-  FAILURE,
+  FAILURE
 }
 
 export interface PseudoDayData {
   timestamp: Milliseconds
-  totalDuration: number
-  count: number
   meditations: PokoySession[]
   userId: string
+  /** @deprecated */
+  totalDuration: number
+  /** @deprecated */
+  count: number
 }
 
 export interface PseudoServerDayData {
