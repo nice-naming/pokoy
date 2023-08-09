@@ -1,5 +1,7 @@
 [![wakatime](https://wakatime.com/badge/github/m0rtyn/pokoy.svg)](https://wakatime.com/badge/github/m0rtyn/pokoy)
 
+<span style="color: yellow;">⚠️ This is the second major version of the Pokoy app. The code for the third version is currently under development and is hosted in a private repo, however the last version is available at https://pokoy.app.</span>
+
 # Pokoy — a meditation app for impulsive minds
 
 ## Concept
